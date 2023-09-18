@@ -32,3 +32,26 @@
 # print(len('test'))#2
 # print(len(str1))#46
 # -------------------------------------------
+# s1 = "hello"
+# s2 = "red yellow blue"
+# s3 = "apple,orange,banana"
+# print(s1.split())  # ['hello']
+# print(s2.split())  # ['red', 'yellow', 'blue']
+# print(s3.split(','))  # ['apple', 'orange', 'banana']
+# print(s3.split(',', 1))  # ['apple', 'orange,banana']
+# print(s2.split('y', 1))  # ['red ', 'ellow blue']
+# print(s2.split(' ', 2))  # ['red', 'yellow', 'blue']
+# -------------------------------------------
+# s1 = "hello world"
+# s2 = "You are a good BOY"
+# print(s1.upper())#HELLO WORLD
+# print(s2.upper())#YOU ARE A GOOD BOY
+# print(s1.lower())#hello world
+# print(s2.lower())#you are a good boy
+# print(s1.title())#Hello World
+# print(s1.capitalize())#Hello world
+# -------------------------------------------
+# print(range(6))
+# for i in range(2, 6, 2):
+#     print(i)  # 2 4
+# -------------------------------------------
