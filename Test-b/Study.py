@@ -116,4 +116,55 @@
 # num+=len(high)
 # print(num)
 #    -------------------------------------------------------------------------------------------------------------------
-
+# money="1:!@#-Q,2:QWE-W,3:ASD-E,4:ZXCV-R,5:QAZ-T,6:000-Y,7:AZ-U,8:Q-I,9:qW-O,10:azx-P"
+# net=money.split(",")
+# 
+# 
+# for i in net:
+#     new=i.split(":")
+#     print("NO"+new[0]+"+++++"+new[1])
+# 
+# 
+# for i in net:
+#     new =i.split(":")
+#     character_to_remove = "-"
+#     parts=new[1].split(character_to_remove)
+#     result=parts[1] if len(parts)>1 else new[1]
+#     print("NO"+new[0]+"+++++"+result)
+#    -------------------------------------------------------------------------------------------------------------------
+# num=input("输入3个字母")
+# rev=num[-1::-1]
+# upp=num.upper()
+# low=rev.lower()
+# mid=num.capitalize()
+# num=low[1]+mid[1]+rev[1]
+# var=num[::-1]
+# print(var)
+#    -------------------------------------------------------------------------------------------------------------------
+# import random
+# 
+# word = input("输入英文").strip(" ")
+# num = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'
+# psw = ""
+# save = []
+# if not word:
+#     print("请输入英文")
+# else:
+#     for i in word:
+#         new = chr(ord(i) + 3)
+#         low = random.choice(num)
+#         upp = random.choice(num).upper()
+#         psw += new + low + upp
+#         save.append(psw)
+# print("new password", psw)
+# save.append(psw)
+# print(save)
+# 
+# 
+# word = save[0]
+# psw = ""
+# for i in range(1, len(word), 3):
+#     new = chr(ord(word[i]) + 3)
+#     psw += new
+# print("oldpassword", psw)
+#    -------------------------------------------------------------------------------------------------------------------
