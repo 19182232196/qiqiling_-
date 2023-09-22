@@ -259,3 +259,44 @@
 # arr = [95, 62, 54, 12, 78, 99, 87, 65, 43, 21]
 # print(sum(arr))
 # ----------------------------------------------------------------------------------------------------------------------
+# import random
+# print("彩球号码\n")
+# lan = []
+# lan.append(str(random.randint(1, 33)))
+# lan.append(str(random.randint(1, 33)))
+# lan.append(str(random.randint(1, 33)))
+# lan.append(str(random.randint(1, 33)))
+# lan.append(str(random.randint(1, 33)))
+# lan.append(str(random.randint(1, 33)))
+# blue = str(random.randint(1, 16))
+# print(" ".join(lan) + " " + blue)
+# ----------------------------------------------------------------------------------------------------------------------
+# test = '''lmy 546,zhb 656,zjl 609,zzh 541,sml 578,yjh 476,gnp 598,whm 687'''
+# new = []
+# stad = test.split(", ")
+# for i in stad:
+#     lin = i.split(" ")
+#     new.append([lin[1], lin[0]])
+# new.sort(reverse=True)
+# for i in new:
+#     print([i[1], i[0]])
+# test_max = max(new)
+# test_min = min(new)
+# print("最高分：", test_max[0], "，最高分的人：", test_max[1])
+# print("最低分：", test_min[0], "，最低分的人：", test_min[1])
+# ----------------------------------------------------------------------------------------------------------------------
+# print("===报名系统===")
+# term=[]
+# for i in range(1,5):
+#     order=format(i,"0>3")
+#     name=input("名字")
+#     money=int(input("金额"))
+#     term.append([order,name,money])
+# print("===报名统计===")
+# term.reverse()
+# for i in term:
+#     print(i[0],i[1],i[2])
+# tup=tuple(a[2] for a in term)
+# total=sum(tup)
+# print("总金额：",total)
+# ----------------------------------------------------------------------------------------------------------------------
