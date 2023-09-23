@@ -16,7 +16,8 @@ public class payPad {
             String enter = sc.next();
             inputCorrect = enter.equals("剪刀") || enter.equals("石头") || enter.equals("布");
             if (!inputCorrect) {
-                System.out.println("输入错误，请重新输入！");
+                System.out.println("输入错误");
+                System.exit(0);
             }
         }
 
