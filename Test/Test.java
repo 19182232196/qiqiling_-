@@ -82,6 +82,44 @@ public class Test {
 //             System.out.println("F");
 //         }
 //        __________________________________________________________________________
+//        Scanner Q=new Scanner(System.in);
+//        for (int i=0;i<3;i++){
+//            String user="qwe";
+//            String pass="qwe";
+//            System.out.println("请输入用户名和密码");
+//            String username=Q.nextLine();
+//            String password=Q.nextLine();
+//            if(username.equals(user)&&password.equals(pass)){
+//                System.out.println("登录成功");
+//                break;
+//            }else{
+//                System.out.println("登录失败"+"剩"+(2-i)+"次");
+//                continue;
+//            }
+//        }
+//        _________________________________________________________________________
+//        Scanner i=new Scanner(System.in);
+//        System.out.println("请输入年月日和毫秒值(格式:xxxx yyyy zzzz):");
+//        int yyy=i.nextInt();
+//        int mmm=i.nextInt();
+//        int ddd=i.nextInt();
+//        int[] arr={yyy,mmm,ddd};
+//        String s = array(arr);
+//        System.out.println(s);
+//        _________________________________________________________________________
 
     }
+//    public static String array(int[] arr){
+//        String s="";
+//        s+="[";
+//        for(int i = 0; i<arr.length; i++){
+//            if( i==arr.length-1){
+//                s+=arr[i];
+//                s+="]";
+//            }else{
+//                s+=arr[i];
+//            }
+//        }
+//        return s;
+//    }
 }
