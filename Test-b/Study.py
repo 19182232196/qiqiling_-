@@ -300,3 +300,17 @@
 # total=sum(tup)
 # print("总金额：",total)
 # ----------------------------------------------------------------------------------------------------------------------
+# print("===打分系统===")
+# print('=' * 40)
+# score = []
+# data = input("七次打分，按空格分隔")
+# score = data.split(" ")
+# print(score)
+# print('去掉最大', str(min(score)))
+# print('去掉最小', str(max(score)))
+# score.remove(min(score))
+# score.remove(max(score))
+# digit = [float(i) for i in score]
+# avg = format(sum(digit) / len(digit), '.2f')
+# print('平均分', avg)
+# ----------------------------------------------------------------------------------------------------------------------
