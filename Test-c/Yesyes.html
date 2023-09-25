@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<style type="text/css">
+		a:link{text-decoration: none;color: blue;}
+		a:link { text-decoration: none;color: blue}
+		a:active { text-decoration:blink}
+		a:hover { text-decoration:underline;color: red} 
+		a:visited { text-decoration: none;color: black}
+		.topclick {
+		    height: 50px;
+		    width: 100px;
+		    position:relative;
+		    display:inline-block;
+		}
+		 
+		.ltbox1 {
+		    width: 100px;
+		    height: 50px;
+		    background-color: dark;
+		    text-align: center;
+		    line-height: 50px;
+		    cursor: pointer;        /*鼠标指针经过*/
+		}
+		.ltbox2{
+		    width: 100px;
+		    height: 150px;
+		    margin-top: 2px;
+		    border-radius: 10px;
+		    background-color: white;
+		    position:absolute;
+		    display: none;        /*使下拉菜单栏消失*/
+		}
+		 
+		.li1{
+		    margin-top: 10px;
+		}
+		.ltbox2 li{
+		    height: 40px;
+		    width: 100px;
+		    text-align: center;
+		    line-height: 40px;
+		    display: block;        /*使下拉菜单栏显示*/
+		}
+		.ltbox2 li:hover{
+		    background-color:#E8E8E8;
+		}
+		 
+		.topclick:hover .ltbox2{
+		    display: block;
+		}
+		.dropbtn {
+		    background-color: #4CAF50;
+		    color: white;
+		    padding: 16px;
+		    font-size: 16px;
+		    border: none;
+		    cursor: pointer;
+		}
+		
+		/* 容器 <div> - 需要定位下拉内容 */
+		.dropdown {
+		    position: relative;
+		    display: inline-block;
+		}
+		
+		/* 下拉内容 (默认隐藏) */
+		.dropdown-content {
+		    display: none;
+		    position: absolute;
+		    background-color: #f9f9f9;
+		    min-width: 160px;
+		    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		}
+		
+		/* 下拉菜单的链接 */
+		.dropdown-content a {
+		    color: black;
+		    padding: 12px 16px;
+		    text-decoration: none;
+		    display: block;
+		}
+		
+		/* 鼠标移上去后修改下拉菜单链接颜色 */
+		.dropdown-content a:hover {background-color: #f1f1f1}
+		
+		/* 在鼠标移上去后显示下拉菜单 */
+		.dropdown:hover .dropdown-content {
+		    display: block;
+		}
+		
+		/* 当下拉内容显示后修改下拉按钮的背景颜色 */
+		.dropdown:hover .dropbtn {
+		    background-color: #3e8e41;
+		}
+	</style>
+	</head>
+	<body>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="javascript:void(0)"><a href="Begin.html"><p class="display-2">绿皮</p></a></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="绿皮！忠诚！.html">大审判</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Waaagh.html">1962年的国家</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="END.html">END</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="text" placeholder="Search">
+        <button class="btn btn-primary" type="button">Search</button>
+      </form>
+    </div>
+  </div>
+  <div class="topclick">
+                  <div class="ltbox1">
+                      <a href="https://www.bilibili.com/video/BV1pW4y1C7vk/?spm_id_from=333.337.search-card.all.click"><p>忠诚</p></a>
+                  </div>
+                      <ul class="ltbox2">
+                          <li class="li1"><a href="https://www.bilibili.com/video/BV1r94y1m7pb/?spm_id_from=333.337.search-card.all.click">鸡汤来咯</a></li>
+                          <li><a href="https://www.bilibili.com/video/BV1zu4y1e71N/?spm_id_from=333.337.search-card.all.click">苦跌塔</a></li>
+                          <li><a href="https://www.bilibili.com/video/BV1BB4y1j7PP/?spm_id_from=333.337.search-card.all.click&vd_source=dc4cc0a69c4ad6611c820417339c871d">吼姆拉和祭司贴贴</a></li>
+                      </ul>
+              </div>
+			  <div class="dropdown">
+			    <button class="dropbtn">中心</button>
+			    <div class="dropdown-content">
+        <li class="nav-item">
+          <a class="nav-link" href="Login.html">Login</a>
+        </li>
+			      <a href="#"> 2</a>
+			      <a href="#"> 3</a>
+			    </div>
+			  </div>
+</nav>
+		<div class="d-flex">
+			<aside class="flex-grow-0 flex-shrink-0 border border-dark">
+				<ul class="list-unstyled list-inline border-bottom border-dark">
+					<p>TNO文章索引、常见问题与世界介绍</p>
+					<li class="list-inline-item"><a href="https://discord.com/invite/theneworder">discord</a></li>
+					<li class="list-inline-item"><a href="https://www.reddit.com/r/TNOmod/">reddit</a></li>
+					<li class="list-inline-item"><a href="https://the-new-order-last-days-of-europe.fandom.com/zh/wiki/%E6%96%B0%E7%A7%A9%E5%BA%8F%EF%BC%9A%E6%AC%A7%E6%B4%B2%E6%9C%AB%E6%97%A5_Wiki">新秩序：欧洲末日 Wiki</a></li>
+
+				</ul>
+				<ul class="list-unstyled list-inline border-bottom border-dark">
+					<p></p>
+					<li class="list-inline-item"><a href="https://www.zhihu.com/column/c_1012657104770940928">知乎</a></li>
+					<li class="list-inline-item"><a href="https://jump2.bdimg.com/f?kw=tno">贴吧</a></li>
+					<li class="list-inline-item"></li>
+					<li class="list-inline-item"></li>
+					<li class="list-inline-item"></li>
+					<li class="list-inline-item"></li>
+				</ul>
+			</aside>
+			
+			<div class="flex-grow-1 flex-shrink-1 ml-4 container-fluid border-primary">
+				<div class="d-flex row">
+					<dl class="flex-fill">
+						<p class="col-auto text-left text-ptimary font-weight-blod h4"> 新秩序：欧洲末日 </p>
+						<p class="col-auto text-muted text-right ">本人坚决反对历史虚无主义，拥护中国共产党、社会主义核心价值观; 此稿件仅用于学习交流，无意进行任何政治宣传</p>
+						<p>1962年，欧罗巴正在长筒靴下苟且偷生着。
+
+第二次世界大战彻底焚毁了旧世界，一个新秩序从它的废墟中冲出。在它的暴政之下，数百万人归于黄土之中。在它的威胁面前，自由的最后灯火行将熄灭。
+
+大日耳曼国在世界大战中崛起，成为了欧洲无可置疑的霸主。无数的生命在终焉之战逝去，但他们的血换来的只有耻辱。德国的雄心壮志最终都化为了痴人说梦。它的军队如死尸般臃肿涩滞，它的政治如马戏团般内讧不休。如此种种悉数印在了阿道夫·希特勒那行将就木的视线之中。而在他的身下，无数秃鹫盯着他，目露饥渴凶光。
+
+东亚细亚在共荣圈的大旗下得以统一，却仿佛一只快要魂飞魄散的幽灵，向它的新主子大日本帝国俯首称臣。光芒炽烈的三足金乌照耀着从太平洋到印度洋的每一寸领土，夸耀着自己对全球经济的彻底掌控，庆贺着对西方世界的彻底胜利。但这并不意味他们高枕无忧。反抗者们夙兴夜寐，卧薪尝胆，静待时机以反戈一击。
+
+最后的希望——美利坚合众国，在珍珠港的核子火焰洗礼之下，依然屹立。尽管它在世界大战中颜面丧尽，元气大伤，但仍决意再次奋起对抗这黑暗世界，捍卫自由。但是，正当它的政府谋算着如何对抗轴心国的遗产之时，它的人民却再也无法忍受无休止的内部倾轧和社会断层。这场发生在家园的战斗，将彻底改变一切。
+
+地中海诸国从德国日益衰落的控制中挣脱而出，建立了脆弱的三头同盟。伊比利亚联邦在繁荣与内爆之中浮浮沉沉。意大利王国固守着法西斯的遗产，抵抗着声势日隆的民主运动。土耳其共和国则居于其殖民地的炸药桶之上。往昔大力神曾在此处树立丰碑，如今此地亦将再次改写世界的命运。
+
+俄罗斯巨熊倒下了，家园破碎，兄弟阋墙。众人所思所想皆为同一，要将这个国家按自己的愿景重新统一。不同的人有不同的主观发想，但俄罗斯的统一却是受到了客观阻碍。在他们的土地上，钢铁的巨兽和焚身的金乌正窃居于此，无论是曾经闪耀的首都莫斯科，还是遥远的海港符拉迪沃斯托克，皆已落入敌手。<h1 class="text-danger">俄罗斯必须统一</h1>不惜一切代价，一次真正的统一。
+
+在这漆黑而绝望的世界，谁会是最终的胜利者？</p>
+				</div>
+				<div class="row text-muted text-center">
+					<dl class="col-5 col-md-3">
+						<dt><a href="GER.html"><img src="img/kxmpgkkd.png"  alt="" class="img-fluid"/></a></dt><dd>大日耳曼国</dd>
+					</dl>
+					<dl class="col-5 col-md-3">
+						<dt><img src="img/vjk22yhv.png" alt="" class="img-fluid"/></dt><dd>勃艮第骑士团国</dd>
+					</dl>
+					<dl class="col-5 col-md-3">
+						<dt><img src="img/0g967c1i.png" alt="" class="img-fluid"/></dt><dd>分裂的苏联</dd>
+					</dl>
+					<dl class="col-5 col-md-3">
+						<dt><img src="img/pv1iz295.png" alt="" class="img-fluid"/></dt><dd>1962年开局版图</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+			<div class="row">
+				<div class="col-9">
+					<p>qweretwe-</p>
+					<ul class="pagination pagination-lg justify-content-center" id="pagination">
+						<li class="page-item active"><a class="page-link" href="Yesyes.html">Yesyes</a></li>
+						<li class="page-item "><a class="page-link" href="Waaagh.html">Waaagh</a></li>
+						<li class="page-item "><a class="page-link" href="绿皮！忠诚！.html">绿皮！忠诚！</a></li>
+						<li class="page-item "><a class="page-link" href="END.html">END</a></li>
+					</ul>
+				</div>
+			</div>
+	</body>
+</html>

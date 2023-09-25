@@ -1,0 +1,16 @@
+			.divLogin{width: 260px;height: auto;padding: 10px;margin: 0 auto;border: 1px solid #aaf;border-radius: 5px;}
+			.divOut{width: 240px;height: 20px;padding: 10px 5px;margin: 20px auto;border: 1px solid #ccc;border-radius: 5px;}
+			.divLeft{width: 20px;height: 20px;margin: 0;background-image: url(img/bg.jpg);float: left;}
+			.divLeft1{background-position: -150px -62px;}
+			.divLeft2{background-position: -170px -62px;}
+			.divRight{width: 215px;height: 20px;margin: 0 0 0 5px;float: left;font-size: 12pt;font-family: Calibri;}
+			.divRight>input{height: 20px;padding: 0;margin: 0;border: 0;outline: none;font-size: 12pt;}
+			.divRight>input#uname{width: 140px;}
+			.divRight>input#psd{width: 210px;}
+			.divShadowShow{box-shadow: 0 0 3px 0 #66f;}
+			.divShadowNone{box-shadow: 0;}
+			p{text-align: center;}
+			.login,.cancel{width: 110px;height: 40px;border-radius: 5px;}
+			.login{background: url(img/bg.jpg) 0px -210px;}
+			.cancel{background: url(img/bg.jpg) -120px -210px;}
+			h3{font-size: 16pt;font-family: 黑 体;line-height: 30px;text-align: center;}

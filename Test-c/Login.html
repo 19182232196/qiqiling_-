@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/Login.css" type="text/css"/>
+	</head>
+	<body>
+		<div class="divLogin">
+			<h3>登陆操作</h3>
+			<form method="get">
+				<div class="divOut">
+					<div class="divLeft divLeft1"></div>
+					<div class="divRight">
+						<input type="text" id="uname" placeholder="账号"/>
+					</div>
+				</div>
+				<div class="divOut">
+					<div class="divLeft divLeft2"></div>
+					<div class="divRight">
+						<input type="text" id="psd" placeholder="密码"/>
+					</div>
+				</div>
+				<select id="year" name="year">
+					<option selected="selected">年份</option>
+				</select>
+				<select id="month" name="month">
+					<option selected="selected" value="0">月份</option>
+				</select>
+				<select id="day" name="day">
+					<option selected="selected">日</option>
+				</select>
+				<p>
+					<input type="submit" value="登录" class="login"/>
+					<input type="reset" value="取消" class="cancel"/>
+				</p>
+			</form>
+		</div>
+		<script src="js/jQuery v3.4.1.js" type="text/javascript"/>
+		var year=$(#"year");
+		var month=$(#"month");
+		var day=$(#"day");
+		for (i=1951;i<=2090;i++) {
+			year.append("<option>"+i+"<option>");
+		}
+		for(i=1;i<=12;i++){
+			month.append("<option>"+i+月"<option>");
+		}
+		year.change(fuction(){
+			var y=$(this).val();
+			month[0].selectedIndex=0;
+			day[0].options.length=1;
+			month.change(fuction(){
+				var m=parseInt($(this).val());
+				day[0].options.length=1;
+				switch(m){
+					case 2:days=(y%4==0&&y%100!=0||y%400==0)?29:28;break;
+					case 4:
+					case 6:
+					case 11:days=30;break;
+				}
+			})
+		})
+		</script>
+	</body>
+</html>
