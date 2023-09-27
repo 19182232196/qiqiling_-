@@ -56,6 +56,7 @@
 				border: 1px solid red;
 				position: relative;
 			}
+		
 			/* 5张图片叠加到一块 */
 			.wrapper img {
 				width: 100%;
@@ -110,21 +111,20 @@
 			.active {
 				background-color: red;
 			}
-			
-			
+
 			
 
-			   .father_box {
-			     width: 300px;
-			     height: 300px;
-			     margin-left:auto;
-				 justify-content: flex-end;
-			   }
+			.father_box {
+				width: 300px;
+				height: 300px;
+				margin-left:auto;
+				justify-content: flex-end;
+			}
 			   
 			
-			#myText {
-			    display: none; /* 初始时隐藏文本 */
-			}
+        .toggle-text {
+            display: none; /* 初始时隐藏文本 */
+        }
 		</style>
 		<script src="js/jQuery v3.4.1.js"></script>
 	</head>
@@ -156,13 +156,22 @@
 					<span></span>
 					<span></span>
 				</div>
-				<a href="javascript:void(0);">&lt;</a>
-				<a href="javascript:void(0);">&gt;</a>
+			<a href="javascript:void(0);" class="prev">&lt;</a>
+			<a href="javascript:void(0);" class="next">&gt;</a>
 			</div>
 			
 			<div class="father_box">
-				<div id="myButton">鼠标悬停以显示文本</div>
-				<div id="myText">这是隐藏的文本，鼠标悬停时将显示出来。</div>
+    <div class="toggle-button" data-target="text1">显示/隐藏文本 1</div>
+    <div class="toggle-text" id="text1">这是文本 1，可以显示和隐藏。</div>
+
+    <div class="toggle-button" data-target="text2">显示/隐藏文本 2</div>
+    <div class="toggle-text" id="text2">这是文本 2，可以显示和隐藏。</div>
+
+    <div class="toggle-button" data-target="text3">显示/隐藏文本 3</div>
+    <div class="toggle-text" id="text3">这是文本 3，可以显示和隐藏。</div>
+
+    <div class="toggle-button" data-target="text4">显示/隐藏文本 4</div>
+    <div class="toggle-text" id="text4">这是文本 4，可以显示和隐藏。</div>
 			</div>
 
 			
@@ -188,13 +197,22 @@
 					<span></span>
 					<span></span>
 				</div>
-				<a href="javascript:void(0);">&lt;</a>
-				<a href="javascript:void(0);">&gt;</a>
+			<a href="javascript:void(0);" class="prev">&lt;</a>
+			<a href="javascript:void(0);" class="next">&gt;</a>
 			</div>
 			
 			<div class="father_box">
-				<div id="myButton">鼠标悬停以显示文本</div>
-				<div id="myText">这是隐藏的文本，鼠标悬停时将显示出来。</div>
+    <div class="toggle-button" data-target="text1">显示/隐藏文本 1</div>
+    <div class="toggle-text" id="text1">这是文本 1，可以显示和隐藏。</div>
+
+    <div class="toggle-button" data-target="text2">显示/隐藏文本 2</div>
+    <div class="toggle-text" id="text2">这是文本 2，可以显示和隐藏。</div>
+
+    <div class="toggle-button" data-target="text3">显示/隐藏文本 3</div>
+    <div class="toggle-text" id="text3">这是文本 3，可以显示和隐藏。</div>
+
+    <div class="toggle-button" data-target="text4">显示/隐藏文本 4</div>
+    <div class="toggle-text" id="text4">这是文本 4，可以显示和隐藏。</div>
 			</div>
 			
 			
@@ -218,13 +236,22 @@
 					<span></span>
 					<span></span>
 				</div>
-				<a href="javascript:void(0);">&lt;</a>
-				<a href="javascript:void(0);">&gt;</a>
+			<a href="javascript:void(0);" class="prev">&lt;</a>
+			<a href="javascript:void(0);" class="next">&gt;</a>
 			</div>
 			
 			<div class="father_box">
-				<div id="myButton">鼠标悬停以显示文本</div>
-				<div id="myText">这是隐藏的文本，鼠标悬停时将显示出来。</div>
+    <div class="toggle-button" data-target="text1">显示/隐藏文本 1</div>
+    <div class="toggle-text" id="text1">这是文本 1，可以显示和隐藏。</div>
+
+    <div class="toggle-button" data-target="text2">显示/隐藏文本 2</div>
+    <div class="toggle-text" id="text2">这是文本 2，可以显示和隐藏。</div>
+
+    <div class="toggle-button" data-target="text3">显示/隐藏文本 3</div>
+    <div class="toggle-text" id="text3">这是文本 3，可以显示和隐藏。</div>
+
+    <div class="toggle-button" data-target="text4">显示/隐藏文本 4</div>
+    <div class="toggle-text" id="text4">这是文本 4，可以显示和隐藏。</div>
 			</div>
 			
 			
@@ -277,14 +304,15 @@
 		
 		
 			var index=0;
-			// 点击上一张
-			$("a:first").click(function(){
-				prev_pic();
-			})
-			// 点击下一张
-			$("a:last").click(function(){
-				next_pic();
-			})
+        // 点击上一张
+        $(".prev").click(function() {
+            prev_pic();
+        });
+
+        // 点击下一张
+        $(".next").click(function() {
+            next_pic();
+        });
 			// 悬浮停止
 			$(".wrapper").mouseover(function(){
 				clearInterval(id);
@@ -330,16 +358,12 @@
 			}
 			
 			
-			$(document).ready(function(){
-			    // 当鼠标悬停在按钮上时，显示文本
-			    $("#myButton").mouseenter(function(){
-			        $("#myText").show();
-			    });
-			
-			    // 当鼠标离开按钮时，隐藏文本
-			    $("#myButton").mouseleave(function(){
-			        $("#myText").hide();
-			    });
-			});
+        $(document).ready(function(){
+            // 当点击按钮时，显示或隐藏相应的文本按钮上,使用 data-target 属性指定了要显示/隐藏的文本段落的ID。通过点击按钮，相应的文本段落将显示或隐藏。您可以根据需要添加更多的文本段落和按钮。
+            $(".toggle-button").click(function(){
+                var target = $(this).data("target");
+                $("#" + target).toggle();
+            });
+        });
 	</script>
 </html>
