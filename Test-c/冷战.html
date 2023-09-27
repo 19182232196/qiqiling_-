@@ -127,8 +127,9 @@
 				font-size: 20px;
 				font-weight: bold;
 				color: #000;
+				
 			}
-        .	toggle-text {
+        .toggle-text {
 				display: none; /* 初始时隐藏文本 */
 				
 			}
@@ -170,8 +171,8 @@
 			</div>
 			
 			<div class="father_box">
-    <div class="toggle-button" data-target="text1">俄国军阀与希特勒遇刺</div>
-    <div class="toggle-text" id="text1">秩序在崩溃</div>
+    <div class="toggle-button" data-target="text1" >俄国军阀与希特勒遇刺</div>
+    <div class="toggle-text" id="text1" >秩序在崩溃</div>
 
     <div class="toggle-button" data-target="text2">俄罗斯人</div>
     <div class="toggle-text" id="text2">白杀红红杀白</div>
@@ -189,8 +190,8 @@
 				<div class="contain">
 					<img src="img/130105.png" alt="">
 					<img src="img/130115.png" alt="">
-					<img src="img/bg.jpg" alt="">
-					<img src="img/bg.jpg" alt="">
+					<img src="img/134207.png" alt="">
+					<img src="img/135744.png" alt="">
 					<img src="img/bg.jpg" alt="">
 					<img src="img/bg.jpg" alt="">
 				</div>
@@ -207,17 +208,17 @@
 			</div>
 			
 			<div class="father_box">
-    <div class="toggle-button" data-target="text5">显示/隐藏文本 1</div>
-    <div class="toggle-text" id="text5">这是文本 1，可以显示和隐藏。</div>
+    <div class="toggle-button" data-target="text5">非洲啊</div>
+    <div class="toggle-text" id="text5">世界边缘的代理人战争</div>
 
-    <div class="toggle-button" data-target="text6">显示/隐藏文本 2</div>
-    <div class="toggle-text" id="text6">这是文本 2，可以显示和隐藏。</div>
+    <div class="toggle-button" data-target="text6">白人黑人</div>
+    <div class="toggle-text" id="text6">社会主义与殖民者</div>
 
-    <div class="toggle-button" data-target="text7">显示/隐藏文本 3</div>
-    <div class="toggle-text" id="text7">这是文本 3，可以显示和隐藏。</div>
+    <div class="toggle-button" data-target="text7">意大利的非洲之角</div>
+    <div class="toggle-text" id="text7">反殖民战争仍在继续</div>
 
-    <div class="toggle-button" data-target="text8">显示/隐藏文本 4</div>
-    <div class="toggle-text" id="text8">这是文本 4，可以显示和隐藏。</div>
+    <div class="toggle-button" data-target="text8">北非中东以及中亚</div>
+    <div class="toggle-text" id="text8">伊斯兰的景愿</div>
 			</div>
 			
 			
@@ -374,12 +375,12 @@ $(function() {
     });
 			
 			
-        $(document).ready(function(){
-            // 当点击按钮时，显示或隐藏相应的文本按钮上,使用 data-target 属性指定了要显示/隐藏的文本段落的ID。通过点击按钮，相应的文本段落将显示或隐藏。您可以根据需要添加更多的文本段落和按钮。
-            $(".toggle-button").click(function(){
-                var target = $(this).data("target");
-                $("#" + target).toggle();
-            });
+    $(document).ready(function(){
+        // 当点击按钮时，显示或隐藏相应的文本按钮上,使用 data-target 属性指定了要显示/隐藏的文本段落的ID。通过点击按钮，相应的文本段落将显示或隐藏。您可以根据需要添加更多的文本段落和按钮。
+        $(".toggle-button").click(function(){
+            var target = $(this).data("target");
+            $("#" + target).toggle();
         });
+    });
 	</script>
 </html>
