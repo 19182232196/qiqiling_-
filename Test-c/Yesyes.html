@@ -97,6 +97,35 @@
 		.dropdown:hover .dropbtn {
 		    background-color: #3e8e41;
 		}
+
+		/* 实现图片点击后居中放大 */
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.drawing{
+			width: 150px;
+			margin: 10px;
+		}
+		.drawing:hover{
+			cursor: zoom-in;
+		}
+		.wrapper{
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 999;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-position: center;
+			background-color: rgba(52, 52, 52, 0.8);
+			background-size: 50%;
+		}
+		.wrapper:hover{
+			cursor: zoom-out;
+		}
 	</style>
 	</head>
 	<body>
@@ -192,16 +221,16 @@
 				</div>
 				<div class="row text-muted text-center">
 					<dl class="col-5 col-md-3">
-						<dt><a href="GER.html"><img src="img/kxmpgkkd.png"  alt="" class="img-fluid"/></a></dt><dd>大日耳曼国</dd>
+						<dt><img  class="drawing"src="img/kxmpgkkd.png"  alt="" class="img-fluid" title="点击查看大图"/></dt><dd>大日耳曼国</dd>
 					</dl>
 					<dl class="col-5 col-md-3">
-						<dt><img src="img/vjk22yhv.png" alt="" class="img-fluid"/></dt><dd>勃艮第骑士团国</dd>
+						<dt><img class="drawing" src="img/vjk22yhv.png" alt="" class="img-fluid" title="点击查看大图"/></dt><dd>勃艮第骑士团国</dd>
 					</dl>
 					<dl class="col-5 col-md-3">
-						<dt><img src="img/0g967c1i.png" alt="" class="img-fluid"/></dt><dd>分裂的苏联</dd>
+						<dt><img class="drawing" src="img/0g967c1i.png" alt="" class="img-fluid" title="点击查看大图"/></dt><dd>分裂的苏联</dd>
 					</dl>
 					<dl class="col-5 col-md-3">
-						<dt><img src="img/pv1iz295.png" alt="" class="img-fluid"/></dt><dd>1962年开局版图</dd>
+						<dt><img class="drawing" src="img/pv1iz295.png" alt="" class="img-fluid" title="点击查看大图"/></dt><dd>1962年开局版图</dd>
 					</dl>
 				</div>
 			</div>
@@ -217,5 +246,21 @@
 					</ul>
 				</div>
 			</div>
+			<script src="js/jQuery v3.4.1.js"></script>
+			<script>
+						$(function(){
+			$('.drawing').click(function(){
+				//查看大图
+				$(this).after("<div class='wrapper'></div>");
+				var imgSrc = $(this).attr('src');
+				$(".wrapper").css("background-image", "url(" + imgSrc + ")");
+				$('.wrapper').fadeIn(1000);
+				//关闭并移除图层
+				$('.wrapper').click(function(){
+					$('.wrapper').fadeOut(1000).remove();
+				});
+			});
+		});
+			</script>
 	</body>
 </html>
