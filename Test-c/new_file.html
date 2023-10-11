@@ -2,58 +2,24 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Jquery实现图片点击后居中放大</title>
+	<title>123</title>
 	<style>
-		*{
-			margin: 0;
-			padding: 0;
-		}
-		.drawing{
-			width: 150px;
-			margin: 10px;
-		}
-		.drawing:hover{
-			cursor: zoom-in;
-		}
-		.wrapper{
-			position: fixed;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-			z-index: 999;
-			background-repeat: no-repeat;
-			background-attachment: fixed;
-			background-position: center;
-			background-color: rgba(52, 52, 52, 0.8);
-			background-size: 50%;
-		}
-		.wrapper:hover{
-			cursor: zoom-out;
-		}
+		.row{margin: 5px;background-color: lightblue;border: solid 1px black;}
+		[class*="col"]{padding-top: 5px;padding-bottom: 5px;border: solid 1px black;}
 	</style>
-	<script src="js/jQuery v3.4.1.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<script>
-		$(function(){
-			$('.drawing').click(function(){
-				//查看大图
-				$(this).after("<div class='wrapper'></div>");
-				var imgSrc = $(this).attr('src');
-				$(".wrapper").css("background-image", "url(" + imgSrc + ")");
-				$('.wrapper').fadeIn(1000);
-				//关闭并移除图层
-				$('.wrapper').click(function(){
-					$('.wrapper').fadeOut(1000).remove();
-				});
-			});
-		});
+		
 	</script>
 </head>
 <body>
 	<div class="container">
-		<img class="drawing" src="./img/015006.png" title="点击查看大图" />
-	    <img class="drawing" src="./img/015006.png" title="点击查看大图" />
-	    <img class="drawing" src="./img/015006.png" title="点击查看大图" />
+		<div class="row justify-content-start">
+			<div class="col-2">123</div>
+			<div class="col-2 offset-1">123</div>
+			
+		</div>
 	</div>
 </body>
 </html>

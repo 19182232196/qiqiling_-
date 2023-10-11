@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1"/>
 		<link rel="stylesheet" href="css/bootstrap.min.css"/>
+		<script src="js/jQuery v3.4.1.js"></script>
 		<title></title>
 	</head>
 	<body>
@@ -15,7 +16,7 @@
 			</thead>
 			<tbody>
 				<tr class="table-active">
-					<td><img src="img/n6a6l526.png" class="w-1000 h-1000 rounded-pill"/></td>
+					<td><img  src="img/n6a6l526.png" class="w-1000 h-1000 rounded-pill"/></td>
 					<td class="display-5 mr-3">阿道夫·希特勒</td>
 					<td class="">第二次世界大战（1919-1945）
 一战之后，希特勒成为了因德国向协约国投降而感到自己被祖国出卖的百万德国人之一。他于 1919 年加入了规模较小的德国工人党，并很快在于1921 年上升为该党领袖，并将该党更名为国家社会主义德意志民族社会主义工人党 （纳粹党）。 1923 年他组织了一场失败的啤酒馆政变并导致其余后一年在监狱里度过。在狱中，他撰写了《我的奋斗》一书。
@@ -66,5 +67,20 @@
 					</ul>
 				</div>
 			</div>
+			<script>
+				$(function(){
+					$('.drawing').click(function(){
+						//查看大图
+						$(this).after("<div class='wrapper'></div>");
+						var imgSrc = $(this).attr('src');
+						$(".wrapper").css("background-image", "url(" + imgSrc + ")");
+						$('.wrapper').fadeIn(1000);
+						//关闭并移除图层
+						$('.wrapper').click(function(){
+							$('.wrapper').fadeOut(1000).remove();
+						});
+					});
+				});
+			</script>
 	</body>
 </html>
