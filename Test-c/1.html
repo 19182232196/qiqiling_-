@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+		<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+		<title>000000</title>
+	</head>
+	<body>
+		<div class="container">
+			<h2>表单元素</h2>
+			<form>
+				<div class="mb-3">
+					<p>账号：</p>
+					<input type="text" placeholder="请输入账号" class="form-control"/>
+				</div>
+				<div class="mb-3">
+					<p>密码：</p>
+					<input type="password" placeholder="请输入密码" class="form-control form-control-lg" />
+				</div>
+				<div class="mb-3 form-check">
+					<input type="radio" name="radio" class="form-check-input"/>男&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="radio" class="form-check-input"/>女
+					<br />
+					<input type="checkbox" name="checkbox" class="form-check-input"checked />同意<XXX>协议
+				</div>
+				
+				<div class="row">
+					<p class="col-auto">铃声音量</p>
+					<div class="col">
+						<input type="range" class="custom-range" />
+					</div>
+				</div>
+				
+				<div class="row">
+					<p class="col-auto">贪睡时间</p>
+					<select class="col custom-select">
+						<option>10分钟</option>
+						<option selected>1小时</option>
+						<option>3小时</option>
+					</select>
+				</div>
+				
+				<div class="row">
+					<p class="col-auto">提交文件</p>
+					<div class="col custom-file">
+						<input type="file" class="custom-file-input" id="c"/>
+						<label for="c" class="custom-file-label" data-browse="提交"></label>
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
