@@ -5,12 +5,6 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1>
-    <form action="student">
-        学生姓名：<input type="text" name="sudentName"/>
-        <input type="submit" value="邀请">
-    </form>
-</h1>
 
 </body>
 </html>
