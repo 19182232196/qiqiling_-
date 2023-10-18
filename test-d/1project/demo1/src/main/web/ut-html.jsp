@@ -16,8 +16,5 @@
         PageContext pageContext1 = pageContext;
         pageContext.setAttribute("name", name, PageContext.SESSION_SCOPE);
         %>
-        <%
-
-        %>
     </body>
 </html>
