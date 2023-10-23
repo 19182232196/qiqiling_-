@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Waaagh</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css"/>
+		<script src="js/jquery-3.7.1.min.js"></script>
+		<script>
+			$(function() {
+				$('.main').children().css({
+					'border': '1px solid #ccc',
+					'color': 'blue'
+				})
+				
+				$('.nav').find('li').css({
+					'font-size': '18px'
+				})
+				
+				$('.nav').find('li').click(function() {
+					var el = $(this).attr('class');
+					$('html, body').animate({
+						scrollTop: $("#"+el).offset().top
+					}, 300);
+				})
+				
+				
+				var pro_top = $("#pro").offset().top;
+				var news_top = $("#news").offset().top;
+				var ser_top = $("#ser").offset().top;
+				console.log(pro_top, news_top, ser_top)
+				$(window).scroll(function(){
+					var scroH = $(this).scrollTop();
+					// console.log(scroH)
+					if(scroH>=ser_top){
+						set_cur(".ser");
+					}else if(scroH>=news_top){
+						set_cur(".news");
+					}else if(scroH>=pro_top){
+						set_cur(".pro");
+					}
+				});
+			})
+			
+			function set_cur(n) {
+				if($(".nav li").hasClass("cur")){
+					$(".nav li").removeClass("cur");
+				}
+				$(".nav li"+n).addClass("cur");
+			}
+			
+			
+			
+	$(function() {
+			// ... （之前的代码保持不变）
+	
+			// 针对所有轮播图的操作
+			$(".wrapper").each(function() {
+				var wrapper = $(this);
+				var images = wrapper.find("img");
+				var spans = wrapper.find(".btn span");
+				var index = 0;
+	
+				// 下一张
+				function next_pic() {
+					index++;
+					if (index >= images.length) {
+						index = 0;
+					}
+					addStyle();
+				}
+	
+				// 上一张
+				function prev_pic() {
+					index--;
+					if (index < 0) {
+						index = images.length - 1;
+					}
+					addStyle();
+				}
+	
+				// 控制图片显示隐藏和小圆点背景色
+				function addStyle() {
+					images.eq(index).fadeIn();
+					images.eq(index).siblings().fadeOut();
+					spans.eq(index).addClass("active");
+					spans.eq(index).siblings().removeClass("active");
+				}
+	
+				// 自动轮播
+				var id;
+				autoplay();
+				function autoplay() {
+					id = setInterval(function() {
+						next_pic();
+					}, 10000);
+				}
+	
+				// 悬浮停止
+				wrapper.mouseover(function() {
+					clearInterval(id);
+				});
+				wrapper.mouseout(function() {
+					autoplay();
+				});
+	
+				// 点击上一张
+				wrapper.find(".prev").click(function() {
+					prev_pic();
+				});
+	
+				// 点击下一张
+				wrapper.find(".next").click(function() {
+					next_pic();
+				});
+			});
+		});
+				
+				
+		$(document).ready(function(){
+			// 当点击按钮时，显示或隐藏相应的文本按钮上,使用 data-target 属性指定了要显示/隐藏的文本段落的ID。通过点击按钮，相应的文本段落将显示或隐藏。您可以根据需要添加更多的文本段落和按钮。
+			$(".toggle-button").click(function(){
+				var target = $(this).data("target");
+				$("#" + target).toggle();
+			});
+		});
+		</script>
+		<style type="text/css">
+					body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+			}
+			
+			.nav {
+				background-color: #333;
+				color: #fff;
+				list-style: none;
+				padding: 0;
+				text-align: center;
+			}
+			
+			.nav li {
+				display: inline-block;
+				padding: 10px 20px;
+				cursor: pointer;
+			}
+			
+			.nav li:hover {
+				background-color: #555;
+			}
+			
+			.main {
+				text-align: center;
+				padding: 20px;
+			}
+			
+			.box {
+				margin: 20px;
+				padding: 20px;
+				border: 1px solid #ccc;
+				background-color: #f5f5f5;
+			}
+			
+			h3 {
+				font-size: 24px;
+				color: #333;
+			}
+			
+			.nav li.cur {
+				background-color: #555;
+			}
+			
+			
+			.wrapper {
+				width: 600px;
+				height: 350px;
+				border: 1px solid red;
+				position: relative;
+			}
+		
+			/* 5张图片叠加到一块 */
+			.wrapper img {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				display: none;
+			}
+		
+			.wrapper img:nth-of-type(1) {
+				display: block;
+			}
+		
+			/* 小圆点 */
+			.btn {
+				width: 150px;
+				display: flex;
+				justify-content: space-around;
+				position: absolute;
+				left: 225px;
+				bottom: 10px;
+				z-index: 100
+			}
+		
+			.btn span {
+				display: block;
+				width: 15px;
+				height: 15px;
+				border: 3px solid white;
+				border-radius: 50%;
+			}
+		
+			/* 左右箭头 */
+			.wrapper a {
+				text-decoration: none;
+				font-size: 50px;
+				color: red;
+				position: absolute;
+				top: 35%;
+			}
+		
+			.wrapper a:nth-of-type(1) {
+				left: 10px;
+		
+			}
+		
+			.wrapper a:nth-of-type(2) {
+				right: 10px;
+			}
+		
+			.active {
+				background-color: red;
+			}
+
+			
+
+			.father_box {
+				width: 300px;
+				height: 300px;
+				margin-left:auto;
+				justify-content: flex-end;
+			}
+			   
+			   
+			   
+			.toggle-button{
+				font-size: 20px;
+				font-weight: bold;
+				color: #000;
+				
+			}
+        .toggle-text {
+				display: none; /* 初始时隐藏文本 */
+				
+			}
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .gg{
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            border-radius: 4px;
+            overflow: hidden;
+            display: none;
+            border: 1px solid orange;
+        }
+        .gg>span{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-size: 20px;
+            background-image: url(./img/OIP-C.jpg);
+            position: absolute;
+            top: 2px;
+            right: 2px;
+        }
+		</style>
+		<script>
+			$(function (){
+                  //点击叉叉消除广告
+                  $(".gg>span").click(function (){
+                      $(".gg").remove();
+                  })
+                  //复杂写法
+                  // 滑出  $(".gg").slideDown(1000,function (){
+                  //   淡出  $(".gg").fadeOut(1000,function (){
+                  //     淡入  $(".gg").fadeIn(1000);
+                  //     })
+                  // })
+                  //简便写法
+                  $(".gg").slideDown(1000).fadeOut(1000).fadeIn(1000);
+              });
+		</script>
+	</head>
+	<body>
+		<div>
+			<p class="display-1"><strong>感谢</strong></p>
+			<p>
+				<address>绿皮Waaagh@waaagh.com</address>
+			</p>
+			<blockquote class="blockquote">
+				<p class="display-3 text-danger">谁控制过去就控制未来；谁控制现在就控制过去。</p>
+				<footer class="blockquote-footer text-info">1984</footer>
+			</blockquote>
+		</div>
+		<br>
+		<div>
+			<h1 class="display-7"><mark>京公网安备 11010802020088 号 · 京网文[2022]2674-081 号 · 药品医疗器械网络信息服务备案（京）网药械信息备字（2022）第00334号 · 广播电视节目制作经营许可证:（京）字第9999999号 · 服务热线：114-514-5554 · HN · © 9999 Test 作者本人版权所有 · 违法和不良信息举报：000-00000000 · 举报邮箱：绿皮Waaagh@waaagh.com/mark> </h1><em><img src="img/b4geo00d.png"/></em>
+		</div>
+		<img src="img/bg.jpg" alt="" class="img-fluid"/>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-9">
+					<p>1984</p>
+					<ul class="pagination pagination-lg justify-content-center" id="pagination">
+						<li class="page-item "><a class="page-link" href="Yesyes.html">Yesyes</a></li>
+						<li class="page-item "><a class="page-link" href="Waaagh.html">Waaagh</a></li>
+						<li class="page-item "><a class="page-link" href="绿皮！忠诚！.html">绿皮！忠诚！</a></li>
+						<li class="page-item active"><a class="page-link" href="END.html">END</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+<div class="gg">
+	<div class="wrapper">
+		<div class="contain">
+			<img src="img/130716.png" width="300px" height="200px" alt="">
+			<img src="img/130843.png" width="300px" height="200px" alt="">
+			<img src="img/131123.png" width="300px" height="200px" alt="">
+			<img src="img/131129.png" width="300px" height="200px" alt="">
+			<img src="img/131200.png" width="300px" height="200px" alt="">
+			<img src="img/133200.png" width="300px" height="200px" alt=""/>
+		</div>
+		<div class="btn">
+			<span class="active"></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	<a href="javascript:void(0);" class="prev">&lt;</a>
+	<a href="javascript:void(0);" class="next">&gt;</a>
+	</div>
+    <span></span>
+</div>
+	</body>
+</html>
