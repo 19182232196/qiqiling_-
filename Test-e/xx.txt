@@ -1,4 +1,0 @@
- npm init --yes
-  npm i request 
-    npm run test
-     npm i moment 
