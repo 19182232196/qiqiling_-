@@ -25,7 +25,7 @@
         String[] str ={"1","2","3"};
         request.setAttribute("str", str);
 
-        
+
     %>
 
     <h3>out标签:<font color="#7fffd4"><c:out value="取数据:${name}"></c:out></font></h3><br/><br/>
@@ -53,5 +53,12 @@
             </c:forEach>
         </font>
     </h3>
+
+    <h3>forEach标签
+        <font color="#7fffd4">
+            
+        </font>
+    </h3>
+
   </body>
 </html>

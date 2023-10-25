@@ -53,5 +53,12 @@
             </c:forEach>
         </font>
     </h3>
+
+    <h3>forEach标签
+        <font color="#7fffd4">
+
+        </font>
+    </h3>
+
   </body>
 </html>
