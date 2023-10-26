@@ -3,6 +3,14 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<meta charset="utf-8" />
+		<title>Waaagh</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="jquery-ui-1.13.2.custom/jquery-ui.css"/>
+		<script src="js/jquery-3.7.1.min.js"></script>
+		<script src="jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+		<script src="js/bootstrap.bundle.js"></script>
 		<style type="text/css">
 			table { 
 				border:2px solid #999;
@@ -55,71 +63,7 @@
 				line-height: 15px;
 			}
 		</style>
-	</head>
-	<body>
-		<form method="get">
-			<h2 align="center">要Waaagh了</h2>
-			<table align="center" cellpadding="5" >
-				<tr>
-					<td>用户名：</td>
-					<td><input type="text" name="user" id="user" pattern="[a-zA-Z0-9]{6,20}" required="required" class="inp"> 
-						<br />用户名只能包含字母数字，必须在6-20个字符之间</td>
-				</tr>
-				<tr>
-					<td>性别：</td>
-					<td><input type="radio" name="sex" value="male">男&nbsp;
-						<input type="radio" name="sex" value="female" >女&nbsp;
-                        <input type="radio" name="sex" value="female" >沃尔玛口袋&nbsp;
-                        <input type="radio" name="sex" value="female" >武装直升机&nbsp;
-                        <input type="radio" name="sex" value="female" >其他&nbsp;
-						<br />必须要选择性别</td>
-				</tr>
-				<tr>
-					<td>兴趣爱好：</td>
-					<td><input type="checkbox" name="like[]" value="piano">唱&nbsp;
-						<input type="checkbox" name="like[]" value="game">跳&nbsp;
-						<input type="checkbox" name="like[]" value="read">rap&nbsp;
-						<input type="checkbox" name="like[]" value="swim">篮球&nbsp;
-						<input type="checkbox" name="like[]" value="other">其它&nbsp;
-						<br />必须要选择兴趣爱好</td>
-				</tr>
-				<tr>
-					<td>密码：</td>
-					<td><input type="password" name="psw" id="psw" pattern="[a-zA-Z0-9!@#$%^&*]{6,18}" required="required" class="inp">
-						<br />密码在6-18个字符之间，允许出现!@#$%&*等特殊符号。
-						<br />密码强度：<div><div></div>&nbsp;<span></span></div></td>
-				</tr>
-				<tr>
-					<td>确认密码：</td>
-					<td><input type="password" id="repsw" name="repsw" class="inp">
-					<br />确认密码必须与密码保持一致</td>
-				</tr>
-				<tr>
-					<td>密码保护问题：</td>
-					<td>
-						<select class="inp">
-							<option value="0">--请选择密码保护问题--</option>
-							<option value="1">114514</option>
-							<option value="2">射向野兽的心脏</option>
-							<option value="3">新冷战热斗</option>
-							<option value="4">忠诚亦或苦跌塔</option>
-                            <option value="5">1!5!</option>
-						</select>
-					</td>
-				</tr>
-				
-				<tr>
-					<td>手机号：</td>
-					<td><input type="text" name="phoneno" id="phoneno" pattern="1[3456789][0-9]{9}" required class="inp">
-						<br />手机号必须符合手机号格式</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center"><input type="submit" value="  注   册  " /></td>
-				</tr>
-			</table>
-		</form>
-		<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
-		<script type="text/javascript">
+		<script>
 			$(function(){
 				//密码的合法性验证和判断密码强弱
 				$("#psw").keyup(function(){
@@ -158,8 +102,154 @@
 							$("td>div>span").text("很强");
 							break;
 					}
-				})
-			})
+				});
+			});
+
+			$(function(){
+				var i=1945;
+				var date=new Date();
+				var year=date.getFullYear();//获取当前年份
+				var dropList;
+				for(var i;i<2017;i++){
+					if(i==year){
+					dropList=dropList+"<option value='"+i+"' selected>"+i+"</option>";
+					}else {
+					dropList=dropList+"<option value='"+i+"'>"+i+"</option>";
+					}
+				}
+				$('#dateForm select[name=year]').html(dropList);//生成年份下拉列表
+				var monthly;
+				for(var j=1;j<13;j++){
+					monthly=monthly+'<option value="'+j+'">'+j+'</option>'
+				}
+				$('#dateForm select[name=month]').html(monthly);//生成月份下拉列表
+				var daily;
+				for(var day=1;day<=31;day++){
+					daily=daily+'<option value="'+day+'">'+day+'</option>';
+				}
+				$('#dateForm select[name=day]').html(daily);
+				$('#dateForm select[name=month]').change(function(){
+					var currentDay;
+					var total;
+					var flag=$('#dateForm select[name=year]:selected').val();
+					var currentMonth=$('#dateForm select[name=month]').val();
+					switch (currentMonth){
+					case "1":
+					case "3":
+					case "5":
+					case "7":
+					case "8":
+					case "10":
+					case "12":total=31;break;
+					case "4":
+					case "6":
+					case "9":
+					case "11":total=30;break;
+					case "2":
+						//闰年 整除4但是不整除100 或者整除400
+						if( (flag%4==0 && flag%100!=0 ) || flag%400){
+						total=29;
+						}else {
+						total=28;
+						}
+					default :break
+					}
+					for(day=1;day<=total;day++){
+					currentDay=currentDay+'<option value="'+day+'">'+day+'</option>'
+					}
+					$('#dateForm select[name=day]').html(currentDay);//生成日期下拉列表
+				});
+			});
+
+			$(function() {
+				$( "#dialog" ).dialog({
+				autoOpen: false,
+				show: {
+					effect: "blind",
+					duration: 1000
+				},
+				hide: {
+					effect: "explode",
+					duration: 1000
+				}
+				});
+			
+				$( "#opener" ).click(function() {
+				$( "#dialog" ).dialog( "open" );
+				});
+  			});
 		</script>
+	</head>
+	<body>
+		<form method="get">
+			<h2 align="center">要Waaagh了</h2>
+			<table align="center" cellpadding="5" >
+				<tr>
+					<td>用户名：</td>
+					<td><input type="text" name="user" id="user" pattern="[a-zA-Z0-9]{6,20}" required="required" class="inp"> 
+						<br />用户名只能包含字母数字，必须在6-20个字符之间</td>
+				</tr>
+				<tr>
+					<td>性别：</td>
+					<td><input type="radio" name="sex" value="male">男&nbsp;
+						<input type="radio" name="sex" value="female" >女&nbsp;
+                        <input type="radio" name="sex" value="female" >购物袋&nbsp;
+                        <input type="radio" name="sex" value="female" >武装直升机&nbsp;
+						<input type="text" class="form-control" placeholder="其他"/>
+						<br />必须要选择性别</td>
+				</tr>
+				<tr>
+					<td>兴趣爱好：</td>
+					<td><input type="checkbox" name="like[]" value="piano">唱&nbsp;
+						<input type="checkbox" name="like[]" value="game">跳&nbsp;
+						<input type="checkbox" name="like[]" value="read">rap&nbsp;
+						<input type="checkbox" name="like[]" value="swim">篮球&nbsp;
+						<input type="checkbox" name="like[]" value="other">其它&nbsp;
+						<br />必须要选择兴趣爱好</td>
+				</tr>
+				<tr>
+				<tr>
+					<td>密码：</td>
+					<td><input type="password" name="psw" id="psw" pattern="[a-zA-Z0-9!@#$%^&*]{6,18}" required="required" class="inp">
+						<br />密码在6-18个字符之间，允许出现!@#$%&*等特殊符号。
+						<br />密码强度：<div><div></div>&nbsp;<span></span></div></td>
+				</tr>
+				<tr>
+					<td>确认密码：</td>
+					<td><input type="password" id="repsw" name="repsw" class="inp">
+					<br />确认密码必须与密码保持一致</td>
+				</tr>
+				<tr>
+					<td>密码保护问题：</td>
+					<td>
+						<select class="inp">
+							<option value="0">--请选择密码保护问题--</option>
+							<option value="1">114514</option>
+							<option value="2">射向野兽的心脏</option>
+							<option value="3">新冷战热斗</option>
+							<option value="4">忠诚亦或苦跌塔</option>
+                            <option value="5">1!5!</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>手机号：</td>
+					<td><input type="text" name="phoneno" id="phoneno" pattern="1[3456789][0-9]{9}" required class="inp">
+						<br />手机号必须符合手机号格式</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="submit" value="  注   册  " /></td>
+				</tr>
+			</table>
+		</form>
+		<form name="form1" id="dateForm">
+			<select name="year"></select>年
+			<select name="month"></select>月
+			<select name="day"></select>日
+		</form>
+		<tr>
+			<td>身份证</td>
+			<td><input type="text" name="name" id="name" pattern="[0-9X]{20,20}" required="required" class="inp"> 
+		</tr>
 	</body>
 </html>

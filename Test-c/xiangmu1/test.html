@@ -5,15 +5,38 @@
 		<title>Waaagh</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1"/>
 		<link rel="stylesheet" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="jquery-ui-1.13.2.custom/jquery-ui.css"/>
 		<script src="js/jquery-3.7.1.min.js"></script>
+		<script src="jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+		<script src="js/bootstrap.bundle.js"></script>
 		<style>
 
 		</style>
 		<script>
-
+  $(function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+ 
+    $( "#opener" ).click(function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+  });
 		</script>
 	</head>
 	<body>
-
+		<div id="dialog" title="Basic dialog">
+			<p>这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，默认可通过 'x' 图标关闭。</p>
+		  </div>
+		   
+		  <button id="opener">打开对话框</button>
 	</body>
 </html>
