@@ -1,3 +1,2 @@
-jQ
-bs
-node.js
+npm i ws
+
