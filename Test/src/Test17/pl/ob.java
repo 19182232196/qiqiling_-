@@ -1,4 +1,4 @@
-package com.pl;
+package Test17.pl;
 
 public class ob {
 }

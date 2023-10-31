@@ -1,4 +1,4 @@
-package com.qo;
+package Test17.qo;
 
 public class qw {
     public static void main(String args[]){
