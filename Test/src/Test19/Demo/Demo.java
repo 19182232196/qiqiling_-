@@ -17,7 +17,7 @@ public class Demo {
         Connection connection= DriverManager.getConnection(url,user,password);
 
         Statement stmt=connection.createStatement();
-        String sql="select * from user";
+        String sql="select * from pop";
 
         ResultSet rs=stmt.executeQuery(sql);
 
