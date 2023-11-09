@@ -18,8 +18,10 @@
         }
 
         .carousel-container {
-            width: 300px;
+            width: 100%;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
         }
 
         .carousel {
@@ -28,12 +30,13 @@
         }
 
         .slide {
-            flex: 0 0 300px;
+            flex: 800px; /* 调整每张图片盒子的宽度 */
+            height: 700px; /* 调整每张图片盒子的高度 */
             margin: 10px;
         }
 
         .active {
-            transform: scale(1.2);
+            transform: scale(1.5);/*放大*/
             transition: transform 0.5s;
         }
 
@@ -41,15 +44,18 @@
     
     <script>
         $(document).ready(function () {
+            // 获取轮播容器和轮播项目
             const $carousel = $('.carousel');
             const $slides = $('.slide');
             let currentIndex = 0;
 
+            // 旋转轮播效果
             function rotateCarousel() {
                 const angle = (360 / $slides.length) * currentIndex * -1;
                 $carousel.css('transform', `rotateY(${angle}deg)`);
             }
 
+            // 切换到下一张轮播图片
             function nextSlide() {
                 $slides.removeClass('active');
                 currentIndex = (currentIndex + 1) % $slides.length;
@@ -57,6 +63,7 @@
                 rotateCarousel();
             }
 
+            // 切换到上一张轮播图片
             function prevSlide() {
                 $slides.removeClass('active');
                 currentIndex = (currentIndex - 1 + $slides.length) % $slides.length;
@@ -64,6 +71,7 @@
                 rotateCarousel();
             }
 
+            // 点击某张图片时，根据当前位置切换到目标图片
             $('.slide').on('click', function () {
                 const index = $(this).index();
                 if (index > currentIndex) {
@@ -90,24 +98,44 @@
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+            <li data-target="#myCarousel" data-slide-to="5"></li>
         </ul>
 
         <!-- 轮播项目 -->
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <a href="Begin.html">
-                    <img src="img/ieekm8m7.png" alt="Image 1">
-                </a>
-            </div>
-            <div class="carousel-item">
-                <a href="content.html">
-                    <img src="img/tno.png" alt="Image 2">
-                </a>
-            </div>
-            <div class="carousel-item">
-                <a href="END.html">
-                    <img src="img/pv1iz295.png" alt="Image 3">
-                </a>
+        <div class="carousel-container">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="Begin.html">
+                        <img src="img/124718.png" alt="Image 1">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="content.html">
+                        <img src="img/tno.png" alt="Image 2">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="END.html">
+                        <img src="img/015006.png" alt="Image 3">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="END.html">
+                        <img src="img/015017.png" alt="Image 4">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="END.html">
+                        <img src="img/015026.png" alt="Image 5">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="END.html">
+                        <img src="img/124302.png" alt="Image 6">
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -121,6 +149,5 @@
     </div>
 </div>
 
-</body>
-</html>
+</body
 
