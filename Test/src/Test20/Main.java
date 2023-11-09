@@ -9,11 +9,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         try {
+            // 加载驱动程序
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("无法加载MySQL驱动程序", e);
         }
 
+        // 连接数据库
         String url = "jdbc:mysql://localhost:3306/study";
         String username = "root";
         String password = "484110";
@@ -81,4 +83,3 @@ public class Main {
         }
     }
 }
-
