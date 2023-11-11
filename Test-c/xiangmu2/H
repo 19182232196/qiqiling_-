@@ -1,8 +1,0 @@
-npm i request 
-npm init --yes
-npm run test
-npm i moment
-npm i mysql2
-npm i express
-npm i ws
-
