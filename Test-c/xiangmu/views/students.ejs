@@ -7,7 +7,6 @@
         <ul>
             <% students.forEach(student => { %>
                 <li>
-                    <%= student.userName %> - <%= student.userPwd %>
                     <!-- 编辑表单 -->
                     <form action="http://localhost:8080/editStudent" method="POST">
                         <input type="hidden" name="id" value="<%= student.id %>">
