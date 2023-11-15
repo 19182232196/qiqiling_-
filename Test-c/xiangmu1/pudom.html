@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            ul{width: 100%;padding: 0;margin: 0;}
+            ul>li{list-style: none;padding: 1%;margin: 1%;bottom: 1% solid #999;box-sizing: border-box;position: relative;}
+            ul>li>img{width: 100%;}
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li><img src="img/jx1.jpg"></li>
+            <li><img src="img/jx2.jpg"></li>
+            <li><img src="img/jx3.jpg"></li>
+            <li><img src="img/jx4.jpg"></li>
+            <li><img src="img/jx5.jpg"></li>
+            <li><img src="img/jx6.jpg"></li>
+            <li><img src="img/jx7.jpg"></li>
+            <li><img src="img/jx8.jpg"></li>
+            <li><img src="img/jx9.jpg"></li>
+            <li><img src="img/jx10.jpg"></li>
+            <li><img src="img/jx11.jpg"></li>
+            <li><img src="img/jx12.jpg"></li>
+            <li><img src="img/jx13.jpg"></li>
+            <li><img src="img/jx14.jpg"></li>
+            <li><img src="img/jx15.jpg"></li>
+            <li><img src="img/jx16.jpg"></li>
+        </ul>
+    </body>
+</html>
+<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        for(var i=0;i<0;i++){
+            $("ul").append("<li><img src='img/jx'"+i+".jpg'></li>")
+        }
+        function pubuliu(){
+            var num
+            var arr=[]
+            var body_W=$("body").width()
+            if(body_W>500){
+                num=3
+                $("li").css("width","32%")
+            }else{
+                num=2
+                $("li").css("width","48%")
+            }
+            $("li").each(function(ind){
+                if(ind<num){
+                    $(this).css({top:0,left:(body_W/num*ind)+"px"})
+                    arr[ind]=$(this).outerHeight(true)
+                }else{
+                    var minH=arr[0]
+                    var minIndex=0
+                    arr.forEach(function(val,index){
+                        if(minH>val){
+                            minH=val
+                            minIndex=index
+                        }
+                    })
+                    $(this).css({left:(body_W/num*minIndex)+"px",top:minH+"p"})
+                    arr[minIndex]=minH+$(this).outerHeight(true)
+                }
+            })
+        }
+        setTimeout(()=>{
+            pubuliu()
+        },200)
+        $(window).resize(pubuliu)
+    })
+</script>
