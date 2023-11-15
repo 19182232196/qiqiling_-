@@ -1,5 +1,10 @@
 package com.stu.servlet;
 
+import com.stu.bean.Person;
+import com.stu.dao.UserLoginDao;
+import com.stu.service.UserLoginService;
+import com.stu.service.UserLoginServiceImpl;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +18,11 @@ public class UserLoginServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userAccount=req.getParameter("userAccount");
         String userPassword=req.getParameter("userPassword");
-        if (userAccount.equals("admin")&&userPassword.equals("123456")){
+        Person person=new Person(userAccount,userPassword);
+        UserLoginService ul =new UserLoginServiceImpl();
+        Person newPerson=ul.getLogin(person);
+        if (newPerson!=null){
+            req.getSession().setAttribute("session-person",newPerson);
             req.setAttribute("mainRight","blank.jsp");
             req.getRequestDispatcher("main.jsp").forward(req,resp);
         }else {
