@@ -7,21 +7,27 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class UserLoginDaoImpl implements UserLoginDao{
-
+public class ManageDaoImpl  implements ManageDao{
     @Override
-    public Person getLogin(Person p) {
-        String sql="select * from person where userAccount='"+p.getUserAccount()+"'and userPassword='"+p.getUserPassword()+"'";
+    public List<Person> getAllPerson() {
+        String sql="select * from person where userIdentify!=2";
+        return getAllPerson(sql);
+    }
+
+    private List<Person> getAllPerson(String sql) {
         Connection connection= ConnectionFactory.getConnection();
         PreparedStatement pre=null;
         ResultSet res=null;
-        Person newPerson=new Person();;
+        List<Person> list=new ArrayList<>();
 
         try {
             pre=connection.prepareStatement(sql);
             res=pre.executeQuery();
             while (res.next()){
+                Person newPerson=new Person();
                 newPerson.setUserAccount(res.getString("userAccount"));
                 newPerson.setUserName(res.getString("userName"));
                 newPerson.setUserSex(res.getString("userSex"));
@@ -30,13 +36,13 @@ public class UserLoginDaoImpl implements UserLoginDao{
                 newPerson.setUserPassword(res.getString("userPassword"));
                 newPerson.setUserIdentify(res.getInt("userIdentify"));
                 newPerson.setUserOtherName(res.getString("userOtherName"));
+                list.add(newPerson);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
 
         }
-
-        return  newPerson;
+        return list;
     }
 }
