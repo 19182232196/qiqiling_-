@@ -1,6 +1,5 @@
 package Test1.qwerBase;
 
-import Test1.qwerDao.daoQ;
 import Test1.qwerInterface.interf;
 import Test1.qwerObj.obj;
 
@@ -12,15 +11,18 @@ import java.util.ArrayList;
 
 public class base implements interf{
 
-    final static daoQ dao = new daoQ();
+   //定义一个静态变量dao，用于存储db类的实例
+    final static db dao = new db();
+    //定义一个静态变量o，用于存储obj类的实例
     final static obj o=new obj();
+    //定义一个静态变量conn，用于存储连接对象
+    final static Connection conn = dao.getConn();
+    //定义一个静态变量list，用于存储obj类的实例的集合
+    final static ArrayList<obj> list = new ArrayList<>();
 
-   @Override
+    @Override
     public ArrayList<obj> show() {
         // 创建一个ArrayList对象
-        ArrayList<obj> list = new ArrayList<>();
-        // 获取数据库连接
-        Connection conn = dao.getConn();
         try {
             // 创建一个PreparedStatement对象，用于执行SQL语句
             PreparedStatement pdst=conn.prepareStatement("select * from pop");
@@ -47,29 +49,41 @@ public class base implements interf{
     }
 
     @Override
-    public obj Login() {
+    public obj Login(String id ,String password) {
+        try {
+            String sql = "select * from users where id = ? and password = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,id);
+            pstmt.setString(2,password);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()){
+                return searchUserById(id);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
-    public int signUp() {
+    public int signUp(String id, String name, String password, String email, String birthday) {
         return 0;
     }
 
     @Override
-    public int delUser() {
+    public int delUser(String id) {
         return 0;
     }
 
     @Override
-    public int updateUser() {
+    public int updateUser(String comlue, String value, String id) {
         return 0;
     }
 
     @Override
     public obj searchUserById(String id) {
-        Connection conn = dao.getConn();
         try {
+            // 根据id查询用户信息
             String sql = "select * from users where id = ? ";
             PreparedStatement pstmt  = conn.prepareStatement(sql);
             pstmt.setString(1,id);

@@ -39,21 +39,25 @@ public class gui extends JFrame{
                 // 获取文本框内容
                 String username = jtfq.getText();
                 // 调用base的searchUserById方法
-                jtfq_apf(b.searchUserById(username).getName());
+                jtfq_apf();
             }
         });
     }
 
     // 设置标签文本
-    public void jtfq_apf(String vl){
+    public void jtfq_apf(){
+        // 调用base的Login方法
+        if(b.Login(jtfq.getText(),jtfw.getText()) != null){
+            lbq.setText("登陆成功");
+        }else {
+            lbq.setText("登陆失败");
+        }
         // 设置对话框位置
         win.setLocationRelativeTo(null);
         // 设置对话框大小
-        win.setSize(1000,1000);
+        win.setSize(150,150);
         // 设置对话框布局
         win.setLayout(new FlowLayout());
-        // 设置标签文本
-        lbq.setText(vl);
         // 添加标签
         win.add(lbq);
         // 设置对话框可见
