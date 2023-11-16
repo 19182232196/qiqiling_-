@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            .div1{
+                width: 500px;
+                height: auto;
+                background: #eef;
+                margin-right: 20px;
+            }
+            .div1 p{
+                margin: 8px 0;
+                font-size: 12pt;
+            }
+            .div1>p>img{
+                width: 20px;
+                height: 20px;
+                margin: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <p>上传图片:<input type="file" multiple="multiple"></p>
+        <p>上传图片:<input type="file" multiple="multiple"></p>
+        <p>上传图片:<input type="file" multiple="multiple"></p>
+        <div class="div1">
+        </div>
+        <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+        <script type="text/javascript">
+            var kzmArr=[]
+            var fileImg=[]
+            $('input[type="file"]').each(function(){
+                $(this).change(function(){
+                $('div1').css('padding','10px')
+                var file=this.files
+                console.log(file)
+                for(var i=0;i<file.length;i++){
+                    (function(){
+                        var fileName=file[i]["name"]
+                        var p=$('<p>'+fileName+'</p>')
+                        $('.div1').append(p)
+                        var kzm=fileName.split('.').pop()
+                        var kzmInd=kzmArr.indexOf(kzm)
+                        if(kzmInd!=-1){
+                            var tubiao=fileImg[kzmInd]
+                            p.prepend("<img src='image/'"+tubiao+"'/>")
+                        }else{
+                            var fr=new FileReader()
+                            fr.readAsDataURL(file[i])
+                            $(fr).on('load',function(e){
+                                p.prepend("<img src='"+e.target.result+"'/>")
+                            })
+                        }
+                    })()
+                }
+            })
+        })
+        </script>
+    </body>
+</html>
