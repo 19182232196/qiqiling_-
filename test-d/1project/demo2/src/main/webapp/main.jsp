@@ -36,18 +36,39 @@
             margin-top: 26px;
         }
     </style>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <link href="WEB-INF/css/css.css" rel="stylesheet" media="screen">
     </head>
     <body>
         <div id="BigBodyFrame">
 
         </div>
-        <br><br>
+        <br>
+        <span style="float: left;color: grey">当前用户:${session_person.userName}</span><br>
+        <a href="#">修改密码</a>
+        <br>
         <div id="navigation">
-            <li id="file"><a href="common">查看首页</a></li>
-            <li id="file"><a href="common">学生管理</a></li>
-            <li id="file"><a href="common">任务系统</a></li>
-            <li id="file"><a href="common">我的信息</a></li>
-            <li id="file"><a href="common">退出系统</a></li>
+            <c:if test="${session_person.getUserIdentify()==0}">
+                <li id="file"><a href="common.action?action=index">查看首页</a></li>
+                <li id="file"><a href="common">选择老师</a></li>
+                <li id="file"><a href="common">我的任务</a></li>
+                <li id="file"><a href="common">我的信息</a></li>
+                <li id="file"><a href="common">退出系统</a></li>
+            </c:if>
+            <c:if test="${session_person.getUserIdentify()==1}">
+                <li id="file"><a href="common.action?action=index">查看首页</a></li>
+                <li id="file"><a href="tea.action?action=list">学生管理</a></li>
+                <li id="file"><a href="common">任务系统</a></li>
+                <li id="file"><a href="common">我的信息</a></li>
+                <li id="file"><a href="common">退出系统</a></li>
+            </c:if>
+            <c:if test="${session_person.getUserIdentify()==2}">
+                <li id="file"><a href="common.action?action=index">查看首页</a></li>
+                <li id="file"><a href="man.action?action=list">人员管理</a></li>
+                <li id="file"><a href="common">课程管理</a></li>
+                <li id="file"><a href="common">我的信息</a></li>
+                <li id="file"><a href="common">退出系统</a></li>
+            </c:if>
         </div>
     <jsp:include page="${mainRight=null?'blank.jsp':mainRight}"></jsp:include>
     </body>

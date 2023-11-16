@@ -11,7 +11,7 @@
       <title>Title</title>
     <style>
       #content{
-        width: 1100px;
+        width: 500px;
         height: 800px;
         float: right;
         margin-right: 20px;
