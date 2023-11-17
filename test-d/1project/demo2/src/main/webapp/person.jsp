@@ -11,7 +11,7 @@
     <title>Title</title>
     <style>
         table{
-            width: 1200px;
+            width: 1300px;
         }
         tr,td{
             border: grey 1px ;
@@ -57,28 +57,41 @@
         <td class="lf">身份证</td>
         <td class="lf">角色</td>
         <td class="lf">其他名称</td>
+        <td >删除</td>
+        <td >修改</td>
     </tr>
     </thead>
     <tbody>
         <c:forEach items="${arr}" var="person">
-            <td class="lf">${person.getUserAccount()}</td>
-            <td class="lf">${person.getUserName()}</td>
-            <td class="lf">${person.getUserSex()}</td>
-            <td class="lf">${person.getUserBirthday()}</td>
-            <td class="lf">${person.getUserIdCard()}</td>
-            <td class="lf">
-                <c:if test="${person.getUserIdentify()==0}">
-                    学生
-                </c:if>
-                <c:if test="${person.getUserIdentify()==1}">
-                    老师
-                </c:if>
-            </td>
-            <td class="lf">${person.getUserOtherName()}</td>
+            <tr>
+                <td class="lf">${person.getUserAccount()}</td>
+                <td class="lf">${person.getUserName()}</td>
+                <td class="lf" style="width: 10%">${person.getUserSex()}</td>
+                <td class="lf">${person.getUserBirthday()}</td>
+                <td class="lf">${person.getUserIdCard()}</td>
+                <td class="lf">
+                    <c:if test="${person.getUserIdentify()==0}">
+                        学生
+                    </c:if>
+                    <c:if test="${person.getUserIdentify()==1}">
+                        老师
+                    </c:if>
+                </td>
+                <td class="lf">${person.getUserOtherName()}</td>
+                <td><img src="del.png" onclick="deleteThisPerson('${person.getUserAccount()}')"></td>
+                <td><img src="up.jpg" onclick="upThisPerson('${person.getUserAccount()}')"></td>
+            </tr>
         </c:forEach>
     </tbody>
-    <tr></tr>
 </table>
 </body>
+<script>
+    function deleteThisPerson(userAccount){
+        alert(userAccount)
+    }
+    function upThisPerson(userAccount){
+        alert(userAccount)
+    }
+</script>
 </html>
 
