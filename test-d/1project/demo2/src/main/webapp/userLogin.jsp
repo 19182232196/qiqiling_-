@@ -16,7 +16,6 @@
             margin-left: 600px;
             margin-top: 260px;
         }
-
         #innerLoginFrame{
             width: 360px;
             margin-left: 100px;
@@ -24,16 +23,11 @@
             color: grey;
             font-size: 25px;
         }
-
         input{
             width: 220px;
             height: 30px;
         }
-
-
     </style>
-
-
 </head>
 <body>
 <div id="outerLoginFrame" style="border: grey 2px solid">
@@ -47,15 +41,9 @@
             <span style="color: red;font-size: 15px" id="tip">${tip}</span>
         </form>
     </div>
-
 </div>
-
-
-
-
 </body>
 </html>
-
 <script>
     function checkLogin() {
         let userAccount = document.getElementById("userAccount").value;

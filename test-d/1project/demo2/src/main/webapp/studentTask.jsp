@@ -66,7 +66,6 @@
     </tr>
     </thead>
     <tbody>
-
     <c:forEach items="${arr}" var="stuTask">
         <tr>
             <c:if test="${session_person.getUserIdentify()!=0}"><td class="lf">${stuTask.getUserName()}</td></c:if>
@@ -83,22 +82,15 @@
                     <span style="color: orange">未完成</span>
                 </c:if>
             </td>
-
             <td class="lf">${stuTask.getIsScore()}</td>
             <c:if test="${session_person.getUserIdentify()==0}"><td class="lf"><button onclick="doAnswer('${stuTask.getTaskAccount()}','${stuTask.getIsFinish()}')">点击答题</button></td></c:if>
             <c:if test="${session_person.getUserIdentify()==1}"><td class="lf"><button onclick="doFenshu('${stuTask.getTaskAccount()}',${stuTask.getStudentAccount()},'${stuTask.getIsFinish()}')">点击批改</button></td></c:if>
             <td> <img src="del.png" onclick="delThisTask('${stuTask.getTaskAccount()}','${stuTask.getStudentAccount()}',${stuTask.getIsFinish()})"> </td>
-
         </tr>
-
     </c:forEach>
-
     </tbody>
-
 </table>
-
 </body>
-
 <script>
     function doFenshu(taskAccount,studentAccount,isFinish) {
         if(isFinish!=1){
@@ -106,9 +98,7 @@
             return;
         }
         window.open("student.action?action=doFenshu&taskAccount="+taskAccount+"&studentAccount="+studentAccount, null,"width=220,height=20,left=700,top=300", true);
-
     }
-
     function doAnswer(taskAccount,isFinish) {
         if(isFinish!=0){
             alert("已经作答！")
@@ -116,7 +106,6 @@
         }
         window.open("student.action?action=doAnswer&taskAccount="+taskAccount+"", null,"width=700,height=400,left=400,top=150", true);
     }
-
     function delThisTask(taskAccount,studentAccount,isFinish) {
         if(${session_person.getUserIdentify()==1}){
             if(isFinish==1){

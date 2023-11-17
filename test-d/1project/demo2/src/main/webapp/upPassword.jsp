@@ -14,19 +14,15 @@
         background-color: #9acfea;
     }
 </style>
-
 <div class="data_list">
     <h1>密码修改</h1>
-
     <div>
         <form method="post" action="common.action?action=sureUpPassword" onsubmit="return checkThisFile()">
             <table class="table table-striped table-bordered table-hover datatable">
                 <thead>
                 <tr height="15px">
                     <th style="text-align: center;">输入新密码：</th>
-                    <th style="text-align: center;"><input name="userPassword" id="userPassword" type="password" width="400px"
-                                                           height="26px"
-                                                           style="border-bottom-right-radius: 3px"></th>
+                    <th style="text-align: center;"><input name="userPassword" id="userPassword" type="password" width="400px" height="26px" style="border-bottom-right-radius: 3px"></th>
                 </tr>
                 <tr style="width: 500px">
                     <th style="text-align: center;">再次输入密码：</th>
@@ -38,19 +34,16 @@
                     <td>
                         <input type="submit" value="提交">
                     </td>
-
                 </tr>
                 <tr style="width: 500px">
                     <td></td>
                     <td>
                         <span style="color: #dd1144" id="error"></span>
                     </td>
-
                 </tr>
                 </thead>
             </table>
         </form>
-
         <script>
             function checkThisFile() {
                 let userPassword = document.getElementById("userPassword").value;
@@ -65,8 +58,6 @@
                 }else{
                     return true;
                 }
-
-
             }
         </script>
     </div>

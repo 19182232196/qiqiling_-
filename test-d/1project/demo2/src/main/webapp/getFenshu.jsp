@@ -7,15 +7,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-    <form action="student.action?action=getFenshu&taskAccount=${taskAccount}&studentAccount=${studentAccount}" method="post" onsubmit="return checkFenshu()">
-        分数:<input type="number" style="width: 150px;height: 20px" id="fenshu" name="fenshu"><br>
-        <input style="position: center" type="submit" value="确认">
-    </form>
-</body>
+    <head>
+        <title>Title</title>
+    </head>
+    <body>
+        <form action="student.action?action=getFenshu&taskAccount=${taskAccount}&studentAccount=${studentAccount}" method="post" onsubmit="return checkFenshu()">
+            分数:<input type="number" style="width: 150px;height: 20px" id="fenshu" name="fenshu"><br>
+            <input style="position: center" type="submit" value="确认">
+        </form>
+    </body>
 </html>
 
 <script>
@@ -32,6 +32,5 @@
         }
 
         return true;
-
     }
 </script>
