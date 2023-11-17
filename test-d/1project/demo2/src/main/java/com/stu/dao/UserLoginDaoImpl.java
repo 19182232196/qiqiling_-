@@ -40,14 +40,11 @@ public class UserLoginDaoImpl implements UserLoginDao {
                 newPerson.setUserIdentify(res.getInt("userIdentify"));
                 newPerson.setUserOtherName(res.getString("userOtherName"));
             }
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
 
         }
-
-
         return newPerson;
     }
 }

@@ -29,7 +29,6 @@ public class StudentServlet extends HttpServlet {
         //获取用户账号
         String userAccount = person.getUserAccount();
         if(action.equals("list")||action.equals("searchTeacher")){
-
             List<Person> arr ;
             if(action.equals("list")){
                 arr = ss.getAllTeacher();
@@ -38,7 +37,6 @@ public class StudentServlet extends HttpServlet {
                 String matchText = req.getParameter("matchText");
                 arr = ss.getSearchTeacher(matchText);
             }
-
             //将搜索结果放入req中
             req.setAttribute("arr",arr);
             //设置页面跳转

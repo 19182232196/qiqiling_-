@@ -4,7 +4,6 @@ import com.stu.bean.Person;
 import com.stu.dao.UserLoginDao;
 import com.stu.dao.UserLoginDaoImpl;
 
-// 创建UserLoginServiceImpl类，实现UserLoginService接口
 public class UserLoginServiceImpl implements UserLoginService {
     // 创建UserLoginDaoImpl类的实例
     UserLoginDao ud = new UserLoginDaoImpl();

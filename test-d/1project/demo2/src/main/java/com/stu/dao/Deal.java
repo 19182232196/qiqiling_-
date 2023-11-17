@@ -13,9 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Deal {
-
-
-   public static List<Person> getAllPerson(String sql) {
+    public static List<Person> getAllPerson(String sql) {
         //获取数据库连接
         Connection connection = ConnectionFactory.getConnection();
         //创建预处理语句
@@ -54,7 +52,6 @@ public class Deal {
         //返回存放Person对象的List
         return list;
     }
-
     public static List<Task> getAllMyTask(String sql) {
         //获取数据库连接
         Connection connection = ConnectionFactory.getConnection();
@@ -88,7 +85,7 @@ public class Deal {
         }
         return list;
     }
-   public static List<StudentAnswer> getTaskDetail(String sql) {
+    public static List<StudentAnswer> getTaskDetail(String sql) {
         //获取数据库连接
         Connection connection = ConnectionFactory.getConnection();
         //创建预处理语句
@@ -123,7 +120,6 @@ public class Deal {
                 //将结果添加到列表中
                 list.add(sa);
             }
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
@@ -132,8 +128,7 @@ public class Deal {
         //返回结果列表
         return list;
     }
-
-   public static int isExist(String sql) {
+    public static int isExist(String sql) {
         //获取数据库连接
         Connection connection = ConnectionFactory.getConnection();
         //创建预处理语句
@@ -159,7 +154,6 @@ public class Deal {
         }
         return num;
     }
-
     public static void deal(String sql) {
         //获取数据库连接
         Connection connection = ConnectionFactory.getConnection();

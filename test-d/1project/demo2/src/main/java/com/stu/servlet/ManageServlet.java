@@ -73,7 +73,6 @@ public class ManageServlet extends HttpServlet {
             //设置页面跳转
             req.setAttribute("mainRight", "blank.jsp");
             req.getRequestDispatcher("main.jsp").forward(req, resp);
-
         }
     }
 }

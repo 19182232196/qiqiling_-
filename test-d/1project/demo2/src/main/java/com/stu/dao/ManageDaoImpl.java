@@ -11,30 +11,26 @@ public class ManageDaoImpl implements ManageDao {
         String sql = "select * from person where userIdentify!=2";
         return Deal.getAllPerson(sql);
     }
-
     // 根据关键字搜索普通用户
     @Override
     public List<Person> getSearch(String matchText) {
         String sql = "select * from person where userIdentify!=2 and (userAccount='' or userName like '%"+matchText+"%' or userIdCard='"+matchText+"')";
         return Deal.getAllPerson(sql);
     }
-
     // 添加普通用户
     @Override
     public void addPerson(Person newPerson) {
         String sql = "insert into person values('"+newPerson.getUserAccount()+"','"+newPerson.getUserName()+"','"+newPerson.getUserSex()+"','"+newPerson.getUserBirthday()+"','"+newPerson.getUserIdCard()+"','"+newPerson.getUserPassword()+"',"+newPerson.getUserIdentify()+",'"+newPerson.getUserOtherName()+"')";
         Deal.deal(sql);
     }
-
     // 修改普通用户密码
     @Override
     public void sureUpPassword(String userAccount, String userPassword) {
         String sql = "update person set userPassword = '"+userPassword+"' where userAccount='"+userAccount+"'";
         Deal.deal(sql);
     }
-
     // 删除普通用户
-    @Override
+   @Override
     public void delThisPerson(String delAccount, String userIdentify) {
         if(Integer.parseInt(userIdentify)==0){
             //删除学生

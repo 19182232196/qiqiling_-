@@ -39,8 +39,6 @@ public class CommonServlet extends HttpServlet {
             req.setAttribute("mainRight","detail.jsp");
             req.getRequestDispatcher("main.jsp").forward(req,resp);
         }else if(action.equals("upPassword")){
-            //upPassword
-
             //跳转到修改密码页面
             req.getRequestDispatcher("upPassword.jsp").forward(req,resp);
         }else if(action.equals("sureUpPassword")){

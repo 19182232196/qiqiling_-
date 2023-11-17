@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-
 @WebServlet("/userLogin")
 public class UserLoginServlet extends HttpServlet {
     @Override

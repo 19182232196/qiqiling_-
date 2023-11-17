@@ -24,7 +24,6 @@ public class StudentDaoImpl implements StudentDao {
         //返回查询结果
         return Deal.getAllPerson(sql);
     }
-
     //根据用户账号获取教师
     @Override
    //根据用户账号获取教师列表
@@ -34,7 +33,6 @@ public class StudentDaoImpl implements StudentDao {
         //返回查询结果
         return Deal.getAllPerson(sql);
     }
-
     //添加教师
     @Override
    //向userteacher表中插入用户账号和教师账号
@@ -51,7 +49,6 @@ public class StudentDaoImpl implements StudentDao {
         //返回查询结果
         return Deal.getTaskDetail(sql);
     }
-
     //删除教师
     @Override
    //根据用户账号和教师账号删除教师
@@ -63,7 +60,6 @@ public class StudentDaoImpl implements StudentDao {
         sql = "DELETE FROM `studenttask` WHERE `taskAccount` IN(SELECT `taskAccount` FROM `task` WHERE `teacherAccount`='"+teacherAccount+"') AND studentAccount='"+userAccount+"'";
         Deal.deal(sql);
     }
-
     //完成任务
     @Override
    // 根据用户账号、任务账号和答案，更新学生任务表中的学生答案和是否完成状态
@@ -71,7 +67,6 @@ public class StudentDaoImpl implements StudentDao {
         String sql = "UPDATE studenttask SET `studentAnswer`='"+answer+"',`isFinish`=1 WHERE `taskAccount`='"+taskAccount+"' AND `studentAccount`='"+userAccount+"'";
         Deal.deal(sql);
     }
-
     //处理分数
     @Override
    //更新任务分数
