@@ -1,0 +1,33 @@
+table{
+    width: 1200px;
+}
+tr,td{
+    border: grey 1px ;
+}
+td{
+    height: 40px;
+}
+
+table td{
+    height: 60px;
+    vertical-align: middle!important;  /*设置文字垂直居中*/
+    text-align: center;
+}
+
+tr,td{border-right:1px solid #888;border-bottom:1px solid #888;padding:5px 15px;}
+
+th{font-weight:bold;background:#ccc;}
+
+.con-b .row .lf{
+    width: 15%;
+    text-align: center;
+    padding: 10px;
+}
+.con-b .row .rg{
+    width: 85%;
+}
+
+.con-b tr:nth-of-type(odd){
+    background-color: #f2f2f2;
+}
+
