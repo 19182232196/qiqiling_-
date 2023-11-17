@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Perform Database Action</title>
+	</head>
+	<body>
+		<form method="post" action="http://localhost:8080/performDatabaseAction">
+			<input type="text" name="userName" placeholder="用户名">
+			<input type="text" name="userPwd" placeholder="密码">
+			<select name="operationType">
+				<option value="add">添加</option>
+				<option value="delete">删除</option>
+				<option value="update">更新</option>
+			</select>
+			<button type="submit">提交</button>
+		</form>
+		<form onsubmit="updateStudentList(event); return false;">
+			<button type="submit">列表</button>
+		</form>
+		
+		<script>
+			function updateStudentList(event) {
+				event.preventDefault();
+				fetch('http://localhost:8080/students')
+					.then(response => response.text())
+					.then(html => {
+						const container = document.createElement('div');
+						container.innerHTML = html;
+						document.body.innerHTML = container.querySelector('ul').outerHTML;
+					})
+					.catch(error => console.error('Error:', error));
+			}
+		</script>
+	</body>
+</html>

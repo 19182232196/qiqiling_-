@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>学生列表</title>
+    </head>
+    <body>
+        <ul>
+            <% students.forEach(student => { %>
+                <li>
+                    <!-- 编辑表单 -->
+                    <form action="http://localhost:8080/editStudent" method="POST">
+                        <input type="hidden" name="id" value="<%= student.id %>">
+                        <input type="text" name="userName" value="<%= student.userName %>">
+                        <input type="text" name="userPwd" value="<%= student.userPwd %>">
+                        <button type="submit">编辑</button>
+                    </form>
+                    <!-- 删除表单 -->
+                    <form action="http://localhost:8080/deleteStudent" method="POST">
+                        <input type="hidden" name="id" value="<%= student.id %>">
+                        <button type="submit">删除</button>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+    </body>
+</html>
