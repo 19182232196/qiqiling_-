@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Waaagh</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="jquery-ui-1.13.2.custom/jquery-ui.css"/>
+		<link rel="stylesheet" href="jquery-ui-1.13.2.custom/jquery-ui.structure.css">
+		<script src="js/jquery-3.7.1.min.js"></script>
+		<script src="jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+		<script src="js/bootstrap.bundle.js"></script>
+		<style>
+			a,a:hover{
+				color: black;
+				text-decoration: none;
+			}
+			.qwer{
+				width: 200px;
+				height: 200px;
+				background-color: pink;
+			}
+			#content{
+            text-align: center;
+            background-color: lightblue;
+            border:solid 1px red;
+            display: none;
+            padding: 50px;
+    		}
+			
+			#draggable, #draggable2, #draggable3, #set div { width: 90px; height: 90px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+			#draggable, #draggable2, #draggable3 { margin-bottom:20px; }
+			#set { clear:both; float:left; width: 368px; height: 120px; }
+			p { clear:both; margin:0; padding:1em 0; }
+
+			.qwer {
+				width: 200px;
+				height: 200px;
+				border: 1px solid;
+				position: relative;
+				left: 0;
+				top: 0;
+			}
+		
+			/* 5张图片叠加到一块 */
+			.qwer img {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				display: none;
+			}
+		
+			.qwer img:nth-of-type(1) {
+				display: block;
+			}
+		
+			/* 小圆点 */
+			.btn {
+				width: 150px;
+				display: flex;
+				justify-content: space-around;
+				position: absolute;
+				left: 10px;
+				bottom: 10px;
+				z-index: 100
+			}
+		
+			.btn span {
+				display: block;
+				width: 15px;
+				height: 15px;
+				border: 3px solid white;
+				border-radius: 50%;
+			}
+		
+			/* 左右箭头 */
+			.qwer a {
+				text-decoration: none;
+				font-size: 50px;
+				color: red;
+				position: absolute;
+				top: 35%;
+			}
+		
+			.qwer a:nth-of-type(1) {
+				left: 10px;
+		
+			}
+		
+			.qwer a:nth-of-type(2) {
+				right: 10px;
+			}
+		
+
+            .zoom {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            position: absolute;
+            display: none;
+        }
+
+        		/* 实现图片点击后居中放大 */
+		*{
+			margin: 0;
+			padding: 0;
+		}
+
+		.drawing:hover{
+			cursor: zoom-in;
+		}
+		.wrapper{
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 999;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-position: center;
+			background-color: rgba(52, 52, 52, 0.8);
+			background-size: 50%;
+		}
+		.wrapper:hover{
+			cursor: zoom-out;
+		}
+
+        .btn.drawing {
+    position: relative;
+    z-index: 999; /* 保证它们处于最顶层 */
+}
+		</style>
+		<script>
+            $(document).ready(function() {
+				$("#hide").click(function () {
+					$("p").hide(1000);
+				});
+				$("#show").click(function () {
+					$("p").show(1000);
+				});
+				$("#toggle").click(function () {
+					$("p").toggle();
+				});
+			});
+
+			$(document).ready(function(){
+				$("#in").click(function(){
+					$("#id1").fadeIn(1000);
+				});
+					$("#out").click(function(){
+					$("#id1").fadeOut(1000);
+				});
+					$("#toggle").click(function(){
+					$("#id1").fadeToggle(1000);
+				});
+					$("#fadeto").click(function(){
+					$("#id1").fadeTo(1000,0.4);
+				});
+			});
+
+			$(document).ready(function(){
+				$("#slideDown").click(function(){
+					$("#content").slideDown(1000);
+				});
+				$("#slideUp").click(function(){
+					$("#content").slideUp(1000);
+				});
+				$("#slideToggle").click(function(){
+					$("#content").slideToggle(1000);
+				});
+			});
+
+			$(function() {
+				$( "#draggable" ).draggable({ helper: "original" });
+				$( "#draggable2" ).draggable({ opacity: 0.7, helper: "clone" });
+				$( "#draggable3" ).draggable({
+					cursor: "move",
+					cursorAt: { top: -12, left: -20 },
+					helper: function( event ) {
+						return $( "<div class='ui-widget-header'>114514</div>" );
+					}
+				});
+				$( "#set div" ).draggable({ stack: "#set div" });
+			});
+
+			$(function(){$('h1').click(function(){$(this).next().slideToggle(0).parent().siblings().children('.list').slideUp(500)})});
+			
+			$(function() {
+        // ... （之前的代码保持不变）
+
+        // 针对所有轮播图的操作
+        $(".qwer").each(function() {
+            var qwer = $(this);
+            var images = qwer.find("img");
+            var spans = qwer.find(".btn span");
+            var index = 0;
+
+            // 下一张
+            function next_pic() {
+                index++;
+                if (index >= images.length) {
+                    index = 0;
+                }
+                addStyle();
+            }
+
+            // 上一张
+            function prev_pic() {
+                index--;
+                if (index < 0) {
+                    index = images.length - 1;
+                }
+                addStyle();
+            }
+
+            // 控制图片显示隐藏和小圆点背景色
+            function addStyle() {
+                images.eq(index).fadeIn();
+                images.eq(index).siblings().fadeOut();
+                spans.eq(index).addClass("active");
+                spans.eq(index).siblings().removeClass("active");
+            }
+
+            // 自动轮播
+            var id;
+            autoplay();
+            function autoplay() {
+                id = setInterval(function() {
+                    next_pic();
+                }, 10000);
+            }
+
+            // 悬浮停止
+            qwer.mouseover(function() {
+                clearInterval(id);
+            });
+            qwer.mouseout(function() {
+                autoplay();
+            });
+
+            // 点击上一张
+            qwer.find(".prev").click(function() {
+                prev_pic();
+            });
+
+            // 点击下一张
+            qwer.find(".next").click(function() {
+                next_pic();
+            });
+        });
+    });
+
+
+        $(function(){
+        $('.drawing').click(function(){
+            //查看大图
+            $(this).after("<div class='wrapper'></div>");
+            var imgSrc = $(this).attr('src');
+            $(".wrapper").css("background-image", "url(" + imgSrc + ")");
+            $('.wrapper').fadeIn(2000);
+            //关闭并移除图层
+            $('.wrapper').click(function(){
+                $('.wrapper').fadeOut(2000).remove();
+            });
+        });
+        });
+		</script>
+	</head>
+	<body>
+		<nav class="navbar border bg-secondary navbar-dark ">
+			<span class="navbar-brand text-white">QWER</span>
+		<button class="btn btn-light text-light navbar-toggler" data-toggle="collapse" data-target="#a">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	<div class="collapse navbar-collapse" id="a">
+			<div class="container-fluid">
+			<a class="navbar-brand" href="Yesyes.html">Navbar</a>
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="Yesyes.html">Yes</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="Waaagh.html">1962年的国家</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="END.html">END</a>
+			</li>
+		</ul>
+			</div>
+			<li class="nav-item dropdown">
+				<button class="btn btn-block dropdown-toggle nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					中心
+				</button>
+				<ul class="dropdown-menu" t aria-labelledby="navbarDropdownMenuLink">
+				<li><a class="dropdown-item" href="index-q.html">Login</a></li>
+				<li><a class="dropdown-item" href="冷战.html">冷战</a></li>
+				<li><a class="dropdown-item" href="绿皮！忠诚！.html">END</a></li>
+				<li><a class="dropdown-item" href="content.html">content</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+			</div>
+			</div>
+			</nav>
+			<nav class="nav nav-tabs">
+				<a href="#h" class="nav-item nav-link" data-toggle="tab">1</a>
+				<a href="#b" class="nav-item nav-link" data-toggle="tab">2</a>
+				<a href="#c" class="nav-item nav-link" data-toggle="tab">3</a>
+				<a href="#d" class="nav-item nav-link" data-toggle="tab">4</a>
+				<a href="#e" class="nav-item nav-link" data-toggle="tab">5</a>
+				<a href="#f" class="nav-item nav-link" data-toggle="tab">6</a>
+				<a href="#g" class="nav-item nav-link" data-toggle="tab">7</a>
+			</nav>
+			<div class="tab-content">
+				<div id="h" class="tab-pane ">
+					<p>hello</p>
+					<button id="hide">隐藏</button>
+					<button id="show">显示</button>
+					<button id="toggle">切换</button>
+				</div>
+				<div id="b" class="tab-pane ">
+					<button id="in">fadein</button>
+					<button id="out">fadeout</button>
+					<button id="toggle">fadetoggle</button>
+					<button id="fadeto">fadeto</button>
+					<div id="id1" style="display:none; width: 80px;height: 80px;background-color: blueviolet"></div>
+				</div>
+				<div id="c" class="tab-pane ">
+					<div id="slideDown">出现</div>
+					<div id="slideUp">隐藏</div>
+					<div id="slideToggle">toggle</div>
+					<div id="content">helloworld</div>
+				</div>
+				<div id="d" class="tab-pane ">
+					<h3 class="docs">From</h3>
+					
+					<div id="draggable" class="ui-widget-content">
+					<p>原始</p>
+					</div>
+					
+					<div id="draggable2" class="ui-widget-content">
+					<p>半透明</p>
+					</div>
+					
+					<div id="draggable3" class="ui-widget-content">
+					<p>自定义</p>
+					</div>
+					
+					<h3 class="docs">And</h3>
+					<div id="set">
+					<div class="ui-widget-content">
+						<p>draggables..</p>
+					</div>
+					
+					<div class="ui-widget-content">
+						<p>z-index</p>
+					</div>
+					
+					<div class="ui-widget-content">
+						<p>stack</p>
+					</div>
+					</div>
+				</div>
+				<div id="e" class="tab-pane ">
+					<div class="con">
+						<h1>@</h1>
+						<a href="actiondo.html"><p>进度条动画</p></a>
+					</div>
+						<div class="con">
+							<h1>@</h1>
+							<div class="list">
+								<div class="container">
+									<div class="row align-items-center">
+										<div class="col-3 col-md-1"></div>
+										<div class="col">
+												<div class="spinner-border" role="status">
+													<span class="sr-only">Loading...</span>
+												</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					<div class="con">
+						<h1>@</h1>
+						<div class="list">
+							<div class="container">
+								<div class="row align-items-center">
+									<div class="col-3 col-md-1"><p class="font-weight-bold">Z157</p></div>
+									<div class="col-9">
+										<p><span>bluok</span>
+											<span class="text-danger font-weight-bold">$10.2</span>
+											<span class="badge badge-danger">Yes</span>
+										</p>
+										<p><span>enger</span>
+											<span class="text-danger font-weight-bold">$15.3</span>
+											<span class="badge badge-success">No</span>
+										</p>
+										<p><span>unit</span>
+											<span class="text-danger font-weight-bold">$19.9</span>
+											<span class="badge badge-primary">One</span>
+										</p>
+										<p><span>woud</span>
+											<span class="text-danger font-weight-bold">$20.5</span>
+											<span class="badge badge-warning">do</span>
+										</p>
+									</div>
+									<div class="col">
+										<p><button type="button" class="btn btn-sm btn-danger d-flex flex-row">book</button></p>
+										<p><button type="button" disabled class="btn btn-sm btn-danger d-flex flex-row">book</button></p>
+										<p>
+											<button type="button" class="btn btn-sm btn-danger d-flex flex-row">book</button>
+											<div class="progress mt-2">
+												<div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</p>
+										<p><button type="button" class="btn btn-sm btn-danger d-flex flex-row">clash</button></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="f" class="tab-pane ">
+					<ul class="list-group">
+						<li class="list-group-item">
+							<div class="media">
+								<img src="img/015026.png">
+								<div class="media-body">
+									<h5 class="mt-0">Mike wer</h5>
+									<span class="badge badge-dark ">123465789</span>
+									<div class="media">
+										<img src="img/015026.png">
+										<div class="media-body">
+											<h5 class="mt-0">Mike wer</h5>
+											<span class="badge badge-dark ">123465789</span>
+											<div class="list-group list-group-horizontal-sm text-center">
+												<a href="#awq" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+												<a href="#bqq" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+												<a href="#ceq" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+												<a href="#ces" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+												<a href="#cex" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+												<a href="#cea" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+											</div>
+											<div class="tab-content">
+												<div class="tab-pane" id="awq"><img src="img/131129.png"></div>
+												<div class="tab-pane" id="bqq"><img src="img/131200.png"></div>
+												<div class="tab-pane" id="ceq"><img src="img/1ifasmu9.png"></div>
+												<div class="tab-pane" id="ces"><img src="img/2vyjyisl.png"></div>
+												<div class="tab-pane" id="cex"><img src="img/0p3y6rub.png"></div>
+												<div class="tab-pane" id="cea"><img src="img/0digfr2b.png"></div>
+											</div>
+											<div class="list-group list-group-horizontal-sm text-center">
+												<a href="#aw" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+												<a href="#bq" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+												<a href="#ce" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+											</div>
+											<div class="tab-content">
+												<div class="tab-pane" id="aw"><img src="img/124919.png"></div>
+												<div class="tab-pane" id="bq"><img src="img/0p3y6rub.png"></div>
+												<div class="tab-pane" id="ce"><img src="img/133200.png"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div id="g" class="tab-pane ">
+					<div class="container">
+						<div class="qwer">
+							<div class="contain">
+								<img class="drawing img-fluid" src="img/lianyiqunSmall1.jpg" alt="">
+								<img class="drawing img-fluid" src="img/lianyiqunSmall2.jpg" alt="">
+								<img class="drawing img-fluid" src="img/lianyiqunSmall3.jpg" alt="">
+							</div>
+							<div class="btn">
+								<span class="active"></span>
+								<span></span>
+								<span></span>
+							</div>
+							<a href="javascript:void(0);" class="prev">&lt;</a>
+							<a href="javascript:void(0);" class="next">&gt;</a>
+						</div>
+						<div class="zoom"></div>
+				</div>
+			</div>
+		</body>
+</html>
