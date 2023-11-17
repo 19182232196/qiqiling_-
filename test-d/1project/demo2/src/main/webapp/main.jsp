@@ -53,21 +53,21 @@
                 <li id="file"><a href="common">选择老师</a></li>
                 <li id="file"><a href="common">我的任务</a></li>
                 <li id="file"><a href="common">我的信息</a></li>
-                <li id="file"><a href="common">退出系统</a></li>
+                <li id="file"><a href="outLogin">退出系统</a></li>
             </c:if>
             <c:if test="${session_person.getUserIdentify()==1}">
                 <li id="file"><a href="common.action?action=index">查看首页</a></li>
                 <li id="file"><a href="tea.action?action=list">学生管理</a></li>
                 <li id="file"><a href="common">任务系统</a></li>
                 <li id="file"><a href="common">我的信息</a></li>
-                <li id="file"><a href="common">退出系统</a></li>
+                <li id="file"><a href="outLogin">退出系统</a></li>
             </c:if>
             <c:if test="${session_person.getUserIdentify()==2}">
                 <li id="file"><a href="common.action?action=index">查看首页</a></li>
                 <li id="file"><a href="man.action?action=list">人员管理</a></li>
                 <li id="file"><a href="common">课程管理</a></li>
                 <li id="file"><a href="common">我的信息</a></li>
-                <li id="file"><a href="common">退出系统</a></li>
+                <li id="file"><a href="outLogin">退出系统</a></li>
             </c:if>
         </div>
     <jsp:include page="${mainRight=null?'blank.jsp':mainRight}"></jsp:include>
