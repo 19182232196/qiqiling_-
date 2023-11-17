@@ -10,7 +10,6 @@ public class Test {
     public static void main(String[] args) {
         // 调用Deal类中的deal方法，传入参数为插入任务表的sql语句
         Deal.deal("INSERT INTO task VALUES('11','11','11','11')");
-
     }
     // 获取当前时间
     public static String getDate() {

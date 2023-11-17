@@ -43,7 +43,6 @@ public class Deal {
                 //将Person对象添加到List中
                 list.add(newPerson);
             }
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
@@ -77,7 +76,6 @@ public class Deal {
                 //将任务添加到任务列表
                 list.add(task);
             }
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
@@ -146,7 +144,6 @@ public class Deal {
                 //获取num
                 num = res.getInt("num");
             }
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
