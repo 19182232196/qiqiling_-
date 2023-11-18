@@ -37,7 +37,9 @@
                 font-size: 26px;
                 margin-left: 30px;
                 margin-top: 25px;
+                text-decoration:none;
             }
+            li { list-style: none;}
 
         </style>
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
