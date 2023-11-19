@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilibili Style Navbar</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <style>
+        .image-container {
+            position: relative;
+            width: 50px; /* 调整宽度 */
+            height: 30px; /* 调整高度 */
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .main-image, .overlay-image {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .overlay-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        .navbar-brand img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+
+        .navbar-light .navbar-toggler {
+            color: #fff;
+            border-color: #fff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px; /* 添加圆角边框 */
+            transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out; /* 添加颜色和背景颜色过渡效果 */
+        }
+
+        .navbar-nav .nav-item:hover .nav-link {
+            color: #ff4500; /* 鼠标移入时的颜色 */
+            background-color: #555; /* 鼠标移入时的背景颜色 */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="img/tno.png" alt="Above Navbar Image" style="width: 100%; max-height: 300px;">
+    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="image/ppt.png" alt="Logo" style="height: 20px; width: 20px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="main.html">特色功能</a>
+                </li>
+                <li class="nav-item">
+                    <div class="image-container" id="imageContainer1">
+                        <img class="main-image" src="image/css.jpg" alt="主图">
+                        <img class="overlay-image" src="image/dalian.JPG" alt="叠加图">
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="image-container" id="imageContainer2">
+                        <img class="main-image" src="image/css.jpg" alt="主图">
+                        <img class="overlay-image" src="image/dalian.JPG" alt="叠加图">
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="image-container" id="imageContainer3">
+                        <img class="main-image" src="image/css.jpg" alt="主图">
+                        <img class="overlay-image" src="image/dalian.JPG" alt="叠加图">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script>
+    $(document).ready(function () {
+        // 鼠标移入事件
+        $(".image-container").mouseenter(function () {
+            // 切换图片显示
+            $(this).find(".main-image").css("transform", "scale(0)");
+            $(this).find(".overlay-image").css("display", "block");
+        });
+
+        // 鼠标移出事件
+        $(".image-container").mouseleave(function () {
+            // 切换图片显示
+            $(this).find(".main-image").css("transform", "scale(1)");
+            $(this).find(".overlay-image").css("display", "none");
+        });
+    });
+</script>
+
+</body>
+</html>
