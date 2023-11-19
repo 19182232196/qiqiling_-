@@ -79,7 +79,7 @@
                     <span style="color: green">未批改</span>
                 </c:if>
                 <c:if test="${stuTask.getIsFinish()==2}">
-                    <span style="color: orange">未完成</span>
+                    <span style="color: orange">完成</span>
                 </c:if>
             </td>
             <td class="lf">${stuTask.getIsScore()}</td>
