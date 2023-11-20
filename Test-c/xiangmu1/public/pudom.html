@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="jquery-ui-1.13.2.custom/jquery-ui.css"/>
+        <link rel="stylesheet" href="jquery-ui-1.13.2.custom/jquery-ui.structure.css">
+        <script src="js/jquery-3.7.1.min.js"></script>
+        <script src="jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+        <script src="js/bootstrap.bundle.js"></script>
+        <style type="text/css">
+            ul{width: 100%;padding: 0;margin: 0;}
+            ul>li{list-style: none;padding: 1%;margin: 1%;bottom: 1% solid #999;box-sizing: border-box;position: relative;}
+            ul>li>img{width: 100%;}
+            .div1{
+                width: 500px;
+                height: auto;
+                background: #eef;
+                margin-right: 20px;
+            }
+            .div1 p{
+                margin: 8px 0;
+                font-size: 12pt;
+            }
+            .div1>p>img{
+                width: 20px;
+                height: 20px;
+                margin: 20px;
+            }
+
+            #draggable, #draggable2, #draggable3, #set div { width: 90px; height: 90px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+			#draggable, #draggable2, #draggable3 { margin-bottom:20px; }
+			#set { clear:both; float:left; width: 368px; height: 120px; }
+			p { clear:both; margin:0; padding:1em 0; }
+        </style>
+    </head>
+    <body>
+        <ul class="card">
+            <li><img src="img/jx1.jpg" class="card-img-top">
+                <li class="card-body">
+                    <p class="card-title font-weight-bold">
+                        <li class="card-text">
+                            <p class="text-muted">#####</p>
+                            <p>@@@@@@@@@@@@@@@@@@@@@@@@#</p>
+                            <a class="btn btn-primary" href="http://www.baidu.com">baidu</a>
+                        </li>
+                    </p>
+                </li>
+            </li>
+            <div class="card">
+                <li><img src="img/jx2.jpg" class="card-img-top"></li>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item"><img src="img/jx3.jpg"><aC>baidu</a></li>
+                        <li class="list-group-item"><img src="img/jx4.jpg"><a class="btn btn-primary" href="http://www.baidu.com">baidu</a></li>
+                        <li class="list-group-item"><img src="img/jx5.jpg"><a class="btn btn-primary" href="http://www.baidu.com">baidu</a></li>
+                        <li class="list-group-item"><img src="img/jx6.jpg"><a class="btn btn-primary" href="http://www.baidu.com">baidu</a></li>
+                        <li class="list-group-item"><img src="img/jx7.jpg"><a class="btn btn-primary" href="http://www.baidu.com">baidu</a></li>
+                        <li class="list-group-item"><img src="img/jx8.jpg"><a class="btn btn-primary" href="http://www.baidu.com">baidu</a></li>
+                        <li class="list-group-item"><img src="img/jx9.jpg"><a class="btn btn-primary" href="http://www.baidu.com">baidu</a></li>
+                    </ul>
+                </div>
+            </div>
+        </ul>
+        <div class="card">
+            <nav class="nav nav-fill nav-tabs">
+                <a class="nav-item nav-link text-dark" data-toggle="tab" href="#a">!</a>
+                <a class="nav-item nav-link text-dark" data-toggle="tab" href="#b">@</a>
+                <a class="nav-item nav-link text-dark" data-toggle="tab" href="#c">#</a>
+            </nav>
+                <div class="card-body tab-content">
+                    <div class="tab-pane" id="a">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="card-group">
+                                    <div class="card">
+                                        <img src="img/jx10.jpg">
+                                        <p class="card-title font-weight-bold">
+                                            <li class="card-text">
+                                                <p class="text-muted">#####</p>
+                                                <p>@@@@@@@@@@@@@@@@@@@@@@@@#</p>
+                                                <a class="btn btn-primary" href="http://www.baidu.com">baidu</a>
+                                            </li>
+                                        </p>
+                                    </div>
+                                    <div class="card">
+                                        <img src="img/jx11.jpg">
+                                        <p class="card-title font-weight-bold">
+                                            <li class="card-text">
+                                                <p class="text-muted">#####</p>
+                                                <p>@@@@@@@@@@@@@@@@@@@@@@@@#</p>
+                                                <a class="btn btn-primary" href="http://www.baidu.com">baidu</a>
+                                            </li>
+                                        </p>
+                                    </div>
+                                    <div class="card">
+                                        <img src="img/jx12.jpg">
+                                        <p class="card-title font-weight-bold">
+                                            <li class="card-text">
+                                                <p class="text-muted">#####</p>
+                                                <p>@@@@@@@@@@@@@@@@@@@@@@@@#</p>
+                                                <a class="btn btn-primary" href="http://www.baidu.com">baidu</a>
+                                            </li>
+                                        </p>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="b">
+                        <p>上传图片:<input type="file" multiple="multiple"></p>
+                        <p>上传图片:<input type="file" multiple="multiple"></p>
+                        <p>上传图片:<input type="file" multiple="multiple"></p>
+                        <div class="div1"></div>
+                    </div>
+                    <div class="tab-pane" id="c">
+                        <ul>
+                            <h3 class="docs">From</h3>
+					
+                            <div id="draggable" class="ui-widget-content">
+                            <p>原始</p>
+                            </div>
+                            
+                            <div id="draggable2" class="ui-widget-content">
+                            <p>半透明</p>
+                            </div>
+                            
+                            <div id="draggable3" class="ui-widget-content">
+                            <p>自定义</p>
+                            </div>
+                            
+                            <h3 class="docs">And</h3>
+                            <div id="set">
+                            <div class="ui-widget-content">
+                                <p>draggables..</p>
+                            </div>
+                            
+                            <div class="ui-widget-content">
+                                <p>z-index</p>
+                            </div>
+                            
+                            <div class="ui-widget-content">
+                                <p>stack</p>
+                            </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script type="text/javascript">
+    $(function(){
+        for(var i=0;i<0;i++){
+            $("ul").append("<li><img src='img/jx'"+i+".jpg'></li>")
+        }
+        function pubuliu(){
+            var num
+            var arr=[]
+            var body_W=$("body").width()
+            if(body_W>500){
+                num=3
+                $("li").css("width","32%")
+            }else{
+                num=2
+                $("li").css("width","48%")
+            }
+            $("li").each(function(ind){
+                if(ind<num){
+                    $(this).css({top:0,left:(body_W/num*ind)+"px"})
+                    arr[ind]=$(this).outerHeight(true)
+                }else{
+                    var minH=arr[0]
+                    var minIndex=0
+                    arr.forEach(function(val,index){
+                        if(minH>val){
+                            minH=val
+                            minIndex=index
+                        }
+                    })
+                    $(this).css({left:(body_W/num*minIndex)+"px",top:minH+"p"})
+                    arr[minIndex]=minH+$(this).outerHeight(true)
+                }
+            })
+        }
+        setTimeout(()=>{
+            pubuliu()
+        },200)
+        $(window).resize(pubuliu)
+    })
+
+    var kzmArr=[]
+            var fileImg=[]
+            $('input[type="file"]').each(function(){
+                $(this).change(function(){
+                $('div1').css('padding','10px')
+                var file=this.files
+                console.log(file)
+                for(var i=0;i<file.length;i++){
+                    (function(){
+                        var fileName=file[i]["name"]
+                        var p=$('<p>'+fileName+'</p>')
+                        $('.div1').append(p)
+                        var kzm=fileName.split('.').pop()
+                        var kzmInd=kzmArr.indexOf(kzm)
+                        if(kzmInd!=-1){
+                            var tubiao=fileImg[kzmInd]
+                            p.prepend("<img src='image/'"+tubiao+"'/>")
+                        }else{
+                            var fr=new FileReader()
+                            fr.readAsDataURL(file[i])
+                            $(fr).on('load',function(e){
+                                p.prepend("<img src='"+e.target.result+"'/>")
+                            })
+                        }
+                    })()
+                }
+            })
+        })
+
+        $(function() {
+				$( "#draggable" ).draggable({ helper: "original" });
+				$( "#draggable2" ).draggable({ opacity: 0.7, helper: "clone" });
+				$( "#draggable3" ).draggable({
+					cursor: "move",
+					cursorAt: { top: -12, left: -20 },
+					helper: function( event ) {
+						return $( "<div class='ui-widget-header'>114514</div>" );
+					}
+				});
+				$( "#set div" ).draggable({ stack: "#set div" });
+			});
+</script>
