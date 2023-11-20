@@ -4,13 +4,19 @@ import com.stu.bean.Person;
 import com.stu.service.UserLoginService;
 import com.stu.service.UserLoginServiceImpl;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Line2D;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 
 @WebServlet("/userLogin")
 public class UserLoginServlet extends HttpServlet {
