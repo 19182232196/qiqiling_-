@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilibili Style Navbar</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <style>
+        		*{
+			margin: 0;
+			padding: 0;
+		}
+		.drawing{
+			width: 150px;
+			margin: 10px;
+		}
+		.drawing:hover{
+			cursor: zoom-in;
+		}
+		.wrapper{
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 999;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-position: center;
+			background-color: rgba(52, 52, 52, 0.8);
+			background-size: 50%;
+		}
+		.wrapper:hover{
+			cursor: zoom-out;
+		}
+        .image-container {
+            position: relative;
+            width: 50px; /* 调整宽度 */
+            height: 30px; /* 调整高度 */
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .main-image, .overlay-image {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .overlay-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        .navbar-brand img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+
+        .navbar-light .navbar-toggler {
+            color: #fff;
+            border-color: #fff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px; /* 添加圆角边框 */
+            transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out; /* 添加颜色和背景颜色过渡效果 */
+        }
+
+        .navbar-nav .nav-item:hover .nav-link {
+            color:#333; /* 鼠标移入时的颜色 */
+            background-color: #555; /* 鼠标移入时的背景颜色 */
+        }
+        body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+			}
+			
+			.nav {
+				background-color: #333;
+				color: #fff;
+				list-style: none;
+				padding: 0;
+				text-align: center;
+			}
+			
+			.nav li {
+				display: inline-block;
+				padding: 10px 20px;
+				cursor: pointer;
+			}
+			
+			.nav li:hover {
+				background-color: #555;
+			}
+			
+			.main {
+				text-align: center;
+				padding: 20px;
+			}
+			
+			.box {
+				margin: 20px;
+				padding: 20px;
+				border: 1px solid #ccc;
+				background-color: #f5f5f5;
+			}
+			
+			h3 {
+				font-size: 24px;
+				color: #333;
+			}
+			
+			.nav li.cur {
+				background-color: #555;
+			}
+			
+			
+			.wrapper {
+				width: 600px;
+				height: 350px;
+				border: 1px solid #ccc;
+				position: relative;
+			}
+		
+			/* 5张图片叠加到一块 */
+			.wrapper img {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				display: none;
+			}
+		
+			.wrapper img:nth-of-type(1) {
+				display: block;
+			}
+		
+			/* 小圆点 */
+			.btn {
+				width: 150px;
+				display: flex;
+				justify-content: space-around;
+				position: absolute;
+				left: 225px;
+				bottom: 10px;
+				z-index: 100
+			}
+		
+			.btn span {
+				display: block;
+				width: 15px;
+				height: 15px;
+				border: 3px solid white;
+				border-radius: 50%;
+			}
+		
+			/* 左右箭头 */
+			.wrapper a {
+				text-decoration: none;
+				font-size: 50px;
+				color:#555;
+				position: absolute;
+				top: 35%;
+			}
+		
+			.wrapper a:nth-of-type(1) {
+				left: 10px;
+		
+			}
+		
+			.wrapper a:nth-of-type(2) {
+				right: 10px;
+			}
+		
+			.active {
+				background-color:#555 ;
+			}
+
+			
+
+			.father_box {
+				width: 300px;
+				height: 300px;
+				margin-left:auto;
+				justify-content: flex-end;
+			}
+			   
+			   
+			   
+			.toggle-button{
+				font-size: 20px;
+				font-weight: bold;
+				color: #000;
+				
+			}
+        .toggle-text {
+				display: none; /* 初始时隐藏文本 */
+				
+			}
+            .mask{width: 100%; height: 100%; position: fixed; margin: auto; left: 0; right: 0; top: 0; bottom: 0; background: rgba(200,200,200,0.4); display: none;}
+			.mtk_qiandao{ width: 400px; height: 220px; background: #fff; position: fixed; margin:auto; left: 0; right: 0; top: 0; bottom: 0; z-index: 5; display: none; }
+			.mtk_qiandao>h3,.mtk_pingfen>h3{height: 30px; padding: 0 0 0 10px; margin: 0; background: #080; font-size: 1rem; text-align: left; line-height: 30px;}
+			.mtk_qiandao>.close,.mtk_pingfen>.close{ width: 20px; height: 20px; padding: 0; position: absolute; right: 10px; top: 5px; font-size: 20x; font-weight: bold; text-align: center; }
+			.mtk_qiandao>p{ width: 360px; height: 25px; padding: 10px; margin: 5px auto 0; border-bottom: 1px solid #080; background: #afa; font-size: 1.2rem; line-height: 25px; text-align: center; }
+			.mtk_qiandao>div{ width: 380px; height: 120px; background: #dfd; margin: 0 auto; text-align: center; }
+			.mtk_qiandao>div>button,.mtk_pingfen>div>button{ width: 40px; height: 40px; padding: 0; margin: 5px; background: #fff; border: 0; border-radius: 50%; font-size: 12px; text-align: center; line-height: 40px; }
+			.mtk_pingfen{ width: 350px; height: 270px; background: #fff; position: fixed; margin:auto; left: 0; right: 0; top: 0; bottom: 0; z-index: 5; display: none; }
+			.mtk_pingfen>p{ width: 310px; height: 25px; padding: 10px; margin: 5px auto 0; border-bottom: 1px solid #080; background: #afa; font-size: 1.2rem; line-height: 25px; text-align: center; }
+			.mtk_pingfen>div{ width: 330px; height: 170px; background: #dfd; margin: 0 auto; text-align: center; }
+			.mtk_plpf{height: 200px;}
+			.btn_plpf{width: 80px; height: 40px; position: absolute; top:30px;right:40px; font-size: 1rem; cursor:pointer;}
+			.tab_yiqiandao,.tab_weiqiandao{ width: 100px; height: 40px; padding: 10px; margin: 0; border-bottom: 2px solid #ddd; display: inline-block; font-size: 1.2rem; text-align: center; line-height: 40px; cursor: pointer;}
+			.res_yiqiandao,.res_weiqiandao{width: 100%; height: auto; padding: 0; margin: 20px auto; background: #fff;}
+			.tab_yiqiandao{border-bottom:2px solid #aaf;}
+			.res_weiqiandao{display: none;}
+			table{ width: 95%; min-width: 1200px; border-top: 1px solid #ddd; }
+			table td,table th{ border-bottom: 1px solid #ddd; height: 50px; font-size: 1rem; text-align: center; vertical-align: middle; }
+			.sp_xiugai,.sp_pingfen{ color: #080; cursor: pointer; }
+			table td input{width: 15px; height: 15px;}
+			tr:not(:first-child):hover{background-color:#aaf;}
+    </style>
+</head>
+<body>
+    <div>
+        <img src="img/tno.png" alt="Above Navbar Image" style="width: 100%; max-height: 300px;">
+    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="image/ppt.png" alt="Logo" style="height: 20px; width: 20px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="new+daohang.html">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="main-q.html">聊天(test)</a>
+                </li>
+                <li class="nav-item">
+                    <div class="image-container" id="imageContainer1">
+                        <img class="main-image" src="image/css.jpg" alt="主图">
+                        <a href="#"></a><img class="overlay-image" src="img/kxmpgkkd.png" alt="叠加图"></a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="image-container" id="imageContainer2">
+                        <img class="main-image" src="image/css.jpg" alt="主图">
+                        <a href="#"><img class="overlay-image" src="img/vjk22yhv.png" alt="叠加图"></a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="image-container" id="imageContainer3">
+                        <img class="main-image" src="image/css.jpg" alt="主图">
+                        <a href="END.html"><img class="overlay-image" src="img/0g967c1i.png" alt="叠加图"></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="row">
+    <form method="post" action="http://localhost:8080/performDatabaseAction">
+        <input type="text" name="userName" placeholder="用户名">
+        <input type="text" name="userPwd" placeholder="密码">
+        <select name="operationType">
+            <option value="add">添加</option>
+            <option value="delete">删除</option>
+            <option value="update">更新</option>
+        </select>
+        <button type="submit">提交</button>
+    </form>
+    <form onsubmit="updateStudentList(event); return false;">
+        <button type="submit">列表</button>
+    </form>
+    <form type="submit" method="post" action="http://localhost:8080/main">
+        <a href="main.html">主页</a>
+    </form>
+</div>
+<div class="row text-muted text-center">
+    <dl class="col-5 col-md-3">
+        <dt><img  class="drawing"src="img/kxmpgkkd.png"  alt="" class="img-fluid" title="点击查看大图"/></dt><dd>大日耳曼国</dd>
+    </dl>
+    <dl class="col-5 col-md-3">
+        <dt><img class="drawing" src="img/vjk22yhv.png" alt="" class="img-fluid" title="点击查看大图"/></dt><dd>勃艮第骑士团国</dd>
+    </dl>
+    <dl class="col-5 col-md-3">
+        <dt><img class="drawing" src="img/0g967c1i.png" alt="" class="img-fluid" title="点击查看大图"/></dt><dd>分裂的苏联</dd>
+    </dl>
+    <dl class="col-5 col-md-3">
+        <dt><img class="drawing" src="img/pv1iz295.png" alt="" class="img-fluid" title="点击查看大图"/></dt><dd>1962年开局版图</dd>
+    </dl>
+</div>
+
+<nav class="nav nav-tabs">
+    <a href="#h" class="nav-item nav-link" data-toggle="tab">1</a>
+    <a href="#b" class="nav-item nav-link" data-toggle="tab">2</a>
+    <a href="#c" class="nav-item nav-link" data-toggle="tab">3</a>
+    <a href="#d" class="nav-item nav-link" data-toggle="tab">4</a>
+    <a href="#e" class="nav-item nav-link" data-toggle="tab">5</a>
+    <a href="#f" class="nav-item nav-link" data-toggle="tab">6</a>
+    <a href="#g" class="nav-item nav-link" data-toggle="tab">7</a>
+</nav>
+<div class="tab-content">
+    <div id="b" class="tab-pane ">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="media">
+                    <img src="img/015026.png">
+                    <div class="media-body">
+                        <h5 class="mt-0">Mike wer</h5>
+                        <span class="badge badge-dark ">123465789</span>
+                        <div class="media">
+                            <img src="img/015026.png">
+                            <div class="media-body">
+                                <h5 class="mt-0">Mike wer</h5>
+                                <span class="badge badge-dark ">123465789</span>
+                                <div class="list-group list-group-horizontal-sm text-center">
+                                    <a href="#awq" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+                                    <a href="#bqq" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+                                    <a href="#ceq" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+                                    <a href="#ces" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+                                    <a href="#cex" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+                                    <a href="#cea" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane" id="awq"><img src="img/131129.png"></div>
+                                    <div class="tab-pane" id="bqq"><img src="img/131200.png"></div>
+                                    <div class="tab-pane" id="ceq"><img src="img/1ifasmu9.png"></div>
+                                    <div class="tab-pane" id="ces"><img src="img/2vyjyisl.png"></div>
+                                    <div class="tab-pane" id="cex"><img src="img/0p3y6rub.png"></div>
+                                    <div class="tab-pane" id="cea"><img src="img/0digfr2b.png"></div>
+                                </div>
+                                <div class="list-group list-group-horizontal-sm text-center">
+                                    <a href="#aw" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+                                    <a href="#bq" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+                                    <a href="#ce" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane" id="aw"><img src="img/124919.png"></div>
+                                    <div class="tab-pane" id="bq"><img src="img/0p3y6rub.png"></div>
+                                    <div class="tab-pane" id="ce"><img src="img/133200.png"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tab-content">
+        <div id="c" class="tab-pane ">
+            <div class="mask"></div>
+            <div class="mtk_qiandao">
+                <h3>签到状态</h3>
+                <button class="close">x</button>
+                <p></p>
+                <div>
+                    <button>已签到</button><br />
+                    <button>缺勤</button>
+                    <button>迟到</button>
+                    <button>公假</button>
+                    <button>事假</button>
+                    <button>早退</button>
+                    <button>病假</button>
+                </div>
+            </div>
+            <div class="mtk_pingfen sgpf">
+                <h3>单一评分</h3>
+                <button class="close">x</button>
+                <p></p>
+                <div>
+                    <button>-5</button>
+                    <button>-4</button>
+                    <button>-3</button>
+                    <button>-2</button>
+                    <button>-1</button><br />
+                    <button>0</button><br />
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>5</button>
+                </div>
+            </div>
+            <div class="mtk_pingfen mtk_plpf">
+                <h3>批量评分</h3>
+                <button class="close">x</button>
+                <div>
+                    <button>-5</button>
+                    <button>-4</button>
+                    <button>-3</button>
+                    <button>-2</button>
+                    <button>-1</button><br />
+                    <button>0</button><br />
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>5</button>
+                </div>
+            </div>
+            <button class="btn_plpf">批量评分</button>
+            <div class="tab tab_yiqiandao">已签到</div>
+            <div class="tab tab_weiqiandao">未签到</div>
+            <div class="tab_cont res_yiqiandao">
+                <table align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <th><input type="checkbox" class="control"></th>
+                        <th>序号</th>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>所属班级</th>
+                        <th>签到时间</th>
+                        <th>得分</th>
+                        <th>操作</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="tab_cont res_weiqiandao">
+                <table align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <th><input type="checkbox" class="control"></th>
+                        <th>序号</th>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>所属班级</th>
+                        <th>状态</th>
+                        <th>得分</th>
+                        <th>操作</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="h" class="tab-pane ">
+            <ul class="nav">
+                <li class="pro">欧亚</li>
+                <li class="news">黑非</li>
+                <li class="ser">美洲</li>
+            </ul>
+
+            <div class="main">
+                <div id="pro" class="box">
+                    <h3>欧亚</h3>
+                </div>
+                <div class="wrapper">
+                    <div class="contain">
+                        <img src="img/015006.png" alt="">
+                        <img src="img/015017.png" alt="">
+                        <img src="img/015026.png" alt="">
+                        <img src="img/124302.png" alt="">
+                        <img src="img/124718.png" alt="">
+                        <img src="img/124919.png" alt="">
+                        <img src="img/125924.png" alt="">
+                    </div>
+                    <div class="btn">
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                <a href="javascript:void(0);" class="prev">&lt;</a>
+                <a href="javascript:void(0);" class="next">&gt;</a>
+                </div>
+                
+                <div class="father_box">
+            <div class="toggle-button" data-target="text1" >俄国军阀与希特勒遇刺</div>
+            <div class="toggle-text" id="text1" >秩序在崩溃</div>
+
+            <div class="toggle-button" data-target="text2">俄罗斯人</div>
+            <div class="toggle-text" id="text2">白杀红红杀白</div>
+
+            <div class="toggle-button" data-target="text3">德国怎么样了</div>
+            <div class="toggle-text" id="text3">兄弟阋墙</div>
+
+            <div class="toggle-button" data-target="text4">永别美丽的巴尔干</div>
+            <div class="toggle-text" id="text4">塞尔维亚不相信眼泪</div>
+                </div>
+                <div id="news" class="box">
+                    <h3>黑非</h3>
+                </div>
+                <div class="wrapper">
+                    <div class="contain">
+                        <img src="img/130105.png" alt="">
+                        <img src="img/130115.png" alt="">
+                        <img src="img/134207.png" alt="">
+                        <img src="img/135744.png" alt="">
+                        <img src="img/bg.jpg" alt="">
+                        <img src="img/bg.jpg" alt="">
+                    </div>
+                    <div class="btn">
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                <a href="javascript:void(0);" class="prev">&lt;</a>
+                <a href="javascript:void(0);" class="next">&gt;</a>
+                </div>
+                
+                <div class="father_box">
+            <div class="toggle-button" data-target="text5">非洲啊</div>
+            <div class="toggle-text" id="text5">世界边缘的代理人战争</div>
+
+            <div class="toggle-button" data-target="text6">白人黑人</div>
+            <div class="toggle-text" id="text6">社会主义与殖民者</div>
+
+            <div class="toggle-button" data-target="text7">意大利的非洲之角</div>
+            <div class="toggle-text" id="text7">反殖民战争仍在继续</div>
+
+            <div class="toggle-button" data-target="text8">北非中东以及中亚</div>
+            <div class="toggle-text" id="text8">伊斯兰的景愿</div>
+                </div>
+                
+                
+                    <div id="ser" class="box">
+                        <h3>美洲</h3>
+                    </div>
+                    <div class="wrapper">
+                            <div class="contain">
+                                <img src="img/130716.png" alt="">
+                                <img src="img/130843.png" alt="">
+                                <img src="img/131123.png" alt="">
+                                <img src="img/131129.png" alt="">
+                                <img src="img/131200.png" alt="">
+                                <img src="img/133200.png" alt=""/>
+                            </div>
+                            <div class="btn">
+                                <span class="active"></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        <a href="javascript:void(0);" class="prev">&lt;</a>
+                        <a href="javascript:void(0);" class="next">&gt;</a>
+                    </div>
+                    
+                <div class="father_box">
+                    <div class="toggle-button" data-target="text9">哎！美国</div>
+                    <div class="toggle-text" id="text9">新时代美利坚特色自由主义思想</div>
+
+                    <div class="toggle-button" data-target="text10">两党与联盟</div>
+                    <div class="toggle-text" id="text10">始作俑者，其有后夫</div>
+
+                    <div class="toggle-button" data-target="text11">南美冷战</div>
+                    <div class="toggle-text" id="text11">敌人的敌人就是朋友</div>
+
+                    <div class="toggle-button" data-target="text12">南美干涉</div>
+                    <div class="toggle-text" id="text12">支持社会主义的资本主义</div>
+                </div>
+            </div>
+        <div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        // 鼠标移入事件
+        $(".image-container").mouseenter(function () {
+            // 切换图片显示
+            $(this).find(".main-image").css("transform", "scale(0)");
+            $(this).find(".overlay-image").css("display", "block");
+        });
+
+        // 鼠标移出事件
+        $(".image-container").mouseleave(function () {
+            // 切换图片显示
+            $(this).find(".main-image").css("transform", "scale(1)");
+            $(this).find(".overlay-image").css("display", "none");
+        });
+    });
+    function updateStudentList(event) {
+            event.preventDefault();
+            fetch('http://localhost:8080/students')
+                .then(response => response.text())
+                .then(html => {
+                    const container = document.createElement('div');
+                    container.innerHTML = html;
+                    document.body.innerHTML = container.querySelector('ul').outerHTML;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+        $(function(){
+        $('.drawing').click(function(){
+            //查看大图
+            $(this).after("<div class='wrapper'></div>");
+            var imgSrc = $(this).attr('src');
+            $(".wrapper").css("background-image", "url(" + imgSrc + ")");
+            $('.wrapper').fadeIn(1000);
+            //关闭并移除图层
+            $('.wrapper').click(function(){
+                $('.wrapper').fadeOut(1000).remove();
+            });
+        });
+        });
+        $(function() {
+			$('.main').children().css({
+				'border': '1px solid #ccc',
+				'color': 'blue'
+			})
+			
+			$('.nav').find('li').css({
+				'font-size': '18px'
+			})
+			
+			$('.nav').find('li').click(function() {
+				var el = $(this).attr('class');
+				$('html, body').animate({
+					scrollTop: $("#"+el).offset().top
+				}, 300);
+			})
+			
+			
+			var pro_top = $("#pro").offset().top;
+			var news_top = $("#news").offset().top;
+			var ser_top = $("#ser").offset().top;
+			console.log(pro_top, news_top, ser_top)
+			$(window).scroll(function(){
+				var scroH = $(this).scrollTop();
+				// console.log(scroH)
+				if(scroH>=ser_top){
+					set_cur(".ser");
+				}else if(scroH>=news_top){
+					set_cur(".news");
+				}else if(scroH>=pro_top){
+					set_cur(".pro");
+				}
+			});
+		})
+		
+		function set_cur(n) {
+			if($(".nav li").hasClass("cur")){
+				$(".nav li").removeClass("cur");
+			}
+			$(".nav li"+n).addClass("cur");
+		}
+		
+		
+		
+$(function() {
+        // ... （之前的代码保持不变）
+
+        // 针对所有轮播图的操作
+        $(".wrapper").each(function() {
+            var wrapper = $(this);
+            var images = wrapper.find("img");
+            var spans = wrapper.find(".btn span");
+            var index = 0;
+
+            // 下一张
+            function next_pic() {
+                index++;
+                if (index >= images.length) {
+                    index = 0;
+                }
+                addStyle();
+            }
+
+            // 上一张
+            function prev_pic() {
+                index--;
+                if (index < 0) {
+                    index = images.length - 1;
+                }
+                addStyle();
+            }
+
+            // 控制图片显示隐藏和小圆点背景色
+            function addStyle() {
+                images.eq(index).fadeIn();
+                images.eq(index).siblings().fadeOut();
+                spans.eq(index).addClass("active");
+                spans.eq(index).siblings().removeClass("active");
+            }
+
+            // 自动轮播
+            var id;
+            autoplay();
+            function autoplay() {
+                id = setInterval(function() {
+                    next_pic();
+                }, 10000);
+            }
+
+            // 悬浮停止
+            wrapper.mouseover(function() {
+                clearInterval(id);
+            });
+            wrapper.mouseout(function() {
+                autoplay();
+            });
+
+            // 点击上一张
+            wrapper.find(".prev").click(function() {
+                prev_pic();
+            });
+
+            // 点击下一张
+            wrapper.find(".next").click(function() {
+                next_pic();
+            });
+        });
+    });
+			
+			
+    $(document).ready(function(){
+        // 当点击按钮时，显示或隐藏相应的文本按钮上,使用 data-target 属性指定了要显示/隐藏的文本段落的ID。通过点击按钮，相应的文本段落将显示或隐藏。您可以根据需要添加更多的文本段落和按钮。
+        $(".toggle-button").click(function(){
+            var target = $(this).data("target");
+            $("#" + target).toggle();
+        });
+    });
+
+    $(function(){
+				var stu_qiandao={
+					"yiqiandao":[
+						["201808080801","张三","软件1808","2020-11-02 10:23","0"],
+						["201808080803","李四","软件1808","2020-11-02 10:24","0"],
+						["201808080804","王五","软件1808","2020-11-02 10:23","0"],
+						["201808080806","王二小","软件1808","2020-11-02 10:24","0"],
+						["201808080807","李滕菲","软件1808","2020-11-02 10:23","0"]
+					],
+					"weiqiandao":[
+						["201808080802","王宝林","软件1808","缺勤","0"],
+						["201808080805","吴叶","软件1808","缺勤","0"],
+						["201808080808","王琳","软件1808","缺勤","0"],
+						["201808080809","丁丽","软件1808","缺勤","0"]
+					]
+				};
+
+				//输出已签到表格行
+				for(var i = 0; i < stu_qiandao["yiqiandao"].length; i++){
+					var newTr = $("<tr></tr>");
+					newTr.append("<td><input type='checkbox' class='chk'></td>");
+					newTr.append("<td>"+(i+1)+"</td>");
+					for (var j = 0; j < stu_qiandao["yiqiandao"][i].length; j++){
+						newTr.append("<td>"+stu_qiandao["yiqiandao"][i][j]+"</td>");
+					}
+					newTr.append("<td><span class='sp_xiugai'>修改</span>&nbsp;<span class='sp_pingfen'>评分</span></td>");
+					$("table:eq(0)").append(newTr);
+				}
+				//输出未签到表格行
+				for(var i = 0; i < stu_qiandao["weiqiandao"].length; i++){
+					var newTr = $("<tr></tr>");
+					newTr.append("<td><input type='checkbox' class='chk'></td>");
+					newTr.append("<td>"+(i+1)+"</td>");
+					for (var j = 0; j < stu_qiandao["weiqiandao"][i].length; j++){
+						newTr.append("<td>"+stu_qiandao["weiqiandao"][i][j]+"</td>");
+					}
+					newTr.append("<td><span class='sp_xiugai'>修改</span>&nbsp;<span class='sp_pingfen'>评分</span></td>");
+					$("table:eq(1)").append(newTr);
+				}
+				//完成选项卡功能
+				var tab_ind = 0;//使用全局变量保存签到或者未签到的选项卡索引,在修改签到状态时使用
+				$(".tab").each(function(index){
+					$(this).click(function(){
+						tab_ind = index;
+						$(".tab").css("border-bottom","2px solid #ddd");
+						$(".tab_cont").css("display","none");
+						$(this).css("border-bottom","2px solid #aaf");
+						$(".tab_cont").eq(index).css("display","block");
+						
+					})
+				})
+				function order(trAll){
+					trAll.each(function(index){
+						$(this).children().eq(1).text(index+1);
+					})
+				}
+				var tr_op='';//该变量用于记录点击评分时的表格行元素
+				$(".sp_xiugai").click(function(){
+					$(".mask").css("display","block");
+					$(".mtk_qiandao").css("display","block");
+					No=$(this).parents("tr").children("td:eq(2)").text();
+					Name=$(this).parents("tr").children("td:eq(3)").text();
+					$(".mtk_qiandao").children("p").text(No+":"+Name);
+					tr_op=$(this).parents("tr");
+				})
+				$(".mtk_qiandao>div>button").click(function(){
+					var statu = $(this).text();
+					if(tab_ind == 0 && statu != "已签到"){//如果当前在已签到选项卡下,但是点的不是"已签到"
+						tr_op.remove();
+						var trAll_1=$("table:eq(0) tr:not(:first-child)")//tr竟然不是table的直接子元素
+						order(trAll_1);
+						tr_op.children("td:eq(5)").text(statu);
+						$(".res_weiqiandao>table").append(tr_op);
+						var trAll_2=$("table:eq(1) tr:not(:first-child)")//tr竟然不是table的直接子元素
+						order(trAll_2);
+					}else if(tab_ind == 1 && statu == "已签到"){//在未签到选项卡下将某个学生设置为已签到
+						tr_op.remove();
+						var trAll_1=$("table:eq(1) tr:not(:first-child)")//tr竟然不是table的直接子元素
+						order(trAll_1);
+						tr_op.children("td:eq(5)").text("2020-11-02 10:25");//此处省略获取系统日期时间的代码
+						$(".res_yiqiandao>table").append(tr_op);
+						var trAll_2=$("table:eq(0) tr:not(:first-child)");
+						order(trAll_2);
+					}else if(tab_ind == 1 && statu != "已签到"){//修改缺勤状态
+						tr_op.children("td:eq(5)").text(statu);
+					}
+					$(".mask").css("display","none");
+					$(".mtk_qiandao").css("display","none");
+				})
+				$(".sp_pingfen").click(function(){
+					$(".mask").css("display","block");
+					$(".sgpf").css("display","block");
+					tr_op=$(this).parents("tr");//在全局变量中保存当前行tr
+					//获取学号和姓名
+					No=$(this).parents("tr").children("td:eq(2)").text();
+					Name=$(this).parents("tr").children("td:eq(3)").text();
+					$(".mtk_pingfen").children("p").text(No+":"+Name);
+				})
+				$(".sgpf>div>button").click(function(){
+					score=$(this).text();
+					tr_op.children("td:eq(6)").text(score);
+					$(".mask").css("display","none");
+					$(".sgpf").css("display","none");
+				})
+				/* 批量评分功能 */
+				$(".btn_plpf").click(function(){
+					var checked=$(".tab_cont").eq(tab_ind).find(".chk:checked");
+					if(checked.length==0){
+						alert("请选择要评分的学生");
+						return;
+					}
+					$(".mask").css("display","block");
+					$(".mtk_plpf").css("display","block");
+				})
+				$(".mtk_plpf>div>button").click(function(){
+					score=$(this).text();
+					checked=$(".tab_cont").eq(tab_ind).find(".chk:checked");
+					checked.each(function(index){
+						tr_op=$(this).parents("tr");
+						tr_op.children("td:eq(6)").text(score);
+					})
+					$(".mask").css("display","none");
+					$(".mtk_plpf").css("display","none");
+					$(":checked").prop("checked",false);
+					//$(".control").eq(tab_ind).trigger('click');//不可使用这行,若是部分选中时,赋分之后会变成全部选中
+				})
+				$(".close").click(function(){
+					$(this).parent().css("display","none");
+					$(".mask").css("display","none");
+				})
+
+				/* 点击第一个复选框选中和取消后面所有复选框 */
+				$(".control").click(function(){
+					$(this).parents("table").find(".chk").prop("checked",this.checked);//此处不能使用attr(),否则第二次选择就无效
+				})
+				
+			})
+</script>
+</body>
+</html>
