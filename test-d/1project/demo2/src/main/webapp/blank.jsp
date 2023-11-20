@@ -14,7 +14,7 @@
                 width: 1300px;
                 height: 800px;
                 float: right;
-                margin-right: 40px;
+                margin-left: 100px;
                 color: grey;
                 font-size: 50px;
             }

@@ -13,7 +13,7 @@
         #outerLoginFrame{
             width: 500px;
             height: 400px;
-            margin-left: 600px;
+            margin-left: 700px;
             margin-top: 260px;
         }
         #innerLoginFrame{
@@ -30,14 +30,14 @@
     </style>
 </head>
 <body>
-<div id="outerLoginFrame" style="border: grey 2px solid">
+<div id="outerLoginFrame">
 <%--    <span style="position: center"></span>--%>
     <h1 style="margin-top: 40px;margin-left: 130px;">教&nbsp;务&nbsp;管&nbsp;理&nbsp;系&nbsp;统</h1>
     <div id="innerLoginFrame" style="font-size: 30px">
         <form action="userLogin" method="post" onsubmit="return checkLogin()">
             账户：<input type="text" style="font-size: 28px" id="userAccount" name="userAccount" class="myText"><br><br>
             密码：<input type="password" style="font-size: 28px" id="userPassword" name="userPassword" class="myText"><br><br>
-            <input style="width: 140px;margin-left: 20px" type="submit" value="登录">
+            <input style="width: 140px;margin-left: 80px" type="submit" value="登录">
             <span style="color: red;font-size: 15px" id="tip">${tip}</span>
         </form>
     </div>

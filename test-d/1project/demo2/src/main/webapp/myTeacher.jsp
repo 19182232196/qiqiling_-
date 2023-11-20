@@ -31,6 +31,7 @@
                 height: 60px;
                 vertical-align: middle!important;  /*设置文字垂直居中*/
                 text-align: center;
+
             }
             tr,td{border-right:1px solid #888;border-bottom:1px solid #888;padding:5px 15px;}
             th{font-weight:bold;background:#ccc;}
@@ -59,7 +60,8 @@
     </head>
     <body>
     <br><br>
-        <table border="1" cellspacing="0" align="center" class="con-b">
+        <table border="1" cellspacing="0" align="center" class="con-b" style="                background-color: #cccccc;
+                border: #888888 3px solid;">
             <thead>
             <tr class="row" style="color: black;font-size: 25px" >
                 <td class="lf">老师账户</td>

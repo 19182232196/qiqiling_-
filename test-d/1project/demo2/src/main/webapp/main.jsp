@@ -23,7 +23,6 @@
                 float: left;
                 border: grey 1px solid;
             }
-
             #file{
                 width: 230px;
                 height: 50px;
@@ -40,7 +39,6 @@
                 text-decoration:none;
             }
             li { list-style: none;}
-
         </style>
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <link href="${pageContext.request.contextPath}/css/css.css" rel="stylesheet" media="screen">

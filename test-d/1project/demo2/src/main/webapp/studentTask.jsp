@@ -20,17 +20,13 @@
         td{
             height: 40px;
         }
-
         table td{
             height: 60px;
             vertical-align: middle!important;  /*设置文字垂直居中*/
             text-align: center;
         }
-
         tr,td{border-right:1px solid #888;border-bottom:1px solid #888;padding:5px 15px;}
-
         th{font-weight:bold;background:#ccc;}
-
         .con-b .row .lf{
             width: 15%;
             text-align: center;
@@ -39,23 +35,17 @@
         .con-b .row .rg{
             width: 85%;
         }
-
         .con-b tr:nth-of-type(odd){
             background-color: #f2f2f2;
         }
-
-
     </style>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <body>
 <table border="1" cellspacing="0" align="center" class="con-b">
     <thead>
-
-<%--    `taskAccount``studentAccount``studentAnswer``isFinish``isScore``userName``taskName`--%>
     <tr class="row" style="color: black;font-size: 25px" >
         <c:if test="${session_person.getUserIdentify()!=0}"><td class="lf">学生姓名</td></c:if>
-
         <td class="lf" style="width: 10%">题目</td>
        <td class="lf">答案</td>
         <td class="lf">是否完成</td>
@@ -96,7 +86,7 @@
         if(isFinish!=1){
             alert("暂时没有批改权限")
             return;
-        }
+        }//表单数据发送到服务器，服务器将处理这些数据并返回相应的响应。
         window.open("student.action?action=doFenshu&taskAccount="+taskAccount+"&studentAccount="+studentAccount, null,"width=220,height=20,left=700,top=300", true);
     }
     function doAnswer(taskAccount,isFinish) {
