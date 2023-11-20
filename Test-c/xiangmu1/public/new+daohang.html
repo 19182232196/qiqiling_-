@@ -128,68 +128,107 @@
 			}
 			
 			
-			.wrapper {
-				width: 600px;
-				height: 350px;
-				border: 1px solid #ccc;
-				position: relative;
-			}
-		
-			/* 5张图片叠加到一块 */
-			.wrapper img {
-				width: 100%;
-				height: 100%;
-				position: absolute;
-				left: 0;
-				top: 0;
-				display: none;
-			}
-		
-			.wrapper img:nth-of-type(1) {
-				display: block;
-			}
-		
-			/* 小圆点 */
-			.btn {
-				width: 150px;
-				display: flex;
-				justify-content: space-around;
-				position: absolute;
-				left: 225px;
-				bottom: 10px;
-				z-index: 100
-			}
-		
-			.btn span {
-				display: block;
-				width: 15px;
-				height: 15px;
-				border: 3px solid white;
-				border-radius: 50%;
-			}
-		
-			/* 左右箭头 */
-			.wrapper a {
-				text-decoration: none;
-				font-size: 50px;
-				color:#555;
-				position: absolute;
-				top: 35%;
-			}
-		
-			.wrapper a:nth-of-type(1) {
-				left: 10px;
-		
-			}
-		
-			.wrapper a:nth-of-type(2) {
-				right: 10px;
-			}
-		
-			.active {
-				background-color:#555 ;
-			}
+            .wrapper {
+            position: relative;
+            width: 500px;
+            height: 500px; /* 修改为你需要的高度值 */
+            perspective: 1000px; /* 添加透视效果 */
+        }
 
+        .contain {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            transform-style: preserve-3d; /* 保持3D效果 */
+        }
+
+        .contain .slide {
+            flex: 0 0 100%; /* 每张图独占一行 */
+            margin-right: 10px; /* 图片之间的间隔 */
+            cursor: pointer; /* 添加鼠标指针 */
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0; /* 初始透明度为0 */
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .contain img {
+            width: 500px;
+            height: 500px;
+            object-fit: cover;
+            transform: translateZ(200px); /* 设置图片在z轴上的位移，调整值以改变3D效果的深度 */
+        }
+
+        .btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+
+        .btn span {
+            width: 12px;
+            height: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .btn span.active {
+            background-color: #333;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+                /* 预览图容器样式 */
+                .preview-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 500px;
+            height: 500px;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+                /* 预览图样式 */
+                .preview-container img {
+            max-width: 500px;
+            max-height: 500px;
+            border: 2px solid #fff;
+            border-radius: 8px;
+        }
+
+        /* 关闭按钮样式 */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            color: #fff;
+            cursor: pointer;
+        }
 			
 
 			.father_box {
@@ -630,34 +669,33 @@
                 <li class="ser">美洲</li>
             </ul>
 
-            <div class="main">
-                <div id="pro" class="box">
-                    <h3>欧亚</h3>
+            <div class="wrapper" id="carousel1">
+                <div class="contain">
+                    <div class="slide"><img src="img/130105.png" alt=""></div>
+                    <div class="slide"><img src="img/130115.png" alt=""></div>
+                    <div class="slide"><img src="img/134207.png" alt=""></div>
+                    <div class="slide"><img src="img/135744.png" alt=""></div>
+                    <div class="slide"><img src="img/bg.jpg" alt=""></div>
+                    <div class="slide"><img src="img/bg.jpg" alt=""></div>
                 </div>
-                <div class="wrapper">
-                    <div class="contain">
-                        <img src="img/015006.png" alt="">
-                        <img src="img/015017.png" alt="">
-                        <img src="img/015026.png" alt="">
-                        <img src="img/124302.png" alt="">
-                        <img src="img/124718.png" alt="">
-                        <img src="img/124919.png" alt="">
-                        <img src="img/125924.png" alt="">
-                    </div>
-                    <div class="btn">
-                        <span class="active"></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
+                <div class="btn">
+                    <span class="active"></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
                 <a href="javascript:void(0);" class="prev">&lt;</a>
                 <a href="javascript:void(0);" class="next">&gt;</a>
+            </div>
+                    <!-- 预览图容器 -->
+                <div class="preview-container" id="previewContainer">
+                    <span class="close-btn" onclick="closePreview()">&times;</span>
+                    <!-- 单击关闭预览 -->
+                    <img src="#" alt="" id="previewImage">
                 </div>
-                
-                <div class="father_box">
+            <div class="father_box">
             <div class="toggle-button" data-target="text1" >俄国军阀与希特勒遇刺</div>
             <div class="toggle-text" id="text1" >秩序在崩溃</div>
 
@@ -673,14 +711,14 @@
                 <div id="news" class="box">
                     <h3>黑非</h3>
                 </div>
-                <div class="wrapper">
+                <div class="wrapper" id="carousel2">
                     <div class="contain">
-                        <img src="img/130105.png" alt="">
-                        <img src="img/130115.png" alt="">
-                        <img src="img/134207.png" alt="">
-                        <img src="img/135744.png" alt="">
-                        <img src="img/bg.jpg" alt="">
-                        <img src="img/bg.jpg" alt="">
+                        <div class="slide"><img src="img/130105.png" alt=""></div>
+                        <div class="slide"><img src="img/130115.png" alt=""></div>
+                        <div class="slide"><img src="img/134207.png" alt=""></div>
+                        <div class="slide"><img src="img/135744.png" alt=""></div>
+                        <div class="slide"><img src="img/bg.jpg" alt=""></div>
+                        <div class="slide"><img src="img/bg.jpg" alt=""></div>
                     </div>
                     <div class="btn">
                         <span class="active"></span>
@@ -690,10 +728,15 @@
                         <span></span>
                         <span></span>
                     </div>
-                <a href="javascript:void(0);" class="prev">&lt;</a>
-                <a href="javascript:void(0);" class="next">&gt;</a>
+                    <a href="javascript:void(0);" class="prev">&lt;</a>
+                    <a href="javascript:void(0);" class="next">&gt;</a>
                 </div>
-                
+                    <!-- 预览图容器 -->
+                <div class="preview-container" id="previewContainer">
+                    <span class="close-btn" onclick="closePreview()">&times;</span>
+                    <!-- 单击关闭预览 -->
+                    <img src="#" alt="" id="previewImage">
+                </div>
                 <div class="father_box">
             <div class="toggle-button" data-target="text5">非洲啊</div>
             <div class="toggle-text" id="text5">世界边缘的代理人战争</div>
@@ -712,25 +755,31 @@
                     <div id="ser" class="box">
                         <h3>美洲</h3>
                     </div>
-                    <div class="wrapper">
-                            <div class="contain">
-                                <img src="img/130716.png" alt="">
-                                <img src="img/130843.png" alt="">
-                                <img src="img/131123.png" alt="">
-                                <img src="img/131129.png" alt="">
-                                <img src="img/131200.png" alt="">
-                                <img src="img/133200.png" alt=""/>
-                            </div>
-                            <div class="btn">
-                                <span class="active"></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
+                    <div class="wrapper" id="carousel3">
+                        <div class="contain">
+                            <div class="slide"><img src="img/130105.png" alt=""></div>
+                            <div class="slide"><img src="img/130115.png" alt=""></div>
+                            <div class="slide"><img src="img/134207.png" alt=""></div>
+                            <div class="slide"><img src="img/135744.png" alt=""></div>
+                            <div class="slide"><img src="img/bg.jpg" alt=""></div>
+                            <div class="slide"><img src="img/bg.jpg" alt=""></div>
+                        </div>
+                        <div class="btn">
+                            <span class="active"></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                         <a href="javascript:void(0);" class="prev">&lt;</a>
                         <a href="javascript:void(0);" class="next">&gt;</a>
+                    </div>
+                        <!-- 预览图容器 -->
+                    <div class="preview-container" id="previewContainer">
+                        <span class="close-btn" onclick="closePreview()">&times;</span>
+                        <!-- 单击关闭预览 -->
+                        <img src="#" alt="" id="previewImage">
                     </div>
                     
                 <div class="father_box">
@@ -833,72 +882,54 @@
 			$(".nav li"+n).addClass("cur");
 		}
 		
-		
-		
-$(function() {
-        // ... （之前的代码保持不变）
 
-        // 针对所有轮播图的操作
-        $(".wrapper").each(function() {
-            var wrapper = $(this);
-            var images = wrapper.find("img");
-            var spans = wrapper.find(".btn span");
-            var index = 0;
+        $(document).ready(function() {
+            // Initialize each carousel independently
+            initializeCarousel("carousel1");
+            initializeCarousel("carousel2");
+            initializeCarousel("carousel3");
 
-            // 下一张
-            function next_pic() {
-                index++;
-                if (index >= images.length) {
-                    index = 0;
+            function initializeCarousel(carouselId) {
+                var currentIndex = 0;
+                var totalItems = $('#' + carouselId + ' .contain img').length;
+
+                function showCurrent() {
+                    // 限制 currentIndex 的范围在 0 到 totalItems - 1 之间
+                    currentIndex = (currentIndex + totalItems) % totalItems;
+
+                    $('#' + carouselId + ' .contain .slide').css('opacity', '0'); /* 隐藏所有图片 */
+                    $('#' + carouselId + ' .contain .slide:eq(' + currentIndex + ')').css('opacity', '1'); /* 显示当前图片 */
+                    $('#' + carouselId + ' .btn span').removeClass('active');
+                    $('#' + carouselId + ' .btn span:eq(' + currentIndex + ')').addClass('active');
                 }
-                addStyle();
+
+                $('#' + carouselId + ' .btn span').click(function() {
+                    currentIndex = $(this).index();
+                    showCurrent();
+                });
+
+                $('#' + carouselId + ' .prev').click(function() {
+                    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+                    showCurrent();
+                });
+
+                $('#' + carouselId + ' .next').click(function() {
+                    currentIndex = (currentIndex + 1) % totalItems;
+                    showCurrent();
+                });
             }
-
-            // 上一张
-            function prev_pic() {
-                index--;
-                if (index < 0) {
-                    index = images.length - 1;
-                }
-                addStyle();
-            }
-
-            // 控制图片显示隐藏和小圆点背景色
-            function addStyle() {
-                images.eq(index).fadeIn();
-                images.eq(index).siblings().fadeOut();
-                spans.eq(index).addClass("active");
-                spans.eq(index).siblings().removeClass("active");
-            }
-
-            // 自动轮播
-            var id;
-            autoplay();
-            function autoplay() {
-                id = setInterval(function() {
-                    next_pic();
-                }, 10000);
-            }
-
-            // 悬浮停止
-            wrapper.mouseover(function() {
-                clearInterval(id);
-            });
-            wrapper.mouseout(function() {
-                autoplay();
-            });
-
-            // 点击上一张
-            wrapper.find(".prev").click(function() {
-                prev_pic();
-            });
-
-            // 点击下一张
-            wrapper.find(".next").click(function() {
-                next_pic();
+                        // 单击图片时显示预览
+                        $('.contain img').click(function() {
+                var imageUrl = $(this).attr('src');
+                $('#previewImage').attr('src', imageUrl);
+                $('#previewContainer').fadeIn();
             });
         });
-    });
+        // 关闭预览
+        function closePreview() {
+            $('#previewContainer').fadeOut();
+        }
+
 			
 			
     $(document).ready(function(){
