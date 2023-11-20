@@ -85,7 +85,7 @@ app.post('/login', (req, res) => {
                 res.status(500).send(err);
             } else {
                 if (results.length > 0) {
-                    res.redirect('/main.html');
+                    res.redirect('/new+daohang.html');
                 } else {
                     res.redirect('/index.html');
                 }
@@ -176,3 +176,55 @@ io.on('connection', (socket) => {
         console.log('User disconnected');
     });
 });
+
+app.post('/performDatabaseAction', (req, res) => {
+    const userName = req.body.userName;
+    const userPwd = req.body.userPwd;
+    const operationType = req.body.operationType;
+
+    pool.getConnection((err, connection) => {
+        if (err) {
+            res.status(500).send(err);
+            return;
+        }
+
+        switch (operationType) {
+            case 'add':
+                // 执行添加操作，根据需要修改 SQL 语句
+                connection.query('INSERT INTO user (userName, userPwd) VALUES (?, ?)', [userName, userPwd], (err) => {
+                    connection.release();
+                    if (err) {
+                        res.status(500).send(err);
+                    } else {
+                        res.status(200).send('添加用户成功');
+                    }
+                });
+                break;
+            case 'delete':
+                // 执行删除操作，根据需要修改 SQL 语句
+                connection.query('DELETE FROM user WHERE userName = ?', [userName], (err) => {
+                    connection.release();
+                    if (err) {
+                        res.status(500).send(err);
+                    } else {
+                        res.status(200).send('删除用户成功');
+                    }
+                });
+                break;
+            case 'update':
+                // 执行更新操作，根据需要修改 SQL 语句
+                connection.query('UPDATE user SET userPwd = ? WHERE userName = ?', [userPwd, userName], (err) => {
+                    connection.release();
+                    if (err) {
+                        res.status(500).send(err);
+                    } else {
+                        res.status(200).send('更新用户成功');
+                    }
+                });
+                break;
+            default:
+                res.status(400).send('无效的操作类型');
+        }
+    });
+});
+
