@@ -229,7 +229,6 @@
             color: #fff;
             cursor: pointer;
         }
-			
 
 			.father_box {
 				width: 300px;
@@ -237,9 +236,7 @@
 				margin-left:auto;
 				justify-content: flex-end;
 			}
-			   
-			   
-			   
+
 			.toggle-button{
 				font-size: 20px;
 				font-weight: bold;
@@ -250,6 +247,7 @@
 				display: none; /* 初始时隐藏文本 */
 				
 			}
+
             .mask{width: 100%; height: 100%; position: fixed; margin: auto; left: 0; right: 0; top: 0; bottom: 0; background: rgba(200,200,200,0.4); display: none;}
 			.mtk_qiandao{ width: 400px; height: 220px; background: #fff; position: fixed; margin:auto; left: 0; right: 0; top: 0; bottom: 0; z-index: 5; display: none; }
 			.mtk_qiandao>h3,.mtk_pingfen>h3{height: 30px; padding: 0 0 0 10px; margin: 0; background: #080; font-size: 1rem; text-align: left; line-height: 30px;}
@@ -281,7 +279,6 @@
             display: none;
             padding: 50px;
     		}
-            
     </style>
 </head>
 <body>
@@ -323,11 +320,31 @@
                         <a href="END.html"><img class="overlay-image" src="img/0g967c1i.png" alt="叠加图"></a>
                     </div>
                 </li>
-	    	<li class="nav-item">
-                    <form >
-                        <input type="text" name="userName" placeholder="搜索"/>
-                        <button type="submit"><img src="image/html.jpg" style="width: 20px;height: 20px;"></button>
+                <li class="nav-item">
+                    <!-- 修改前端代码，使用 AJAX 异步提交表单 -->
+                    <form id="searchForm" method="post" action="http://localhost:8080/user">
+                        <input type="text" name="userName" id="userName" placeholder="搜索" />
+                        <button type="button" onclick="searchUser()">
+                            <img src="image/html.jpg" style="width: 20px; height: 20px;" />
+                        </button>
                     </form>
+                    <script>
+                        function searchUser() {
+                            // 使用 AJAX 异步提交表单数据
+                            const userName = document.getElementById('userName').value;
+                            const xhr = new XMLHttpRequest();
+                            xhr.open('POST', 'http://localhost:8080/user', true);
+                            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                            xhr.onreadystatechange = function () {
+                                if (xhr.readyState === 4 && xhr.status === 200) {
+                                    // 处理响应，可以在这里通过弹窗显示结果
+                                    const responseData = xhr.responseText;
+                                    alert(responseData);
+                                }
+                            };
+                            xhr.send(`userName=${encodeURIComponent(userName)}`);
+                        }
+                    </script>
                 </li>
             </ul>
         </div>
