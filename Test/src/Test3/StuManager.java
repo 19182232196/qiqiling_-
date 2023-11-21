@@ -27,26 +27,36 @@ public class StuManager extends JFrame implements ActionListener {
     ResultSet rs = null;
     //构造函数
     public StuManager(){
+// 创建一个JPanel，设置背景颜色为灰色
         jp1 = new JPanel();
         jp1.setBackground(Color.gray);
+// 创建一个JTextField，宽度为15
         jtf1 = new JTextField(15);
+// 创建一个JTextField，宽度为15，设置不可编辑
         jtf2 = new JTextField();
         jtf2.setEditable(false);
+// 创建一个JButton，添加动作监听器
         jb1 = new JButton("查询");
         jb1.addActionListener(this);
+// 创建一个JLabel，显示文本为“总人数：”
         jl1 = new JLabel("总人数：");
+// 将以上组件添加到JPanel中
         jp1.add(searchType);
         jp1.add(jtf1);
         jp1.add(jb1);
         jp1.add(jl1);
         jp1.add(jtf2);
+// 创建一个JButton，添加动作监听器
         jb2 = new JButton("添加");
         jb2.setSize(100,500);
         jb2.addActionListener(this);
+// 创建一个JButton，添加动作监听器
         jb3 = new JButton("修改");
         jb3.addActionListener(this);
+// 创建一个JButton，添加动作监听器
         jb4 = new JButton("删除");
         jb4.addActionListener(this);
+// 创建一个JPanel，添加以上组件
         jp2 = new JPanel();
         jp2.add(jb2);
         jp2.add(jb3);
@@ -61,13 +71,18 @@ public class StuManager extends JFrame implements ActionListener {
         jt = new JTable(sm);
         jsp = new JScrollPane(jt);
         //将jsp放入到jframe中
+//设置窗口标题
         this.add(jsp);
+ //设置窗口布局，将两个jpanel添加到不同的位置
         this.add(jp1,BorderLayout.PAGE_START);
         this.add(jp2,BorderLayout.PAGE_END);
+ //设置窗口大小
         this.setTitle("学生信息管理系统");
         this.setSize(600, 400);
         this.setLocation(500, 200);
+ //设置窗口关闭操作
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+ //设置窗口可见
         this.setVisible(true);
     }
     public void actionPerformed(ActionEvent arg0) {
@@ -76,6 +91,7 @@ public class StuManager extends JFrame implements ActionListener {
             System.out.println("用户希望被查询...");
             int index = searchType.getSelectedIndex();
             String sql = new String();
+            //根据不同的索引值，构建不同的sql语句
             if(index == 0){
                 sql = "select * from stu ";
             }
@@ -83,26 +99,36 @@ public class StuManager extends JFrame implements ActionListener {
                 //因为把对表的数据封装到StuModel中，可以比较简单的完成查询
                 String Id =this.jtf1.getText().trim();
                 //写一个sql语句
-                sql = "select * from stu where stuId = '"+Id+"' ";
+               sql = "select * from stu where stuId = '"+Id+"' ";
             }
             else if(index == 2){
+                //获取文本框中的名字
                 String name =this.jtf1.getText().trim();
+                //拼接sql语句
                 sql = "select * from stu where stuName = '"+name+"' ";
             }
             else if(index == 3){
+                //获取文本框中的性别
                 String sex =this.jtf1.getText().trim();
+                //拼接sql语句
                 sql = "select * from stu where stuSex = '"+sex+"' ";
             }
             else if(index == 4){
+                //获取文本框中的年龄
                 String age =this.jtf1.getText().trim();
+                //拼接sql语句
                 sql = "select * from stu where stuAge = '"+age+"' ";
             }
             else if(index ==5){
+                //获取文本框中的届别
                 String jg =this.jtf1.getText().trim();
+                //拼接sql语句
                 sql = "select * from stu where stuJG= '"+jg+"' ";
             }
             else if(index ==6){
+                //获取文本框中的班级
                 String bj =this.jtf1.getText().trim();
+                //拼接sql语句
                 sql = "select * from stu where stuBJ= '"+bj+"' ";
             }
             //构建一个数据模型类，并更新
@@ -141,12 +167,15 @@ public class StuManager extends JFrame implements ActionListener {
                 String url = "jdbc:mysql://localhost:3306/黄能2052231067";
                 String user = "root";
                 String passwd = "484110";
-
+//获取连接
                 ct = DriverManager.getConnection(url, user, passwd);
-//                System.out.println("连接成功");
+ //准备执行删除操作
                 ps = ct.prepareStatement("delete from stu where stuId = ?");
+ //设置参数
                 ps.setString(1,stuId);
+ //执行删除操作
                 ps.executeUpdate();
+ //弹出提示框
                 JOptionPane.showMessageDialog(null, "删除成功", "删除情况",JOptionPane.PLAIN_MESSAGE);
             }catch(Exception e){
                 e.printStackTrace();

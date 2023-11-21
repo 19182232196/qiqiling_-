@@ -22,7 +22,7 @@ public class StuUpDiag extends JDialog implements ActionListener {
     public StuUpDiag(Frame owner, String title, boolean modal, StuModel sm, int rowNum){
         //调用父类方法
         super(owner,title,modal);
-
+        //创建标签
         jl1 = new JLabel("学号");
         jl2 = new JLabel("名字");
         jl3 = new JLabel("性别");
@@ -30,9 +30,7 @@ public class StuUpDiag extends JDialog implements ActionListener {
         jl5 = new JLabel("籍贯");
         jl6 = new JLabel("联系方式");
         jl7 = new JLabel("班级");
-
-
-
+        //创建文本框
         jf1 = new JTextField(30);
         jf1.setText((sm.getValueAt(rowNum, 0)).toString());
         jf2 = new JTextField(30);
@@ -47,23 +45,22 @@ public class StuUpDiag extends JDialog implements ActionListener {
         jf6.setText((String)sm.getValueAt(rowNum, 5));
         jf7 = new JTextField(30);
         jf7.setText((String)sm.getValueAt(rowNum, 6));
-
+        //创建按钮
         jb1 = new JButton("修改");
         jb1.addActionListener(this::actionPerformed);
         jb2 = new JButton("取消");
         jb2.addActionListener(this::actionPerformed);
-
+        //创建面板
         jp1 = new JPanel();
         jp2 = new JPanel();
         jp3 = new JPanel();
-
-        //设置布局
+//设置布局
         jp1.setLayout(new GridLayout(7,1));
         jp2.setLayout(new GridLayout(7,1));
 
+//添加组件
         jp3.add(jb1);
         jp3.add(jb2);
-
         jp1.add(jl1);
         jp1.add(jl2);
         jp1.add(jl3);
@@ -71,7 +68,6 @@ public class StuUpDiag extends JDialog implements ActionListener {
         jp1.add(jl5);
         jp1.add(jl6);
         jp1.add(jl7);
-
         jp2.add(jf1);
         jp2.add(jf2);
         jp2.add(jf3);
@@ -79,7 +75,7 @@ public class StuUpDiag extends JDialog implements ActionListener {
         jp2.add(jf5);
         jp2.add(jf6);
         jp2.add(jf7);
-
+//设置位置和大小
         this.add(jp1, BorderLayout.WEST);
         this.add(jp2, BorderLayout.CENTER);
         this.add(jp3, BorderLayout.SOUTH);
@@ -87,7 +83,7 @@ public class StuUpDiag extends JDialog implements ActionListener {
         this.setSize(300,200);
         this.setVisible(true);
     }
-    @Override
+   @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == jb1){
             Connection ct = null;
@@ -110,7 +106,7 @@ public class StuUpDiag extends JDialog implements ActionListener {
                 JOptionPane.showMessageDialog(null, "修改成功", "修改情况",JOptionPane.PLAIN_MESSAGE);
                 this.dispose();//关闭学生对话框
             }catch(Exception arg1){
-                arg1.printStackTrace();
+               arg1.printStackTrace();
             }finally{
                 try{
                     if(rs!=null){

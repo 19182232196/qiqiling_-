@@ -20,8 +20,8 @@ public class StuAddDiag extends JDialog implements ActionListener {
     //owner代笔父窗口,title是窗口的名字,modal指定是模式窗口()或者非模式窗口
     public StuAddDiag(Frame owner, String title, boolean modal){
         //调用父类方法
-        super(owner,title,modal);
-
+       super(owner,title,modal);
+        // 创建标签
         jl1 = new JLabel("学号");
         jl2 = new JLabel("名字");
         jl3 = new JLabel("性别");
@@ -29,7 +29,7 @@ public class StuAddDiag extends JDialog implements ActionListener {
         jl5 = new JLabel("籍贯");
         jl6 = new JLabel("联系方式");
         jl7 = new JLabel("班级");
-
+        // 创建文本框
         jf1 = new JTextField(30);
         jf2 = new JTextField(30);
         jf3 = new JTextField(30);
@@ -37,23 +37,21 @@ public class StuAddDiag extends JDialog implements ActionListener {
         jf5 = new JTextField(30);
         jf6 = new JTextField(30);
         jf7 = new JTextField(30);
-
+        // 创建按钮
         jb1 = new JButton("添加");
         jb1.addActionListener(this::actionPerformed);
         jb2 = new JButton("取消");
         jb2.addActionListener(this::actionPerformed);
-
+        // 创建面板
         jp1 = new JPanel();
         jp2 = new JPanel();
         jp3 = new JPanel();
-
-        //设置布局
+//设置布局
         jp1.setLayout(new GridLayout(7,1));
         jp2.setLayout(new GridLayout(7,1));
-
+ //添加组件
         jp3.add(jb1);
         jp3.add(jb2);
-
         jp1.add(jl1);
         jp1.add(jl2);
         jp1.add(jl3);
@@ -61,7 +59,6 @@ public class StuAddDiag extends JDialog implements ActionListener {
         jp1.add(jl5);
         jp1.add(jl6);
         jp1.add(jl7);
-
         jp2.add(jf1);
         jp2.add(jf2);
         jp2.add(jf3);
@@ -69,10 +66,11 @@ public class StuAddDiag extends JDialog implements ActionListener {
         jp2.add(jf5);
         jp2.add(jf6);
         jp2.add(jf7);
-
+ //设置位置
         this.add(jp1, BorderLayout.WEST);
         this.add(jp2, BorderLayout.CENTER);
         this.add(jp3, BorderLayout.SOUTH);
+ //设置大小
         this.setLocation(600, 350);
         this.setSize(300,200);
         this.setVisible(true);
@@ -84,7 +82,6 @@ public class StuAddDiag extends JDialog implements ActionListener {
             Connection ct = null;
             PreparedStatement pstmt = null;
             ResultSet rs = null;
-
             try{
                 //1.加载驱动
                 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -95,12 +92,9 @@ public class StuAddDiag extends JDialog implements ActionListener {
                 String user = "root";
                 String passwd = "484110";
                 ct = DriverManager.getConnection(url,user,passwd);
-
                 //与编译语句对象
-
                 String strsql = "insert into stu values(?,?,?,?,?,?,?)";
                 pstmt = ct.prepareStatement(strsql);
-
                 //给对象赋值
                 pstmt.setString(1,jf1.getText());
                 pstmt.setString(2,jf2.getText());
@@ -109,11 +103,9 @@ public class StuAddDiag extends JDialog implements ActionListener {
                 pstmt.setString(5,jf5.getText());
                 pstmt.setString(6,jf6.getText());
                 pstmt.setString(7,jf7.getText());
-
                 pstmt.executeUpdate();
                 JOptionPane.showMessageDialog(null, "添加成功", "添加情况",-1);
                 this.dispose();//关闭学生对话框
-
             }catch(Exception arg1){
                 arg1.printStackTrace();
             }finally{
@@ -134,10 +126,8 @@ public class StuAddDiag extends JDialog implements ActionListener {
                     arg2.printStackTrace();
                 }
             }
-
         }else{
             this.dispose();
         }
-
     }
 }

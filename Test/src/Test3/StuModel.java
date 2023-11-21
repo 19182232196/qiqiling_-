@@ -11,8 +11,11 @@ public class StuModel extends AbstractTableModel{
     //rowData存放行数据，columnNames存放列名
     Vector rowData,columnNames;//Vector和ArrayList一样，底层也是一个Object类型的数组Object[]。;    构造一个空向量，使其内部数据数组的大小为10，其标准容量增量为零
     //定义连接数据库的变量
+   // 创建Statement对象
     Statement stat = null;
+    // 创建Connection对象
     Connection ct = null;
+    // 创建ResultSet对象
     ResultSet rs = null;
     //初始化
     public void init(String sql){
@@ -22,6 +25,7 @@ public class StuModel extends AbstractTableModel{
         //中间
         //设置列名
         columnNames = new Vector();//这里是一维向量表示列；
+//将列名添加到columnNames中
         columnNames.add("学号");
         columnNames.add("名字");
         columnNames.add("性别");
@@ -44,6 +48,7 @@ public class StuModel extends AbstractTableModel{
             stat = ct.createStatement();//创建stat对象
             rs = stat.executeQuery(sql);//查询结果
             while(rs.next()){
+//从ResultSet中获取数据，并将其封装到Vector中
                 Vector hang = new Vector();
                 hang.add(rs.getString(1));
                 hang.add(rs.getString(2));
