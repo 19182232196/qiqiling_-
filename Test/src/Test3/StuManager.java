@@ -99,7 +99,7 @@ public class StuManager extends JFrame implements ActionListener {
                 //因为把对表的数据封装到StuModel中，可以比较简单的完成查询
                 String Id =this.jtf1.getText().trim();
                 //写一个sql语句
-               sql = "select * from stu where stuId = '"+Id+"' ";
+                sql = "select * from stu where stuId = '"+Id+"' ";
             }
             else if(index == 2){
                 //获取文本框中的名字
@@ -184,7 +184,6 @@ public class StuManager extends JFrame implements ActionListener {
                     if(rs!= null){
                         rs.close();
                         rs = null;
-
                     }
                     if(ps!= null){
                         ps.close();

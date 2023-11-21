@@ -24,17 +24,21 @@ public class StuLogin extends JFrame {
         ////设置窗口背景图
         //先将contentPane设置成透明的
         ((JPanel)getContentPane()).setOpaque(false);
-        //再设置图片
-        imageIcon = new ImageIcon("345.jpg");//图标组件
-        image = imageIcon.getImage();
-        JLabel imgLabel = new JLabel(imageIcon);
-        getLayeredPane().add(imgLabel, JLayeredPane.DEFAULT_LAYER);
-        imgLabel.setBounds(0,0,400,300); //背景图片的位置
-        this.setIconImage(image);//设置窗口图像
         this.setLocation(600,300);
         this.setVisible(true);
         this.setResizable(false);
         this.setLayout(null);
+        JPanel contentPane = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                // 绘制背景图片
+                Image image = new ImageIcon("D:\\1project\\Test\\src\\Test3\\345.jpg").getImage();
+                g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        contentPane.setOpaque(false);
+        setContentPane(contentPane);
         //设置窗口名称
         this.setTitle("学生信息管理系统");
         //设置用户名标签
@@ -87,17 +91,14 @@ public class StuLogin extends JFrame {
                 pwField.setText("");
             }
         });
-//将unLabel添加到当前窗口
-        this.add(unLabel);
- //将unField添加到当前窗口
-        this.add(unField);
- //将pwLabel添加到当前窗口
-        this.add(pwLabel);
- //将pwField添加到当前窗口
-        this.add(pwField);
- //将dl添加到当前窗口
-        this.add(dl);
- //将d2添加到当前窗口
-        this.add(d2);
+//设置布局为null
+        contentPane.setLayout(null);
+ //添加标签
+        contentPane.add(unLabel);
+        contentPane.add(unField);
+        contentPane.add(pwLabel);
+        contentPane.add(pwField);
+        contentPane.add(dl);
+        contentPane.add(d2);
     }
 }
