@@ -228,3 +228,19 @@ app.post('/performDatabaseAction', (req, res) => {
     });
 });
 
+app.post('/user', (req, res) => {
+    const userName = req.body.userName;
+    const sql = `SELECT * FROM user WHERE userName = '${userName}'`;
+    pool.query(sql, (err, result) => {
+        if (err) {
+            throw err;
+        }
+        if (result.length > 0) {
+            const userData = result[0];
+            const message = `ID: ${userData.id}\nUserName: ${userData.userName}\nUserPwd: ${userData.userPwd}`;
+            res.send(message);
+        } else {
+            res.send('未找到匹配用户');
+        }
+    });
+});

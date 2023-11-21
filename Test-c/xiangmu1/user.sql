@@ -11,7 +11,7 @@
  Target Server Version : 80035
  File Encoding         : 65001
 
- Date: 17/11/2023 10:57:05
+ Date: 21/11/2023 11:27:22
 */
 
 SET NAMES utf8mb4;
@@ -31,7 +31,7 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (2, 'super', '123456');
-INSERT INTO `user` VALUES (3, '19182232196', '1');
+INSERT INTO `user` VALUES (1, 'super', '123456');
+INSERT INTO `user` VALUES (3, '12', '12');
 
 SET FOREIGN_KEY_CHECKS = 1;
