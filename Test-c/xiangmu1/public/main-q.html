@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>聊天</title>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/socket.io.min.js"></script>
 </head>
 <body>
     <ul id="messages"></ul>
@@ -9,29 +12,39 @@
         <input id="input" autocomplete="off" />
         <button id="sendButton">发送</button>
     </form>
-
-    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
     <script>
-        const socket = io();
-        function addMessage(message) {
-            const messages = document.getElementById('messages');
-            const item = document.createElement('li');
-            item.textContent = message;
-            messages.appendChild(item);
-        }
+    let name = prompt("请输入你的昵称：");
+    // 当页面加载完成后新建一个 io 对象
+    const socket = io('http://localhost:8080');
 
-        document.getElementById('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const input = document.getElementById('input');
-            if (input.value) {
-                socket.emit('chat message', input.value);
-                input.value = '';
-            }
-        });
 
-        socket.on('chat message', function(message) {
-            addMessage(message);
-        });
+    // 通过 li 标签将消息渲染到页面中
+    function addLine(msg) {
+        $('#messages').append($('<li>').text(msg));
+    }
+
+    // 发送昵称给后端
+    socket.emit("join", name);
+    document.title = name + "的群聊";
+
+    // 收到服务器发来的 join 事件时
+    socket.on("join", function (user) {
+        addLine(user + "加入了群聊");
+    });
+
+    // 接受到服务器发来的 message 事件将新消息呈现在面板中。
+    socket.on("message", function (msg) {
+        addLine(msg);
+    });
+
+    // 当点击发送按钮被点击时
+    $('#form').submit(function () {
+        let msg = $('#input').val(); // 获取用户发送的信息
+        socket.emit("message", msg); // 修复这里的事件名
+        $("#input").val(""); // 置空消息栏
+        return false; // 阻止 form 提交
+    });
+    
     </script>
 </body>
 </html>
