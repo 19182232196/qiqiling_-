@@ -16,7 +16,14 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const server = http.createServer(app);
-const io = require('socket.io')(server);
+const io = socketIO(server, {
+    cors: {
+        origin: "http://localhost:8080", // 允许访问的源
+        methods: ["GET", "POST"] // 允许的 HTTP 方法
+    }
+});
+
+app.use(express.static(__dirname + '/public'));
 
 server.listen(8080, () => {
     console.log('ok');
@@ -162,14 +169,14 @@ app.post('/deleteStudent', (req, res) => {
 });
 
 app.get('/chatroom', (req, res) => {
-    res.sendFile(__dirname + '/views/main-q.html'); // 渲染聊天室页面
+    res.sendFile(__dirname + '/main-q.html');
 });
 
 io.on('connection', (socket) => {
     console.log('New user connected');
 
-    socket.on('chat message', (msg) => {
-        io.emit('chat message', msg); // 广播消息给所有客户端
+    socket.on('message', (msg) => {  // 修复这里的事件名
+        io.emit('message', msg);
     });
 
     socket.on('disconnect', () => {
