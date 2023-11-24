@@ -12,6 +12,7 @@ class Poi:
 
 import random
 import pygame
+import time
 
 pygame.init()
 W = 800
@@ -72,8 +73,13 @@ def re(poi, col):
 
 
 q = True
+timer = pygame.time.get_ticks()
 c = pygame.time.Clock()
 while q:
+    current_time = pygame.time.get_ticks()
+    if current_time - timer > 5000:
+        fo = gr_fo()
+        timer = current_time 
     for es in pygame.event.get():
         if es.type == pygame.QUIT:
             q = False
