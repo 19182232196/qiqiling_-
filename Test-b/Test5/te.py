@@ -119,10 +119,14 @@ while q:
         print("dead")
         q=False
 
-    if he.r < 0 or he.r > R:
-        he.r = 0
-    if he.c < 0 or he.c > C:
+    if he.r < 0:
+        he.r = R
+    if he.c < 0:
+        he.c = C
+    if he.c > C:
         he.c = 0
+    if he.r > R:
+        he.r = 0
 
     pygame.draw.rect(window, bg_col, (0, 0, W, H))
 
