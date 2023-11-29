@@ -1,80 +1,204 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1"/>
-		<link rel="stylesheet" href="css/bootstrap.min.css"/>
-		<script src="js/jquery-3.7.1.min.js"></script>
-		<script src="js/bootstrap.bundle.js"></script>
-    </head>
-    <body>
-        <p>text</p>
-        <p class="border">测试功能</p>
-        <p class="border border-info">测试功能</p>
-        <p class="border-top border-info">测试功能</p>
-        <p class="border-bottom border-info">测试功能</p>
-        <p class="border-left border-info">测试功能</p>
-        <p class="border-right badge-info">测试功能</p>
-        <p class="border border-danger border-bottom-0">测试功能</p>
 
-        <p>text</p>
-        <p class="bg-warning">测试功能</p>
-        <p class="bg-warning rounded">测试功能</p>
-        <p class="bg-warning rounded-top">测试功能</p>
-        <p class="bg-warning rounded-bottom">测试功能</p>
-        <p class="bg-warning rounded-left">测试功能</p>
-        <p class="bg-warning rounded-right">测试功能</p>
-        <button class="btn btn-info rounded-0">测试功能</button>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <style type="text/css">
+        table {
+            width: 650;
+            border: 1px solid #ddd;
+        }
 
-        <p>text</p>
-        <p class="bg-warning">测试功能</p>
-        <p class="bg-warning rounded-circle">测试功能</p>
-        <p class="bg-warning rounded-pill" style="width: 80px;">测试功能</p>
+        th {
+            height: 40px;
+        }
 
-        <p>text</p>
-        <div class="border border-dark" style="width: 600px; height: 200px;">
-            <p class="border w-25 float-right">测试功能</p>
-            <p class="border w-25 float-left">测试功能</p>
-            <p class="border w-25 float-right">测试功能</p>
+        td {
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        td>img {
+            width: 100%;
+        }
+
+        td>input[type="button"] {
+            cursor: pointer;
+        }
+
+        td>span.dele {
+            color: #00f;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        p {
+            width: 650px;
+            text-align: right;
+            font-size: 1rem;
+        }
+
+        p>span {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #f00;
+        }
+
+        input[type="submit"] {
+            width: 100px;
+            height: 40px;
+            border: 0;
+            background: #f00;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <p>text</p>
+    <div class="" style="width: 600px; height: 200px;">
+        <div class="w-25 position-fixed" style="left: 1000px;top: 50px;"><img src="image/1.jpg"></div>
+        <div class="fixed-top ">
+            <form action="Waaagh.html">
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th width="100"><input type="checkbox" name="allSel" id="allSel" value="0">全选</th>
+                            <th width="100">诸国</th>
+                            <th width="100">国力</th>
+                            <th width="100">数目</th>
+                            <th width="100">小计</th>
+                            <th width="100">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" name="Sel[]" class="sel" value="5"></td>
+                            <td><img src="img/0digfr2b.png"></td>
+                            <td>129.00</td>
+                            <td><input type="button" class="sub" value="-"><span class="cnt">5</span><input type="button"
+                                    class="add" value="+"></td>
+                            <td class="price"></td>
+                            <td class="del"><span class="dele">败北</span></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="Sel[]" class="sel" value="5"></td>
+                            <td><img src="img/0g967c1i.png"></td>
+                            <td>50.00</td>
+                            <td><input type="button" class="sub" value="-"><span class="cnt">5</span><input type="button"
+                                    class="add" value="+"></td>
+                            <td class="price"></td>
+                            <td class="del"><span class="dele">败北</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>已选择<span>0</span>诸国,总价<span>0</span>国力<input type="submit" value="俄国统一"></p>
+                <input type="hidden" name="whole_price" value="">
+            </form>
+            <script text="text/javascript">
+                // 首先定义您的函数
+                function decreaseCount(button) {
+                    var countElement = $(button).siblings('.cnt');
+                    var count = parseInt(countElement.text(), 10);
+                    if (count > 1) {
+                        count--;
+                        countElement.text(count);
+                        updateTotalPrice();
+                    }
+                }
+
+                function increaseCount(button) {
+                    var countElement = $(button).siblings('.cnt');
+                    var count = parseInt(countElement.text(), 10);
+                    count++;
+                    countElement.text(count);
+                    updateTotalPrice();
+                }
+
+                function updateTotalPrice() {
+                    var total = 0;
+                    $('tbody>tr').each(function () {
+                        var price = parseFloat($(this).children('td:eq(2)').text());
+                        var count = parseInt($(this).children('td:eq(3)').children('.cnt').text(), 10);
+                        var subtotal = price * count;
+                        total += subtotal;
+                    });
+                    $('p>span:eq(1)').text(total.toFixed(1));
+                }
+
+                // 在定义函数后执行您的代码
+                $(document).ready(function () {
+                    $('tbody>tr').each(function () {
+                        var price = $(this).children('td:eq(2)').text();
+                        var cnt = $(this).children('td:eq(3)').children('span').text();
+                        $(this).children('td:eq(4)').text(price * cnt);
+                    });
+
+                    var cnt = 0;
+                    var whole_price = 0;
+
+                    $('input#allSel').click(function () {
+                        var ckd = $(this).prop('checked');
+
+                        if (ckd) {
+                            $('input.sel').each(function () {
+                                if (this.checked) {
+                                    return;
+                                }
+                                $(this).prop('checked', ckd);
+                                var count = $(this).parents('tr').children('td:eq(3)').children('span').text();
+                                cnt = cnt + count * 1;
+                                $('p>span:eq(0)').text(cnt);
+                                var price = $(this).parents('tr').children('td:eq(4)').text();
+                                whole_price = whole_price + price * count;
+                                $('p>span:eq(1)').text((whole_price).toFixed(1));
+                            });
+                        } else {
+                            $('input.sel').prop('checked', ckd);
+                            cnt = 0;
+                            whole_price = 0;
+                            $('p>span:eq(0)').text(0);
+                            $('p>span:eq(1)').text(0);
+                        }
+                    });
+
+                    $('input.sel').change(function () {
+                        var count = $(this).parent('td').siblings('td').children('span.cnt').text();
+                        var price = $(this).parent('td').siblings('td.price').text();
+                        if (this.checked) {
+                            cnt = cnt + count * 1;
+                            $('p>span:eq(0)').text(cnt);
+                            whole_price = whole_price + price * 1;
+                            $('p>span:eq(1)').text((whole_price).toFixed(1));
+                        } else {
+                            cnt = cnt - count * 1;
+                            $('p>span:eq(0)').text(cnt);
+                            whole_price = whole_price - price;
+                            $('p>span:eq(1)').text((whole_price).toFixed(1));
+                        }
+                    });
+
+                    // 为减少和增加按钮添加事件监听器
+                    $('input.sub').click(function () {
+                        var button = $(this);
+                        decreaseCount(button);
+                    });
+
+                    $('input.add').click(function () {
+                        var button = $(this);
+                        increaseCount(button);
+                    });
+                });
+            </script>
         </div>
+    </div>
+</body>
 
-        <p>text</p>
-        <div class="border border-dark" style="width: 600px; height: 200px;">
-            <p class="border w-25 position-relative" style="left: 100px;">测试功能</p>
-            <p class="border w-25 position-absolute" style="left: 100px;top: 100px;">测试功能1</p>
-            <p class="border w-25 position-fixed" style="left: 200px;top: 200px;">测试功能2</p>
-            <p class="bg-success fixed-top">测试功能3</p>
-        </div>
-
-        <p>text</p>
-            <div class="d-none">测试功能a</div>
-            <div class="bg-primary">测试功能s</div>
-            <span class="bg-danger d-block">测试功能q</span>
-            <span class="d-flex">测试功能w</span>
-            <div class="d-table">
-                <div class="d-table-row">
-                    <div class="d-table-cell">qwer</div>
-                    <div class="d-table-cell">asdf</div>
-                    <div class="d-table-cell">zxcv</div>
-                </div>
-                <div class="d-table-row">
-                    <div class="d-table-cell border p-3">qwer</div>
-                    <div class="d-table-cell border p-3">asdf</div>
-                    <div class="d-table-cell border p-3">zxcv</div>
-                </div>
-            </div>
-
-        <div class="container-fluid">
-			<div class="row">
-				<div class="col-9">
-					<ul class="pagination pagination-lg justify-content-center" id="pagination">
-						<li class="page-item "><a class="page-link" href="Yesyes.html">Yesyes</a></li>
-						<li class="page-item active"><a class="page-link" href="Waaagh.html">Waaagh</a></li>
-						<li class="page-item "><a class="page-link" href="绿皮! 忠诚!.html">绿皮！忠诚！</a></li>
-						<li class="page-item "><a class="page-link" href="END.html">END</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-    </body>
 </html>
