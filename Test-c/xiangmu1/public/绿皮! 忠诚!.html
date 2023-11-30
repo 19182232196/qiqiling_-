@@ -8,13 +8,13 @@
 		<script src="js/bootstrap.bundle.js"></script>
     </head>
     <body>
-        <p>text</p>
-        <p class="alert alert-danger">测试功能</p>
-        <p class="alert alert-success">测试功能</p>
-        <p class="alert alert-info"><a href="index.html" class="alert-link">测试功能</a></p>
-        <p class="alert alert-link">测试功能<button class="close" data-dismiss="alert"><span>&times;</span></button></p>
+		<nav class="nav nav-pills nav-fill bg-light">
+			<input type="button" class="add" value="+">
+			<a href="#" class="alert alert-info closable-alert">测试功能<button class="close" data-dismiss="alert"><span>&times;</span></button></a>
+			<a href="#" class="alert alert-info closable-alert">测试功能<button class="close" data-dismiss="alert"><span>&times;</span></button></a>
+			<a href="#" class="alert alert-info closable-alert">测试功能<button class="close" data-dismiss="alert"><span>&times;</span></button></a>
+		</nav>
 
-		<p>text</p>
 		<div class="modal" id="modal">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -27,65 +27,87 @@
 				</div>
 			</div>
 		</div>
-		<button class="btn btn-primary" data-toggle="modal" data-target="#modal">打开模态框</button>
+        <div class="list-group list-group-horizontal-sm text-center">
+            <a href="#awq" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+            <a href="#bqq" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+            <a href="#ceq" class="list-group-item list-group-item-action" data-toggle="list">123456</a>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane" id="awq"><button class="btn btn-primary" data-toggle="modal" data-target="#modal">打开模态框</button></div>
+            <div class="tab-pane" id="bqq">
+                <div class="toast" data-autohhide="false">
+                    <div class="toast-header">header
+                        <button class="close ml-auto" data-dismiss="toast"><span>&times;</span></button>
+                    </div>
+                    <div class="toast-body">body</div>
+                </div>
+                <button class="btn btn-primary" id="btn">X</button>
+            </div>
+            <div class="tab-pane" id="ceq">
+                <button class="btn btn-success" data-toggle="tooltip" title="内容" data-placement="right">
+                    移入
+                </button>
+                <button class="btn btn-success" data-toggle="popover" title="内容" data-content="right">
+                    单击
+                </button>
+            </div>
 
-		<p>text</p>
-		<div class="toast" data-autohhide="false">
-			<div class="toast-header">header
-				<button class="close ml-auto" data-dismiss="toast"><span>&times;</span></button>
-			</div>
-			<div class="toast-body">body</div>
-		</div>
-		<button class="btn btn-primary" id="btn">X</button>
-
-		<p>text</p>
-		<button class="btn btn-success" data-toggle="tooltip" title="内容" data-placement="right">
-			移入
-		</button>
-
-		<p>text</p>
-		<button class="btn btn-success" data-toggle="popover" title="内容" data-content="right">
-			单击
-		</button>
-
-        <div class="container-fluid">
+        </div>
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-9">
+					<p>1984</p>
 					<ul class="pagination pagination-lg justify-content-center" id="pagination">
 						<li class="page-item "><a class="page-link" href="Yesyes.html">Yesyes</a></li>
 						<li class="page-item "><a class="page-link" href="Waaagh.html">Waaagh</a></li>
 						<li class="page-item active"><a class="page-link" href="绿皮! 忠诚!.html">绿皮！忠诚！</a></li>
 						<li class="page-item "><a class="page-link" href="END.html">END</a></li>
+						<li class="page-item "><a class="page-link" href="test.html">test</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
     </body>
-	<script>
-		$('.alert').on('close.bs.alert',function(){
-			alert('alert');
-		})
-		$('.alert').on('closed.bs.alert',function(){
-			alert('alertQ');
-		})
 
-		$('#modal').on('show.bs.modal',function(){
+	<script>
+		$('.alert').on('closed.bs.alert', function () {
+			alert('qwer');
+		})
+	
+		$('#modal').on('show.bs.modal', function () {
 			alert('show');
 		})
-		$('#modal').on('hide.bs.modal',function(){
+		$('#modal').on('hide.bs.modal', function () {
 			alert('showQ');
 		})
-
-		$('#btn').click(function(){
+	
+		$('#btn').click(function () {
 			$('.toast').toast('show');
 		})
-
-		$(function(){
+	
+		$(function () {
 			$('[data-toggle="tooltip"]').tooltip();
 		})
-
-		$(function(){
+	
+		$(function () {
 			$('[data-toggle="popover"]').popover();
 		})
+	
+		$(document).ready(function () {
+			$('input.add').click(function () {
+				var button = $(this);
+				increaseCount(button);
+			});
+		});
+	
+		function increaseCount(button) {
+			var alertElement = $('<a href="#" class="alert alert-info closable-alert">测试功能<button class="close" data-dismiss="alert"><span>&times;</span></button></a>');
+			$('.nav').append(alertElement);
+	
+			// 绑定关闭事件
+			alertElement.on('closed.bs.alert', function () {
+				alert('Closed alert');
+			});
+		}
 	</script>
 </html>

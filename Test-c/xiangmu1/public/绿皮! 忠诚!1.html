@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css"/>
+		<script src="js/jquery-3.7.1.min.js"></script>
+		<script src="js/bootstrap.bundle.js"></script>
+    </head>
+    <body>
+        <p>text</p>
+        <p class="alert alert-danger">测试功能</p>
+        <p class="alert alert-success">测试功能</p>
+        <p class="alert alert-info"><a href="index.html" class="alert-link">测试功能</a></p>
+        <p class="alert alert-link">测试功能<button class="close" data-dismiss="alert"><span>&times;</span></button></p>
+
+		<p>text</p>
+		<div class="modal" id="modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">header</div>
+					<div class="modal-body">body</div>
+					<div class="modal-footer">
+						<button class="btn btn-primary btn-sm">Y</button>
+						<button class="btn btn-secondary btn-sm" data-dismiss="modal">X</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button class="btn btn-primary" data-toggle="modal" data-target="#modal">打开模态框</button>
+
+		<p>text</p>
+		<div class="toast" data-autohhide="false">
+			<div class="toast-header">header
+				<button class="close ml-auto" data-dismiss="toast"><span>&times;</span></button>
+			</div>
+			<div class="toast-body">body</div>
+		</div>
+		<button class="btn btn-primary" id="btn">X</button>
+
+		<p>text</p>
+		<button class="btn btn-success" data-toggle="tooltip" title="内容" data-placement="right">
+			移入
+		</button>
+
+		<p>text</p>
+		<button class="btn btn-success" data-toggle="popover" title="内容" data-content="right">
+			单击
+		</button>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-9">
+					<p>1984</p>
+					<ul class="pagination pagination-lg justify-content-center" id="pagination">
+						<li class="page-item "><a class="page-link" href="Yesyes.html">Yesyes</a></li>
+						<li class="page-item "><a class="page-link" href="Waaagh.html">Waaagh</a></li>
+						<li class="page-item active"><a class="page-link" href="绿皮! 忠诚!.html">绿皮！忠诚！</a></li>
+						<li class="page-item "><a class="page-link" href="END.html">END</a></li>
+						<li class="page-item "><a class="page-link" href="test.html">test</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+    </body>
+	<script>
+		$('.alert').on('close.bs.alert',function(){
+			alert('alert');
+		})
+		$('.alert').on('closed.bs.alert',function(){
+			alert('alertQ');
+		})
+
+		$('#modal').on('show.bs.modal',function(){
+			alert('show');
+		})
+		$('#modal').on('hide.bs.modal',function(){
+			alert('showQ');
+		})
+
+		$('#btn').click(function(){
+			$('.toast').toast('show');
+		})
+
+		$(function(){
+			$('[data-toggle="tooltip"]').tooltip();
+		})
+
+		$(function(){
+			$('[data-toggle="popover"]').popover();
+		})
+	</script>
+</html>
