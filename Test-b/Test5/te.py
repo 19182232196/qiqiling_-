@@ -1,6 +1,7 @@
 import time
 import pygame
 import random
+import sys
 
 
 class Poi:
@@ -84,12 +85,23 @@ def re(poi, col):
 q = True
 timer = pygame.time.get_ticks()
 c = pygame.time.Clock()
+
+# 添加计时器和倒计时时间
+countdown_timer = 30  # 30秒倒计时
+start_time = time.time()
+
+# 游戏失败标志
+game_over = False
+
 while q:
     current_time = pygame.time.get_ticks()
+    elapsed_time = int(time.time() - start_time)
+
     if current_time - timer > 500:
         if len(foods) < MAX_FOODS:
             foods.append(gr_fo())
         timer = current_time
+
     for es in pygame.event.get():
         if es.type == pygame.QUIT:
             q = False
@@ -116,6 +128,7 @@ while q:
 
     if ea:
         foods.append(gr_fo())
+        countdown_timer += 5  # 每吃一个食物增加5秒倒计时
 
     sna.insert(0, he.cop())
 
@@ -138,6 +151,7 @@ while q:
             break
     if dea:
         print("dead")
+        game_over = True
         q = False
 
     if he.r < 0:
@@ -159,5 +173,22 @@ while q:
 
     re(he, he_col)
 
+    # 添加倒计时显示
+    font = pygame.font.SysFont(None, 55)
+    timer_text = font.render(
+        f"Time: {countdown_timer - elapsed_time}", True, (0, 0, 0))
+    window.blit(timer_text, (10, 10))
+
     pygame.display.flip()
     c.tick(20)
+
+# 游戏失败处理
+if game_over:
+    font = pygame.font.SysFont(None, 75)
+    game_over_text = font.render("Game Over", True, (255, 0, 0))
+    window.blit(game_over_text, (W // 2 - 150, H // 2 - 50))
+    pygame.display.flip()
+
+    pygame.time.delay(3000)  # 等待3秒
+    pygame.quit()
+    sys.exit()
