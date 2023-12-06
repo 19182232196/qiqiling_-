@@ -71,11 +71,20 @@ public class lianxi extends JFrame {
 
     private void zhuce(ActionEvent e) {
         // TODO add your code here
-        zhuceq.setVisible(true);
+
     }
 
     private void comboBox1(ActionEvent e) {
-        // TODO add your code here
+        String selectedValue = (String) comboBox1.getSelectedItem();
+
+        if ("qwer".equals(selectedValue)) {
+            // 显示 denluq 窗口
+            denluq.setVisible(true);
+        } else if ("qwe1".equals(selectedValue)) {
+            // 显示 zhuceq 窗口
+            zhuceq.setVisible(true);
+        }
+        // 可以根据其他选项添加更多的条件判断
     }
 
 
