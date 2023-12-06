@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 import javax.swing.*;
+import org.jdesktop.beansbinding.*;
+import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
+import org.jdesktop.swingbinding.*;
 
 /**
  * @author h1918
@@ -68,7 +71,13 @@ public class lianxi extends JFrame {
 
     private void zhuce(ActionEvent e) {
         // TODO add your code here
+        zhuceq.setVisible(true);
     }
+
+    private void comboBox1(ActionEvent e) {
+        // TODO add your code here
+    }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -78,6 +87,7 @@ public class lianxi extends JFrame {
         label2 = new JLabel();
         textField1 = new JTextField();
         textField2 = new JTextField();
+        comboBox1 = new JComboBox<>();
         denluq = new JFrame();
         textField3 = new JTextField();
         zhuceq = new JFrame();
@@ -115,6 +125,23 @@ public class lianxi extends JFrame {
         textField1.setBounds(160, 115, 255, textField1.getPreferredSize().height);
         contentPane.add(textField2);
         textField2.setBounds(160, 175, 255, textField2.getPreferredSize().height);
+
+        //---- comboBox1 ----
+        comboBox1.setAction(null);
+        comboBox1.setFont(new Font("JetBrains Mono ExtraBold", Font.BOLD | Font.ITALIC, 12));
+        comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
+            "qwer",
+            "qwe1"
+        }));
+        comboBox1.setName("qwer");
+        comboBox1.setNextFocusableComponent(zhuceq);
+        comboBox1.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        comboBox1.setInheritsPopupMenu(true);
+        comboBox1.setFocusTraversalPolicyProvider(true);
+        comboBox1.setFocusCycleRoot(true);
+        comboBox1.addActionListener(e -> comboBox1(e));
+        contentPane.add(comboBox1);
+        comboBox1.setBounds(new Rectangle(new Point(145, 35), comboBox1.getPreferredSize()));
 
         {
             // compute preferred size
@@ -188,6 +215,12 @@ public class lianxi extends JFrame {
             zhuceq.setSize(200, 200);
             zhuceq.setLocationRelativeTo(null);
         }
+
+        //---- bindings ----
+        bindingGroup = new BindingGroup();
+        bindingGroup.addBinding(SwingBindings.createJComboBoxBinding(UpdateStrategy.READ_WRITE,
+            comboBox1, (BeanProperty) BeanProperty.create("action"), comboBox1));
+        bindingGroup.bind();
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -198,10 +231,12 @@ public class lianxi extends JFrame {
     private JLabel label2;
     private JTextField textField1;
     private JTextField textField2;
+    private JComboBox<String> comboBox1;
     private JFrame denluq;
     private JTextField textField3;
     private JFrame zhuceq;
     private JTextField textField4;
+    private BindingGroup bindingGroup;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
     public static void main(String[] args) {
         new lianxi().setVisible(true);

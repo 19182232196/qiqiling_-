@@ -58,8 +58,28 @@ new FormModel {
 				"y": 175
 				"width": 255
 			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox1"
+				"action": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"font": new java.awt.Font( "JetBrains Mono ExtraBold", 3, 12 )
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "qwer"
+					addElement( "qwer" )
+					addElement( "qwe1" )
+				}
+				"name": "qwer"
+				"nextFocusableComponent": new FormReference( "zhuceq" )
+				"componentOrientation": sfield java.awt.ComponentOrientation LEFT_TO_RIGHT
+				"inheritsPopupMenu": true
+				"focusTraversalPolicyProvider": true
+				"focusCycleRoot": true
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "comboBox1", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 145
+				"y": 35
+			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
+			"location": new java.awt.Point( 100, 0 )
 			"size": new java.awt.Dimension( 575, 430 )
 		} )
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
@@ -74,7 +94,7 @@ new FormModel {
 				"y": 100
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 195, 465 )
+			"location": new java.awt.Point( 55, 465 )
 			"size": new java.awt.Dimension( 330, 255 )
 		} )
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
@@ -91,8 +111,12 @@ new FormModel {
 				"y": 60
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 610, 205 )
+			"location": new java.awt.Point( 470, 490 )
 			"size": new java.awt.Dimension( 200, 200 )
+		} )
+		addBindingGroup( new FormBindingGroup( class org.jdesktop.beansbinding.BindingGroup ) {
+			"name": "bindingGroup"
+			addBinding( new FormBinding( "comboBox1", "action", "comboBox1", "elements" ) )
 		} )
 	}
 }
