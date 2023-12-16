@@ -25,10 +25,10 @@
                             <label for="password">密码：</label>
                             <input type="password" class="form-control" id="password" placeholder="请输入密码">
                         </div>
-                        <button type="button" class="btn btn-primary btn-block" onclick="login()">登录</button>
+                        <button type="submit" class="btn btn-primary btn-block" id="loginButton">登录</button>
                     </form>
                     <div class="text-center mt-3">
-                        <a href="#" class="btn btn-link" id="registerBtn">注册</a>
+                        <p>还没有账号？<a href="#" class="btn btn-link" id="registerBtn">注册</a></p>
                     </div>
                 </div>
             </div>
@@ -58,42 +58,46 @@
                             <label for="confirmPassword">确认密码：</label>
                             <input type="password" class="form-control" id="confirmPassword" placeholder="请再次输入密码">
                         </div>
-                        <button type="button" class="btn btn-success btn-block" onclick="login()">登录</button>
+                        <button type="submit" class="btn btn-success btn-block">注册</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // 获取登录按钮
+        const loginButton = document.getElementById('loginButton');
+
+        // 添加登录按钮的点击事件监听器
+        loginButton.addEventListener('click', function (e) {
+            e.preventDefault(); // 阻止默认提交行为
+
+            // 获取用户名和密码
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // 假设的登录逻辑，这里你应该发送请求到服务器验证用户名和密码
+            if (username && password) {
+                // 登录成功，跳转到指定页面，这里将"index.html"替换为你想要跳转的页面
+                window.location.href = "index.html";
+            } else {
+                // 登录失败的处理，例如显示错误信息
+                alert("登录失败，请检查用户名和密码");
+            }
+        });
+
+        // 显示注册表单
+        document.getElementById('registerBtn').addEventListener('click', function () {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+        });
+    });
+</script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </body>
-<script>
-    function login() {
-        // 处理登录逻辑
-        window.location.href = "index.html"; // 跳转到index.html页面
-    }
-
-    // 确保你添加了点击事件监听器
-    document.getElementById("registerBtn").addEventListener("click", function() {
-        // 切换注册表单的显示状态
-        var registerForm = document.getElementById("registerForm");
-        registerForm.style.display = "block";
-
-        // 如果需要，你也可以隐藏登录表单
-        var loginForm = document.getElementById("loginForm");
-        loginForm.style.display = "none";
-    });
-
-    function register() {
-        // 切换注册表单的显示状态
-        var registerForm = document.getElementById("registerForm");
-        registerForm.style.display = "block";
-
-        // 如果需要，你也可以隐藏登录表单
-        var loginForm = document.getElementById("loginForm");
-        loginForm.style.display = "none";
-    }
-</script>
 </html>
