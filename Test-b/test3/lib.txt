@@ -1,0 +1,2 @@
+[1, '基督山伯爵', '三牌楼', '人文', 1, 22, datetime.datetime(2020, 1, 1, 0, 0), datetime.datetime(2020, 1, 1, 0, 0), 2, '可借']
+[1, '许三多买血集', '仙林', '人文', 3, 100, datetime.datetime(2021, 1, 1, 0, 0), datetime.datetime(2021, 1, 1, 0, 0), 5, '不可借']
